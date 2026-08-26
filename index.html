@@ -4,6 +4,22 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Grammar Switchboard</title>
+<meta name="description" content="Interactive Grammar Switchboard exercise: choose A or B and check your answers." />
+<meta property="og:title" content="Grammar Switchboard" />
+<meta property="og:description" content="Interactive English grammar exercise — choose A or B." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://wow-school.github.io/test/" />
+<meta property="og:image" content="https://wow-school.github.io/test/preview.png" />
+<meta property="og:image:secure_url" content="https://wow-school.github.io/test/preview.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Grammar Switchboard interactive exercise preview" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Grammar Switchboard" />
+<meta name="twitter:description" content="Interactive English grammar exercise — choose A or B." />
+<meta name="twitter:image" content="https://wow-school.github.io/test/preview.png" />
+<link rel="image_src" href="https://wow-school.github.io/test/preview.png" />
 <style>
   :root{
     --bg:#040817;
@@ -139,6 +155,37 @@
     .letter{font-size:24px}
   }
 </style>
+
+<style id="holst-fit">
+  /* Holst auto-fit mode: keep the original 2-column board and scale the whole exercise
+     to the available iframe viewport, so no internal scrolling is needed. */
+  html,body{width:100%;height:100%;overflow:hidden!important;}
+  body{min-height:100%!important;}
+  .app{
+    position:absolute!important;
+    width:1540px!important;
+    max-width:none!important;
+    margin:0!important;
+    transform-origin:top left!important;
+    will-change:transform;
+  }
+  .top{position:relative!important;top:auto!important;}
+  .title{font-size:52px!important;}
+  .instruction{font-size:18px!important;}
+  .grid{grid-template-columns:1fr 1fr!important;gap:10px!important;}
+  .card{
+    grid-template-columns:42px minmax(0,1fr) minmax(330px,1.12fr)!important;
+    min-height:82px!important;
+    gap:10px!important;
+    padding:8px 10px!important;
+  }
+  .num{width:38px!important;height:38px!important;font-size:18px!important;}
+  .q{font-size:18px!important;text-align:center!important;}
+  .switcher{grid-column:auto!important;grid-template-columns:1fr 66px 1fr!important;min-height:56px!important;}
+  .track{width:66px!important;height:34px!important;}
+  .letter{font-size:28px!important;}
+  .otxt{font-size:16px!important;}
+</style>
 </head>
 <body>
 <div class="app">
@@ -266,6 +313,35 @@
     });
     score.textContent = `0 / ${cards.length}`;
   });
+})();
+</script>
+
+<script id="holst-fit-script">
+(() => {
+  const app = document.querySelector('.app');
+  function fitBoard(){
+    if(!app) return;
+    app.style.transform='none';
+    app.style.left='0px';
+    app.style.top='0px';
+
+    const naturalW = 1540;
+    const naturalH = app.scrollHeight;
+    const vw = Math.max(1, window.innerWidth);
+    const vh = Math.max(1, window.innerHeight);
+    const scale = Math.min(vw / naturalW, vh / naturalH);
+    const left = Math.max(0, (vw - naturalW * scale) / 2);
+    const top = Math.max(0, (vh - naturalH * scale) / 2);
+
+    app.style.left = left + 'px';
+    app.style.top = top + 'px';
+    app.style.transform = `scale(${scale})`;
+  }
+
+  window.addEventListener('resize', fitBoard, {passive:true});
+  window.addEventListener('orientationchange', fitBoard, {passive:true});
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitBoard);
+  requestAnimationFrame(() => requestAnimationFrame(fitBoard));
 })();
 </script>
 </body>
