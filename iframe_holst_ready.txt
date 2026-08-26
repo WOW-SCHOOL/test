@@ -1,9 +1,0 @@
-<iframe
-  src="https://wow-school.github.io/test/"
-  title="Grammar Switchboard"
-  width="1200"
-  height="675"
-  scrolling="no"
-  style="border:0; border-radius:18px; overflow:hidden; background:#040817;"
-  allowfullscreen>
-</iframe>
