@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>English File Beginner • Unit 1A • Café Slides</title>
+<meta name="description" content="Interactive slide-by-slide unit challenge for English File Beginner 1A.">
+<meta property="og:title" content="English File Beginner • Unit 1A • Café Slides">
+<meta property="og:description" content="Modern interactive slides: grammar, numbers, days, dialogue, audio, and final check.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wow-school.github.io/test/ef-beginner-unit-1a-slides-v2/">
+<meta property="og:image" content="https://wow-school.github.io/test/ef-beginner-unit-1a-slides-v2/preview.png?v=2">
+<meta property="og:image:secure_url" content="https://wow-school.github.io/test/ef-beginner-unit-1a-slides-v2/preview.png?v=2">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Preview of the English File Beginner Unit 1A slide-based interactive exercise">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="English File Beginner • Unit 1A • Café Slides">
+<meta name="twitter:description" content="Interactive slide-by-slide unit challenge.">
+<meta name="twitter:image" content="https://wow-school.github.io/test/ef-beginner-unit-1a-slides-v2/preview.png?v=2">
+<link rel="image_src" href="https://wow-school.github.io/test/ef-beginner-unit-1a-slides-v2/preview.png?v=2">
+<link rel="alternate" type="application/json+oembed" href="https://wow-school.github.io/test/ef-beginner-unit-1a-slides-v2/oembed.json" title="English File Beginner Unit 1A Café Slides oEmbed">
+<style>
+:root{
+  --bg:#edf4ff;
+  --ink:#11243e;
+  --muted:#5c7290;
+  --line:#d9e6fb;
+  --white:#ffffff;
+  --blue1:#42a9ff;
+  --blue2:#0d74ff;
+  --teal1:#1dc9d0;
+  --teal2:#0ea6c9;
+  --vio1:#824cff;
+  --vio2:#5f2bd8;
+  --pink1:#ff64d4;
+  --pink2:#df4ba7;
+  --gold1:#ffd75a;
+  --gold2:#f3b81f;
+  --green1:#69e28b;
+  --green2:#2fc36c;
+  --navy1:#0e2d5d;
+  --navy2:#071937;
+  --danger:#ef5b74;
+  --ok:#30be72;
+  --shadow:0 18px 50px rgba(19,46,89,.14);
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;font-family:Inter,Segoe UI,Arial,sans-serif;background:#dfeafb;overflow:hidden;color:var(--ink)}
+button,input{font:inherit}
+#viewport{width:100vw;height:100vh;display:grid;place-items:center;overflow:hidden;background:linear-gradient(180deg,#eaf2ff 0%,#dbe8ff 100%)}
+#stage{position:relative;width:min(100vw,177.7778vh);height:min(100vh,56.25vw);aspect-ratio:16/9;overflow:hidden;background:linear-gradient(180deg,#f7fbff,#e8f1ff);box-shadow:0 18px 55px rgba(0,0,0,.16)}
+.bg-shape{position:absolute;border-radius:50%;filter:blur(4px);opacity:.45;pointer-events:none}
+.bg-1{width:34cqw;height:34cqw;left:-9cqw;top:-10cqw;background:radial-gradient(circle,#42a9ff,transparent 70%)}
+.bg-2{width:24cqw;height:24cqw;right:-5cqw;top:2cqw;background:radial-gradient(circle,#9b61ff,transparent 68%)}
+.bg-3{width:28cqw;height:28cqw;right:8cqw;bottom:-14cqw;background:radial-gradient(circle,#59d4d6,transparent 68%)}
+.board{position:absolute;inset:0;display:grid;grid-template-rows:auto 1fr auto;z-index:2}
+.topbar{padding:1.3cqw 1.6cqw 0.8cqw;display:flex;align-items:center;justify-content:space-between;gap:1cqw}
+.brand{display:flex;align-items:center;gap:.8cqw}
+.badge{padding:.45cqw .8cqw;border-radius:999px;background:#fff;border:1px solid rgba(17,36,62,.08);box-shadow:0 8px 20px rgba(18,43,88,.08);font-weight:900;font-size:.86cqw;color:#1f3a63}
+.brand-title{font-weight:900;font-size:1.35cqw;color:#0f2e5a;letter-spacing:-.01em}
+.top-right{display:flex;align-items:center;gap:.8cqw}
+.progress-pill{min-width:5.5cqw;text-align:center;padding:.48cqw .85cqw;border-radius:999px;background:#fff;border:1px solid rgba(17,36,62,.08);box-shadow:0 8px 20px rgba(18,43,88,.08);font-weight:900;font-size:.9cqw;color:#18407a}
+.audio-master{border:none;cursor:pointer;padding:.62cqw .95cqw;border-radius:999px;background:linear-gradient(180deg,#0f3671,#0a2149);color:#fff;font-weight:900;font-size:.88cqw;box-shadow:0 10px 20px rgba(7,25,55,.18)}
+
+.slides{position:relative;overflow:hidden}
+.slide{position:absolute;inset:0;padding:0 1.7cqw 1cqw;display:grid;grid-template-columns:1.06fr .94fr;gap:1.3cqw;opacity:0;transform:translateX(6%);pointer-events:none;transition:opacity .35s ease, transform .35s ease}
+.slide.active{opacity:1;transform:translateX(0);pointer-events:auto}
+.left{display:flex;flex-direction:column;gap:1cqw}
+.right{display:flex;flex-direction:column;gap:1cqw}
+.counter{display:inline-flex;align-items:center;justify-content:center;min-width:4.2cqw;padding:.48cqw .8cqw;border-radius:1cqw;background:linear-gradient(180deg,#1fcfd2,#1aa8b9);color:#fff;font-weight:900;font-size:.95cqw;box-shadow:0 10px 20px rgba(14,166,201,.18)}
+.hero-text h1{margin:.55cqw 0 .3cqw;font-size:2.35cqw;line-height:1;font-weight:950;letter-spacing:-.03em;color:#173465}
+.hero-text p{margin:0;color:#627799;font-size:.9cqw;line-height:1.45;max-width:96%}
+.kicker{display:flex;gap:.55cqw;flex-wrap:wrap}
+.micro{padding:.42cqw .65cqw;border-radius:999px;background:#fff;border:1px solid #e0ebfa;color:#3a5d8b;font-weight:800;font-size:.75cqw}
+
+.card{position:relative;border-radius:1.5cqw;padding:1.15cqw;background:var(--white);box-shadow:var(--shadow);border:1px solid rgba(18,43,88,.06);overflow:hidden}
+.card.blue{background:linear-gradient(180deg,#f8fcff,#ecf4ff)}
+.card.dark{background:linear-gradient(180deg,#0c2450,#09193b);color:#f3f8ff}
+.card.teal{background:linear-gradient(180deg,#f4feff,#e7fbff)}
+.card.purple{background:linear-gradient(180deg,#f8f2ff,#efe7ff)}
+.card.gold{background:linear-gradient(180deg,#fffdf2,#fff4c9)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1cqw;margin-bottom:.8cqw}
+.card-title{font-size:1.48cqw;font-weight:950;line-height:1.06;margin:0}
+.card-sub{margin:.18cqw 0 0;font-size:.76cqw;line-height:1.35;color:inherit;opacity:.78}
+.card.dark .card-sub{opacity:.8}
+.point{display:inline-flex;align-items:center;justify-content:center;min-width:3.1cqw;padding:.38cqw .62cqw;border-radius:.9cqw;background:rgba(255,255,255,.82);font-weight:900;font-size:.72cqw;color:#26456d}
+.card.dark .point{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.1)}
+
+.phone-mock{position:relative;height:23.5cqw;border-radius:2.1cqw;background:linear-gradient(180deg,#1c2a3f,#0d1622);box-shadow:0 24px 50px rgba(19,46,89,.18);padding:1.2cqw;border:.12cqw solid rgba(255,255,255,.12)}
+.phone-mock:before{content:"";position:absolute;left:50%;top:.7cqw;transform:translateX(-50%);width:7cqw;height:1.05cqw;border-radius:999px;background:#111827}
+.phone-screen{position:absolute;inset:1.25cqw;border-radius:1.6cqw;background:linear-gradient(180deg,#f8fbff,#eaf3ff);overflow:hidden;padding:1.2cqw}
+.sky{position:absolute;inset:0;background:linear-gradient(180deg,#52b7ff,#8ed4ff 60%,#dff4ff);}
+.sea{position:absolute;left:0;right:0;bottom:0;height:35%;background:linear-gradient(180deg,#5ec9ff,#36a9e8)}
+.route{position:absolute;left:8%;bottom:13%;width:56%;height:20%;border:.18cqw dashed rgba(255,255,255,.82);border-top:none;border-left:none;border-radius:0 0 4cqw 0;transform:rotate(3deg)}
+.pin{position:absolute;left:6%;bottom:11%;width:1.7cqw;height:1.7cqw;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#ff5a74;box-shadow:0 0 0 .2cqw rgba(255,255,255,.42)}
+.pin:after{content:"";position:absolute;inset:.42cqw;border-radius:50%;background:#fff}
+.plane{position:absolute;left:8%;top:8%;font-size:4.1cqw;filter:drop-shadow(0 .6cqw 1cqw rgba(0,0,0,.15))}
+.cam{position:absolute;right:6%;bottom:8%;font-size:2.2cqw;background:#fff;padding:.45cqw .55cqw;border-radius:1cqw;box-shadow:0 10px 18px rgba(19,46,89,.16)}
+.question-panel{position:absolute;left:8%;right:8%;top:14%;bottom:15%;display:flex;flex-direction:column;gap:.7cqw;z-index:3}
+.q-row{padding:.75cqw .9cqw;border-radius:1cqw;background:#fff;box-shadow:0 8px 18px rgba(19,46,89,.12)}
+.q-row .mini-q{font-size:.9cqw;font-weight:800;color:#20395f;margin-bottom:.55cqw}
+.options{display:flex;gap:.6cqw}
+.small-opt{flex:1;padding:.7cqw .75cqw;border:none;border-radius:.9cqw;background:#f2f7ff;box-shadow:inset 0 0 0 .09cqw #d9e6fb;cursor:pointer;font-weight:900;font-size:.86cqw;color:#1c355c}
+.small-opt.active{background:linear-gradient(180deg,#daf2df,#c8f3d1);box-shadow:inset 0 0 0 .11cqw #5fd07e;color:#19472a}
+.screen-footer{position:absolute;left:8%;right:8%;bottom:6.4%;display:flex;justify-content:space-between;align-items:center;z-index:3}
+.dotbar{display:flex;gap:.45cqw;align-items:center}
+.dotbar span{width:.45cqw;height:.45cqw;border-radius:50%;background:#b1c8ea}
+.dotbar span.active{width:.55cqw;height:.55cqw;background:#fff;box-shadow:0 0 0 .1cqw rgba(13,116,255,.18)}
+.next-chip{padding:.8cqw 1.15cqw;border-radius:999px;background:linear-gradient(180deg,#ffd85d,#f3b81f);font-size:.9cqw;font-weight:950;color:#533702;box-shadow:0 10px 18px rgba(243,184,31,.28)}
+
+.panel-stack{display:flex;flex-direction:column;gap:.8cqw}
+.task{padding:.82cqw .9cqw;border-radius:1.05cqw;background:rgba(255,255,255,.7);border:1px solid #dbe7fa}
+.card.dark .task{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.1)}
+.task-top{display:flex;gap:.7cqw;align-items:flex-start}
+.task-num{width:1.7cqw;height:1.7cqw;display:grid;place-items:center;border-radius:.55cqw;background:linear-gradient(180deg,#8d57ff,#6839ed);color:#fff;font-size:.78cqw;font-weight:950;flex:0 0 auto}
+.prompt{font-size:.92cqw;line-height:1.35;font-weight:800}
+.helper{font-size:.7cqw;color:var(--muted);margin-top:.2cqw}
+.card.dark .helper{color:#b9caec}
+.btn-row{display:flex;gap:.55cqw;flex-wrap:wrap;margin-top:.58cqw}
+.ans-btn{border:none;border-radius:.8cqw;padding:.62cqw .85cqw;background:#eef5ff;box-shadow:inset 0 0 0 .08cqw #d7e5fb;cursor:pointer;font-weight:900;font-size:.82cqw;color:#19345a}
+.card.dark .ans-btn{background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 .08cqw rgba(255,255,255,.1);color:#edf5ff}
+.ans-btn.selected{background:linear-gradient(180deg,#daf2df,#c9f1d3);box-shadow:inset 0 0 0 .11cqw #5fd07e;color:#19472a}
+.card.dark .ans-btn.selected{background:linear-gradient(180deg,#4de28d,#29b86a);color:#092b18;box-shadow:none}
+
+.gap{display:grid;grid-template-columns:1fr auto;gap:.6cqw;align-items:center;margin-top:.55cqw}
+.gaptext{font-size:.9cqw;font-weight:800;line-height:1.35}
+.select-wrap{display:flex;gap:.45cqw;flex-wrap:wrap;justify-content:flex-end}
+.pick{padding:.54cqw .78cqw;border:none;border-radius:.8cqw;background:#fff;box-shadow:inset 0 0 0 .08cqw #d7e5fb;cursor:pointer;font-size:.82cqw;font-weight:900;color:#20395f}
+.pick.active{background:linear-gradient(180deg,#fff2b1,#ffd75a);box-shadow:inset 0 0 0 .1cqw #efbb26;color:#5f4703}
+
+.notepad{position:relative;min-height:30.8cqw;padding:1.3cqw 1.2cqw 1.1cqw 1.35cqw;border-radius:1.7cqw;background:linear-gradient(180deg,#e6feff,#bceff1);overflow:hidden}
+.notepad:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 90% 10%, rgba(255,255,255,.55), transparent 18%)}
+.note-page{position:absolute;left:1.25cqw;top:4cqw;bottom:1.4cqw;right:4.4cqw;border-radius:1cqw;background:rgba(255,255,255,.5);box-shadow:0 12px 26px rgba(8,86,98,.12);padding:1.2cqw 1cqw .8cqw;display:flex;flex-direction:column;gap:.75cqw}
+.line-entry{display:grid;grid-template-columns:1.4cqw 1fr;align-items:center;gap:.7cqw}
+.line-entry b{width:1.4cqw;height:1.4cqw;display:grid;place-items:center;border-radius:50%;background:#fff;color:#315a67;font-size:.75cqw;box-shadow:0 4px 10px rgba(8,86,98,.1)}
+.word-input{padding:.7cqw .82cqw;border:none;border-radius:.65cqw;background:#fff;box-shadow:inset 0 0 0 .08cqw #d2e5e7;font-size:.92cqw;font-weight:900;color:#173e49}
+.sticky{position:absolute;right:1.15cqw;top:3.2cqw;width:7.2cqw;border-radius:.8cqw;background:#ffe892;box-shadow:0 10px 20px rgba(129,103,9,.16);padding:.85cqw .8cqw;font-size:.82cqw;line-height:1.35;font-weight:800;color:#5f4703;transform:rotate(4deg)}
+.pencil{position:absolute;right:1.4cqw;bottom:3cqw;width:.75cqw;height:9.2cqw;border-radius:999px;background:linear-gradient(180deg,#ffce5b,#f1b92d);transform:rotate(25deg);box-shadow:0 10px 20px rgba(129,103,9,.16)}
+.pencil:before{content:"";position:absolute;top:-.7cqw;left:0;right:0;height:1cqw;background:#2e3b52;border-radius:.4cqw .4cqw .1cqw .1cqw}
+.pencil:after{content:"";position:absolute;bottom:-1.05cqw;left:0;right:0;margin:auto;width:0;height:0;border-left:.38cqw solid transparent;border-right:.38cqw solid transparent;border-top:1.05cqw solid #d0a06f}
+
+.daybook{position:relative;min-height:29cqw;border-radius:1.6cqw;padding:1.1cqw;background:linear-gradient(180deg,#f7f1ff,#eadcff)}
+.book-inner{position:absolute;inset:1.2cqw 1.4cqw 1.2cqw 1.4cqw;border-radius:1.2cqw;background:#fff6ff;display:flex;flex-direction:column;padding:1.1cqw 1.2cqw;gap:.7cqw;box-shadow:inset .8cqw 0 0 rgba(185,142,234,.22)}
+.day-row{display:grid;grid-template-columns:1.2cqw 1fr;gap:.6cqw;align-items:center;padding:.35cqw 0;border-bottom:.06cqw dashed #e7d9fd}
+.day-row:last-child{border-bottom:none}
+.day-num{font-size:.72cqw;color:#8b78af;font-weight:800}
+.day-slot{min-height:1.95cqw;border-radius:.65cqw;border:.08cqw solid #eadcfb;background:#fff;padding:.28cqw .55cqw;display:flex;align-items:center}
+.day-chip{display:inline-flex;align-items:center;justify-content:center;padding:.58cqw .88cqw;border:none;border-radius:.65cqw;background:linear-gradient(180deg,#f1e5ff,#ddc3ff);cursor:grab;font-weight:900;font-size:.8cqw;color:#4e2b86;box-shadow:0 8px 16px rgba(91,43,216,.12)}
+.day-pool{display:flex;gap:.45cqw;flex-wrap:wrap;margin-top:.5cqw}
+.mug{position:absolute;right:1.1cqw;bottom:1.2cqw;width:3.1cqw;height:3.1cqw;border-radius:50%;background:#fff;box-shadow:0 8px 18px rgba(19,46,89,.12)}
+.mug:before{content:"";position:absolute;inset:.42cqw;border-radius:50%;background:#6d4a1e}
+.mug:after{content:"";position:absolute;right:-.7cqw;top:.7cqw;width:1cqw;height:1.35cqw;border:.22cqw solid #fff;border-left:none;border-radius:0 .5cqw .5cqw 0}
+.leaf{position:absolute;right:1.2cqw;top:1cqw;width:2.2cqw;height:4.1cqw;background:radial-gradient(circle at 70% 30%,#91dc7e 0,#63c853 60%,transparent 61%);opacity:.8}
+
+.match-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:.95cqw;align-items:stretch}
+.scene-box{position:relative;min-height:26cqw;border-radius:1.35cqw;background:linear-gradient(180deg,#174174,#0c274f);overflow:hidden;padding:1.05cqw;color:#fff}
+.window-grid{position:absolute;inset:1cqw 1.2cqw 4.5cqw 1.2cqw;display:grid;grid-template-columns:1fr 1fr;gap:.7cqw;opacity:.28}
+.window-grid span{background:rgba(255,255,255,.24);border-radius:.5cqw}
+.counter-bar{position:absolute;left:0;right:0;bottom:0;height:4.1cqw;background:linear-gradient(180deg,#4c3009,#2b1705)}
+.bubble{position:relative;z-index:2;max-width:78%;padding:.75cqw .85cqw;border-radius:1cqw;background:rgba(255,255,255,.12);backdrop-filter:blur(2px);font-size:.84cqw;line-height:1.35;font-weight:700;margin-bottom:.55cqw}
+.bubble.me{margin-left:auto;background:rgba(255,255,255,.2)}
+.luggage{position:absolute;right:1cqw;bottom:.7cqw;width:3.2cqw;height:2.8cqw;border-radius:.6cqw;background:linear-gradient(180deg,#ffbf4f,#f39d21);z-index:3;box-shadow:0 10px 18px rgba(0,0,0,.22)}
+.luggage:before{content:"";position:absolute;left:1cqw;right:1cqw;top:-.45cqw;height:.55cqw;border:.12cqw solid #6e4a19;border-bottom:none;border-radius:.4cqw .4cqw 0 0}
+.answer-card{padding:1cqw;border-radius:1.2cqw;background:#fff;box-shadow:0 14px 24px rgba(19,46,89,.11)}
+.match-item{padding:.7cqw .8cqw;border-radius:.9cqw;background:#f4f8ff;border:1px solid #dde8fb;font-weight:800;font-size:.85cqw;color:#17345f;margin-bottom:.55cqw;cursor:pointer}
+.match-item.active{background:linear-gradient(180deg,#daf2df,#c7f1d2);border-color:#5fd07e;color:#19472a}
+.match-prompt{font-size:.9cqw;font-weight:900;color:#14335f;margin-bottom:.65cqw}
+
+.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8cqw}
+.id-card{padding:.95cqw;border-radius:1.2cqw;background:#fff;box-shadow:0 12px 22px rgba(19,46,89,.10);border:1px solid #e2ebfb}
+.avatar{width:3cqw;height:3cqw;border-radius:50%;background:linear-gradient(180deg,#fee2c7,#ffbd8b);margin-bottom:.5cqw;position:relative;overflow:hidden}
+.avatar:before{content:"";position:absolute;left:.62cqw;right:.62cqw;top:.32cqw;height:1.1cqw;border-radius:.7cqw .7cqw .3cqw .3cqw;background:#6f4635}
+.avatar:after{content:"";position:absolute;left:.55cqw;right:.55cqw;bottom:0;height:1.25cqw;border-radius:60% 60% 0 0;background:#79a9ff}
+.id-name{font-size:.92cqw;font-weight:950;color:#17335f}
+.id-line{font-size:.72cqw;color:#697e9c;margin-top:.18cqw}
+.id-choices{display:flex;gap:.45cqw;flex-wrap:wrap;margin-top:.55cqw}
+.id-choices button{padding:.48cqw .62cqw;border:none;border-radius:.65cqw;background:#eef5ff;box-shadow:inset 0 0 0 .08cqw #d7e5fb;cursor:pointer;font-weight:800;font-size:.75cqw;color:#19345a}
+.id-choices button.selected{background:linear-gradient(180deg,#fff2b1,#ffd75a);box-shadow:inset 0 0 0 .1cqw #efbb26;color:#5f4703}
+
+.audio-card{display:grid;grid-template-columns:1fr auto;gap:.9cqw;align-items:center;padding:1cqw;border-radius:1.3cqw;background:linear-gradient(180deg,#0f2e5c,#081a37);color:#fff;box-shadow:0 16px 30px rgba(9,25,55,.18)}
+.wave{height:3cqw;border-radius:1cqw;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));display:flex;align-items:center;gap:.22cqw;padding:.4cqw .5cqw}
+.wave span{display:block;width:.24cqw;border-radius:.25cqw;background:linear-gradient(180deg,#56e1ff,#a56dff);animation:wave 1.1s ease-in-out infinite;transform-origin:center bottom}
+.wave span:nth-child(odd){animation-duration:1.3s}
+.wave span:nth-child(3n){animation-duration:.95s}
+@keyframes wave{0%,100%{height:.55cqw}50%{height:1.65cqw}}
+.audio-btn{border:none;cursor:pointer;padding:.9cqw 1.15cqw;border-radius:999px;background:linear-gradient(180deg,#1fcfd2,#1aa8b9);color:#fff;font-weight:950;font-size:.86cqw;box-shadow:0 10px 20px rgba(14,166,201,.22)}
+
+.result-map{position:relative;min-height:24cqw;border-radius:1.6cqw;overflow:hidden;background:linear-gradient(180deg,#0b6db9,#0d3d8f);padding:1.15cqw;color:#fff}
+.island{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 30%,#93f7a6,#46b862 72%);box-shadow:0 10px 20px rgba(0,0,0,.2)}
+.i1{width:7.5cqw;height:5.2cqw;left:1.2cqw;top:2.4cqw}.i2{width:6.1cqw;height:4.5cqw;left:6.8cqw;top:7.8cqw}.i3{width:5.2cqw;height:4.1cqw;left:12.2cqw;top:12.5cqw}.i4{width:4.4cqw;height:3.3cqw;left:18.4cqw;top:17.2cqw}.i5{width:4.2cqw;height:3.2cqw;left:23.6cqw;top:20.2cqw}
+.path{position:absolute;left:5cqw;top:5cqw;width:19cqw;height:15.5cqw;border:.16cqw dashed rgba(255,255,255,.82);border-right:none;border-top:none;border-radius:0 0 9cqw 0;transform:rotate(6deg)}
+.milestone{position:absolute;padding:.55cqw .85cqw;border-radius:1cqw;background:rgba(255,255,255,.9);color:#17335f;font-weight:900;font-size:.8cqw;box-shadow:0 8px 18px rgba(7,25,55,.18)}
+.m1{left:5.6cqw;top:2.3cqw}.m2{left:10.1cqw;top:7.2cqw}.m3{left:15.8cqw;top:12.1cqw}.m4{left:21.1cqw;top:17.8cqw}
+.treasure{position:absolute;right:1.8cqw;bottom:1.4cqw;width:4.1cqw;height:2.9cqw;border-radius:.55cqw;background:linear-gradient(180deg,#ffd75a,#f3b81f);box-shadow:0 10px 18px rgba(0,0,0,.24)}
+.treasure:before{content:"";position:absolute;left:0;right:0;top:-1.15cqw;height:1.4cqw;border-radius:1.2cqw 1.2cqw .25cqw .25cqw;background:linear-gradient(180deg,#ffd75a,#e1a91a)}
+.treasure:after{content:"";position:absolute;left:1.65cqw;top:.35cqw;width:.7cqw;height:1cqw;border:.14cqw solid #8c5f00;border-radius:.2cqw}
+
+.score-ring-wrap{display:flex;align-items:center;gap:1.2cqw}
+.score-ring{position:relative;width:9.4cqw;height:9.4cqw;border-radius:50%;background:conic-gradient(#37d56e calc(var(--pct)*1%), #ffd75a calc(var(--pct)*1%) 100%);display:grid;place-items:center;box-shadow:0 18px 32px rgba(19,46,89,.16)}
+.score-ring:before{content:"";position:absolute;inset:1.05cqw;border-radius:50%;background:#0a1d3a}
+.score-ring strong{position:relative;z-index:2;color:#fff;font-size:2.05cqw;line-height:1;font-weight:950;text-align:center}
+.score-ring small{display:block;font-size:.78cqw;font-weight:800;color:#cfe0ff;margin-top:.2cqw}
+.stats-list{display:flex;flex-direction:column;gap:.55cqw;min-width:14cqw}
+.stat-row{display:grid;grid-template-columns:auto 1fr auto;gap:.55cqw;align-items:center;font-size:.82cqw;color:#e9f3ff;font-weight:850}
+.stat-bar{height:.52cqw;border-radius:999px;background:rgba(255,255,255,.15);overflow:hidden}
+.stat-bar span{display:block;height:100%;background:linear-gradient(90deg,#49e3ff,#66e48d)}
+.action-buttons{display:flex;gap:.7cqw;margin-top:.9cqw;flex-wrap:wrap}
+.action-buttons button{border:none;cursor:pointer;padding:.8cqw 1.1cqw;border-radius:999px;font-weight:950;font-size:.82cqw}
+.again{background:linear-gradient(180deg,#ffd75a,#f3b81f);color:#5f4703}.review{background:#12376d;color:#fff}
+
+.navbar{padding:.35cqw 1.7cqw 1.1cqw;display:flex;align-items:center;justify-content:space-between;gap:1cqw}
+.navset{display:flex;gap:.7cqw;align-items:center}
+.navbtn{border:none;cursor:pointer;padding:.85cqw 1.2cqw;border-radius:999px;font-weight:950;font-size:.88cqw;box-shadow:0 10px 20px rgba(19,46,89,.12)}
+.navbtn.primary{background:linear-gradient(180deg,#0f3671,#0a2149);color:#fff}.navbtn.secondary{background:#fff;color:#17335f;border:1px solid #dbe6f8}.navbtn.gold{background:linear-gradient(180deg,#ffd75a,#f3b81f);color:#5f4703}.navbtn:disabled{opacity:.5;cursor:not-allowed}
+.slide-dots{display:flex;gap:.38cqw;align-items:center;flex-wrap:wrap;justify-content:center}
+.slide-dots button{width:.66cqw;height:.66cqw;border:none;border-radius:50%;background:#b6c7df;cursor:pointer;padding:0}
+.slide-dots button.active{width:1.4cqw;border-radius:999px;background:linear-gradient(90deg,#44b0ff,#8150ff)}
+.feedback{font-size:.78cqw;color:#5f7191;font-weight:800}
+
+.slide-cover .hero-text h1{font-size:2.95cqw}
+.slide-cover .left{justify-content:center;padding-bottom:2cqw}
+.slide-cover .right{justify-content:center}
+.slide-cover .cover-card{min-height:26cqw}
+.cover-card .hero-illus{position:absolute;right:1.25cqw;bottom:1cqw;width:15.8cqw;height:11.2cqw;border-radius:1.6cqw;background:linear-gradient(135deg,#0e2b5a,#133e86);box-shadow:0 18px 28px rgba(19,46,89,.18);overflow:hidden}
+.hero-illus .cup-small{position:absolute;left:1.25cqw;bottom:1.2cqw;width:3.8cqw;height:4.2cqw;border-radius:0 0 .9cqw .9cqw;background:linear-gradient(180deg,#fff,#dce8f7)}
+.hero-illus .cup-small:before{content:"";position:absolute;left:.35cqw;right:.35cqw;top:.35cqw;height:.65cqw;border-radius:999px;background:#7a4b20}
+.hero-illus .cup-small:after{content:"";position:absolute;right:-.75cqw;top:.8cqw;width:1.05cqw;height:1.5cqw;border:.26cqw solid #edf4ff;border-left:none;border-radius:0 .75cqw .75cqw 0}
+.hero-illus .phone-mini{position:absolute;right:1.1cqw;top:1.2cqw;width:6.7cqw;height:8.2cqw;border-radius:1.1cqw;background:linear-gradient(180deg,#1a2436,#0e1520);padding:.45cqw}
+.hero-illus .phone-mini:before{content:"";position:absolute;top:.22cqw;left:50%;transform:translateX(-50%);width:2.5cqw;height:.35cqw;background:#0b1220;border-radius:999px}
+.hero-illus .phone-mini .screen{position:absolute;inset:.55cqw;border-radius:.8cqw;background:linear-gradient(180deg,#f7fbff,#e6f0ff);padding:.5cqw}
+.cover-ribbon{display:inline-flex;align-items:center;gap:.45cqw;padding:.55cqw .85cqw;border-radius:999px;background:linear-gradient(180deg,#0f3671,#0a2149);color:#fff;font-weight:900;font-size:.78cqw;box-shadow:0 10px 20px rgba(19,46,89,.12)}
+
+/* vertical fallback */
+@media (max-aspect-ratio: 1/1){
+  #stage{width:100vw;height:100vh}
+  .slide{grid-template-columns:1fr;overflow:auto;padding-bottom:8cqw}
+  .navbar,.topbar{position:relative}
+}
+</style>
+</head>
+<body>
+<div id="viewport">
+  <div id="stage">
+    <div class="bg-shape bg-1"></div><div class="bg-shape bg-2"></div><div class="bg-shape bg-3"></div>
+
+    <div class="board">
+      <div class="topbar">
+        <div class="brand">
+          <div class="badge">WOW SCHOOL</div>
+          <div>
+            <div class="brand-title">English File Beginner • Unit 1A</div>
+          </div>
+        </div>
+        <div class="top-right">
+          <div class="progress-pill" id="topProgress">1 / 10</div>
+          <button class="audio-master" id="audioMaster">🔊 British audio</button>
+        </div>
+      </div>
+
+      <div class="slides">
+        <section class="slide slide-cover active" data-slide="0">
+          <div class="left">
+            <div class="counter">1/10</div>
+            <div class="hero-text">
+              <div class="cover-ribbon">Interactive unit challenge</div>
+              <h1>Café Checkpoint</h1>
+              <p>Slide-by-slide practice for <strong>be (I / you)</strong>, <strong>numbers 0–10</strong>, <strong>days of the week</strong>, greetings, and simple café language. Complete one screen, move to the next, and finish with a clear result screen.</p>
+            </div>
+            <div class="kicker">
+              <div class="micro">modern visual style</div>
+              <div class="micro">10 separate slides</div>
+              <div class="micro">Holst / iframe ready</div>
+              <div class="micro">preview included</div>
+            </div>
+            <div class="card blue">
+              <div class="card-header"><div><h3 class="card-title">What’s inside</h3><p class="card-sub">A structure that is much more comfortable for the eyes.</p></div><div class="point">8 scored slides</div></div>
+              <div class="panel-stack">
+                <div class="task"><div class="task-top"><div class="task-num">A</div><div><div class="prompt">Choose the correct variant</div><div class="helper">Clear cards with large buttons</div></div></div></div>
+                <div class="task"><div class="task-top"><div class="task-num">B</div><div><div class="prompt">Fill the gaps • write the words • put the days in order</div><div class="helper">Each activity is on a separate screen</div></div></div></div>
+                <div class="task"><div class="task-top"><div class="task-num">C</div><div><div class="prompt">Dialogue • ID cards • audio mini-check • final result</div><div class="helper">Big blocks, clean layout, no tiny full-board text</div></div></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="card dark cover-card">
+              <div class="card-header"><div><h3 class="card-title">Preview</h3><p class="card-sub">This visual is also used as the public preview cover.</p></div><div class="point">Start</div></div>
+              <div class="hero-illus">
+                <div class="cup-small"></div>
+                <div class="phone-mini"><div class="screen"><div style="height:.5cqw;border-radius:999px;background:linear-gradient(90deg,#46dfff,#8c61ff);margin-bottom:.45cqw"></div><div style="height:1.25cqw;border-radius:.5cqw;background:rgba(18,43,88,.08);margin-bottom:.35cqw"></div><div style="height:1.25cqw;border-radius:.5cqw;background:rgba(18,43,88,.08);width:76%;margin-bottom:.35cqw"></div><div style="height:1.25cqw;border-radius:.5cqw;background:rgba(18,43,88,.08)"></div></div></div>
+              </div>
+              <div style="max-width:57%;padding-top:1cqw">
+                <h3 style="margin:0 0 .4cqw;font-size:2.15cqw;line-height:1;font-weight:950">Slide by slide.</h3>
+                <p style="margin:0;color:#d6e6ff;font-size:.9cqw;line-height:1.45">No long full-board page. One block → next block → final result.</p>
+              </div>
+              <div style="position:absolute;left:1.2cqw;bottom:1.2cqw;display:flex;gap:.5cqw;flex-wrap:wrap">
+                <div class="micro" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.08);color:#eaf4ff">big cards</div>
+                <div class="micro" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.08);color:#eaf4ff">clear focus</div>
+                <div class="micro" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.08);color:#eaf4ff">more visual</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-slide="1">
+          <div class="left">
+            <div class="counter">2/10</div>
+            <div class="hero-text"><h1>Выберите правильный вариант</h1><p>Underline the correct word(s). Large buttons, large text, and one clear focus.</p></div>
+            <div class="phone-mock">
+              <div class="phone-screen">
+                <div class="sky"></div><div class="sea"></div><div class="route"></div><div class="pin"></div><div class="plane">✈️</div><div class="cam">📷</div>
+                <div class="question-panel">
+                  <div class="q-row"><div class="mini-q">1 Are / Am you Helen?</div><div class="options"><button class="small-opt" data-choice="s1q1" data-value="a">Am</button><button class="small-opt" data-choice="s1q1" data-value="b">Are</button></div></div>
+                  <div class="q-row"><div class="mini-q">2 I am / are Mike.</div><div class="options"><button class="small-opt" data-choice="s1q2" data-value="a">am</button><button class="small-opt" data-choice="s1q2" data-value="b">are</button></div></div>
+                  <div class="q-row"><div class="mini-q">3 You am / are in Room 4.</div><div class="options"><button class="small-opt" data-choice="s1q3" data-value="a">am</button><button class="small-opt" data-choice="s1q3" data-value="b">are</button></div></div>
+                </div>
+                <div class="screen-footer"><div class="dotbar"><span class="active"></span><span></span><span></span></div><div class="next-chip">1/3</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="card blue">
+              <div class="card-header"><div><h3 class="card-title">Grammar switch</h3><p class="card-sub">Choose the correct form of <strong>be</strong>.</p></div><div class="point">4 tasks</div></div>
+              <div class="panel-stack">
+                <div class="task" data-answer="b" data-choice-group="s1q1"><div class="task-top"><div class="task-num">1</div><div><div class="prompt">_____ you Helen?</div><div class="helper">Question form</div></div></div><div class="btn-row"><button class="ans-btn" data-choice="s1q1" data-value="a">Am</button><button class="ans-btn" data-choice="s1q1" data-value="b">Are</button></div></div>
+                <div class="task" data-answer="a" data-choice-group="s1q2"><div class="task-top"><div class="task-num">2</div><div><div class="prompt">I _____ Mike.</div><div class="helper">Short introduction</div></div></div><div class="btn-row"><button class="ans-btn" data-choice="s1q2" data-value="a">am</button><button class="ans-btn" data-choice="s1q2" data-value="b">are</button></div></div>
+                <div class="task" data-answer="b" data-choice-group="s1q3"><div class="task-top"><div class="task-num">3</div><div><div class="prompt">You _____ in Room 4.</div><div class="helper">Statement</div></div></div><div class="btn-row"><button class="ans-btn" data-choice="s1q3" data-value="a">am</button><button class="ans-btn" data-choice="s1q3" data-value="b">are</button></div></div>
+                <div class="task" data-answer="a" data-choice-group="s1q4"><div class="task-top"><div class="task-num">4</div><div><div class="prompt">I _____ not Anna.</div><div class="helper">Negative form</div></div></div><div class="btn-row"><button class="ans-btn" data-choice="s1q4" data-value="a">am</button><button class="ans-btn" data-choice="s1q4" data-value="b">are</button></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-slide="2">
+          <div class="left">
+            <div class="counter">3/10</div>
+            <div class="hero-text"><h1>Заполните пропуски</h1><p>Use the correct short form where possible. The slide stays focused on one mechanic.</p></div>
+            <div class="card dark">
+              <div class="card-header"><div><h3 class="card-title">Use contractions</h3><p class="card-sub">Pick the best option in each sentence.</p></div><div class="point">4 tasks</div></div>
+              <div class="panel-stack">
+                <div class="task gap-task" data-answer="are"><div class="task-top"><div class="task-num">1</div><div><div class="prompt">Excuse me, _____ you Mr Buchanan?</div><div class="helper">Polite question</div></div></div><div class="gap"><div class="gaptext">Choose the missing word.</div><div class="select-wrap"><button class="pick" data-gap="g1" data-value="am">am</button><button class="pick" data-gap="g1" data-value="are">are</button></div></div></div>
+                <div class="task gap-task" data-answer="s"><div class="task-top"><div class="task-num">2</div><div><div class="prompt">She _____ very nice. She always helps us.</div><div class="helper">Contraction</div></div></div><div class="gap"><div class="gaptext">Use <strong>’s</strong> or <strong>’re</strong>.</div><div class="select-wrap"><button class="pick" data-gap="g2" data-value="s">’s</button><button class="pick" data-gap="g2" data-value="re">’re</button></div></div></div>
+                <div class="task gap-task" data-answer="m"><div class="task-top"><div class="task-num">3</div><div><div class="prompt">I _____ a teacher. I’m a student.</div><div class="helper">Contraction</div></div></div><div class="gap"><div class="gaptext">Choose the short form.</div><div class="select-wrap"><button class="pick" data-gap="g3" data-value="m">’m</button><button class="pick" data-gap="g3" data-value="s">’s</button></div></div></div>
+                <div class="task gap-task" data-answer="re"><div class="task-top"><div class="task-num">4</div><div><div class="prompt">You _____ a student. You are in my class.</div><div class="helper">Contraction</div></div></div><div class="gap"><div class="gaptext">Choose the short form.</div><div class="select-wrap"><button class="pick" data-gap="g4" data-value="re">’re</button><button class="pick" data-gap="g4" data-value="m">’m</button></div></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="card purple">
+              <div class="card-header"><div><h3 class="card-title">Mini support</h3><p class="card-sub">Short reminder before you move on.</p></div><div class="point">tips</div></div>
+              <div class="panel-stack">
+                <div class="task"><div class="task-top"><div class="task-num">✓</div><div><div class="prompt">I’m = I am</div><div class="helper">I’m Alex. I’m in Room 4.</div></div></div></div>
+                <div class="task"><div class="task-top"><div class="task-num">✓</div><div><div class="prompt">She’s = She is</div><div class="helper">She’s very nice.</div></div></div></div>
+                <div class="task"><div class="task-top"><div class="task-num">✓</div><div><div class="prompt">You’re = You are</div><div class="helper">You’re in my class.</div></div></div></div>
+                <div class="task"><div class="task-top"><div class="task-num">!</div><div><div class="prompt">Read the whole sentence</div><div class="helper">It helps you choose the correct short form more easily.</div></div></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-slide="3">
+          <div class="left">
+            <div class="counter">4/10</div>
+            <div class="hero-text"><h1>Напишите слова</h1><p>Write the numbers in words. Big handwriting-style inputs make the task feel lighter and cleaner.</p></div>
+            <div class="notepad">
+              <div class="note-page">
+                <div class="line-entry"><b>1</b><input class="word-input" data-input="n1" placeholder="2"></div>
+                <div class="line-entry"><b>2</b><input class="word-input" data-input="n2" placeholder="7"></div>
+                <div class="line-entry"><b>3</b><input class="word-input" data-input="n3" placeholder="4"></div>
+                <div class="line-entry"><b>4</b><input class="word-input" data-input="n4" placeholder="8"></div>
+              </div>
+              <div class="sticky">Example:<br><strong>3 → three</strong></div>
+              <div class="pencil"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="card teal">
+              <div class="card-header"><div><h3 class="card-title">Number words</h3><p class="card-sub">Write the words clearly.</p></div><div class="point">4 tasks</div></div>
+              <div class="panel-stack">
+                <div class="task input-task" data-answer="two"><div class="task-top"><div class="task-num">1</div><div><div class="prompt">2 = ?</div><div class="helper">Type the word</div></div></div><input class="word-input" data-input="n1b" placeholder="Write the word"></div>
+                <div class="task input-task" data-answer="seven"><div class="task-top"><div class="task-num">2</div><div><div class="prompt">7 = ?</div><div class="helper">Type the word</div></div></div><input class="word-input" data-input="n2b" placeholder="Write the word"></div>
+                <div class="task input-task" data-answer="four"><div class="task-top"><div class="task-num">3</div><div><div class="prompt">4 = ?</div><div class="helper">Type the word</div></div></div><input class="word-input" data-input="n3b" placeholder="Write the word"></div>
+                <div class="task input-task" data-answer="eight"><div class="task-top"><div class="task-num">4</div><div><div class="prompt">8 = ?</div><div class="helper">Type the word</div></div></div><input class="word-input" data-input="n4b" placeholder="Write the word"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-slide="4">
+          <div class="left">
+            <div class="counter">5/10</div>
+            <div class="hero-text"><h1>Дни недели</h1><p>Put the days of the week in order. Use drag and drop: one screen, one clear action.</p></div>
+            <div class="daybook">
+              <div class="leaf"></div>
+              <div class="book-inner">
+                <div class="day-row"><div class="day-num">1</div><div class="day-slot day-target" data-day="1"></div></div>
+                <div class="day-row"><div class="day-num">2</div><div class="day-slot day-target" data-day="2"></div></div>
+                <div class="day-row"><div class="day-num">3</div><div class="day-slot day-target" data-day="3"></div></div>
+                <div class="day-row"><div class="day-num">4</div><div class="day-slot day-target" data-day="4"></div></div>
+                <div class="day-row"><div class="day-num">5</div><div class="day-slot day-target" data-day="5"></div></div>
+                <div class="day-row"><div class="day-num">6</div><div class="day-slot day-target" data-day="6"></div></div>
+                <div class="day-row"><div class="day-num">7</div><div class="day-slot day-target" data-day="7"></div></div>
+                <div class="day-pool" id="dayPool">
+                  <button class="day-chip" draggable="true" data-value="Sunday">Sunday</button>
+                  <button class="day-chip" draggable="true" data-value="Monday">Monday</button>
+                  <button class="day-chip" draggable="true" data-value="Tuesday">Tuesday</button>
+                  <button class="day-chip" draggable="true" data-value="Wednesday">Wednesday</button>
+                  <button class="day-chip" draggable="true" data-value="Thursday">Thursday</button>
+                  <button class="day-chip" draggable="true" data-value="Friday">Friday</button>
+                  <button class="day-chip" draggable="true" data-value="Saturday">Saturday</button>
+                </div>
+              </div>
+              <div class="mug"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="card purple">
+              <div class="card-header"><div><h3 class="card-title">Week order</h3><p class="card-sub">Start with Monday and finish with Sunday.</p></div><div class="point">1 drag task</div></div>
+              <div class="panel-stack">
+                <div class="task"><div class="task-top"><div class="task-num">→</div><div><div class="prompt">Tip</div><div class="helper">You can drag the purple chips into the notebook slots. Click a filled slot to return a chip to the pool.</div></div></div></div></div>
+                <div class="task"><div class="task-top"><div class="task-num">✓</div><div><div class="prompt">Target order</div><div class="helper">Monday • Tuesday • Wednesday • Thursday • Friday • Saturday • Sunday</div></div></div></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-slide="5">
+          <div class="left">
+            <div class="counter">6/10</div>
+            <div class="hero-text"><h1>Дополните диалоги</h1><p>Choose the correct phrase. The visual scene is bigger, cleaner, and easier to read than the previous full-board version.</p></div>
+            <div class="match-wrap">
+              <div class="scene-box">
+                <div class="window-grid"><span></span><span></span><span></span><span></span></div>
+                <div class="bubble">A: How do you say “libro” in English?</div>
+                <div class="bubble me">B: ?</div>
+                <div class="bubble">A: Nice to meet you.</div>
+                <div class="bubble me">B: ?</div>
+                <div class="counter-bar"></div><div class="luggage"></div>
+              </div>
+              <div class="answer-card">
+                <div class="match-prompt">Tap the correct phrase for each mini-dialogue.</div>
+                <div class="match-item" data-choice="m1" data-value="a">I don’t know.</div>
+                <div class="match-item" data-choice="m1" data-value="b">Goodbye.</div>
+                <div class="match-item" data-choice="m2" data-value="a">Nice to meet you, too.</div>
+                <div class="match-item" data-choice="m2" data-value="b">I’m in Room 4.</div>
+                <div class="match-item" data-choice="m3" data-value="a">Hello, my name’s Ben.</div>
+                <div class="match-item" data-choice="m3" data-value="b">Bye, see you tomorrow.</div>
+                <div class="match-item" data-choice="m4" data-value="a">A cappuccino, please.</div>
+                <div class="match-item" data-choice="m4" data-value="b">Wednesday.</div>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="card blue">
+              <div class="card-header"><div><h3 class="card-title">Practical English</h3><p class="card-sub">Four short situation questions.</p></div><div class="point">4 tasks</div></div>
+              <div class="panel-stack">
+                <div class="task" data-answer="a" data-choice-group="m1"><div class="task-top"><div class="task-num">1</div><div><div class="prompt">A: How do you say “libro” in English?<br>B: _____</div><div class="helper">Choose the best reply.</div></div></div><div class="btn-row"><button class="ans-btn" data-choice="m1" data-value="a">I don’t know.</button><button class="ans-btn" data-choice="m1" data-value="b">Goodbye.</button></div></div>
+                <div class="task" data-answer="a" data-choice-group="m2"><div class="task-top"><div class="task-num">2</div><div><div class="prompt">A: Nice to meet you.<br>B: _____</div><div class="helper">Friendly response</div></div></div><div class="btn-row"><button class="ans-btn" data-choice="m2" data-value="a">Nice to meet you, too.</button><button class="ans-btn" data-choice="m2" data-value="b">I’m in Room 4.</button></div></div>
+                <div class="task" data-answer="a" data-choice-group="m3"><div class="task-top"><div class="task-num">3</div><div><div class="prompt">Choose the best self-introduction.</div><div class="helper">You meet a new classmate.</div></div></div><div class="btn-row"><button class="ans-btn" data-choice="m3" data-value="a">Hello, my name’s Ben.</button><button class="ans-btn" data-choice="m3" data-value="b">Bye, see you tomorrow.</button></div></div>
+                <div class="task" data-answer="a" data-choice-group="m4"><div class="task-top"><div class="task-num">4</div><div><div class="prompt">You are in a café. You want coffee.</div><div class="helper">Choose the natural phrase.</div></div></div><div class="btn-row"><button class="ans-btn" data-choice="m4" data-value="a">A cappuccino, please.</button><button class="ans-btn" data-choice="m4" data-value="b">Wednesday.</button></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-slide="6">
+          <div class="left">
+            <div class="counter">7/10</div>
+            <div class="hero-text"><h1>Заполните ID-карточки</h1><p>A more visual information-check slide inspired by your reference. Still aligned to Unit 1A beginner content.</p></div>
+            <div class="id-grid">
+              <div class="id-card" data-answer="London" data-idcard="1"><div class="avatar"></div><div class="id-name">Lena Taylor</div><div class="id-line">First name: Lena</div><div class="id-line">Surname: Taylor</div><div class="id-line">From: ?</div><div class="id-choices"><button data-group="id1" data-value="London">London</button><button data-group="id1" data-value="Rome">Rome</button><button data-group="id1" data-value="Tokyo">Tokyo</button></div></div>
+              <div class="id-card" data-answer="Sofia" data-idcard="2"><div class="avatar"></div><div class="id-name">Popov</div><div class="id-line">First name: ?</div><div class="id-line">Surname: Popov</div><div class="id-line">From: Sochi, Russia</div><div class="id-choices"><button data-group="id2" data-value="Sofia">Sofia</button><button data-group="id2" data-value="Emily">Emily</button><button data-group="id2" data-value="James">James</button></div></div>
+              <div class="id-card" data-answer="5" data-idcard="3"><div class="avatar"></div><div class="id-name">Sam</div><div class="id-line">Name: Sam</div><div class="id-line">Room: ?</div><div class="id-choices"><button data-group="id3" data-value="3">3</button><button data-group="id3" data-value="5">5</button><button data-group="id3" data-value="8">8</button></div></div>
+              <div class="id-card" data-answer="Wednesday" data-idcard="4"><div class="avatar"></div><div class="id-name">Class note</div><div class="id-line">See you: ?</div><div class="id-line">Options below</div><div class="id-choices"><button data-group="id4" data-value="Friday">Friday</button><button data-group="id4" data-value="Monday">Monday</button><button data-group="id4" data-value="Wednesday">Wednesday</button></div></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="card teal">
+              <div class="card-header"><div><h3 class="card-title">Quick details</h3><p class="card-sub">Tap the correct info chip on each card.</p></div><div class="point">4 tasks</div></div>
+              <div class="panel-stack">
+                <div class="task"><div class="task-top"><div class="task-num">1</div><div><div class="prompt">Choose Lena’s city.</div><div class="helper">Look at the left card.</div></div></div></div>
+                <div class="task"><div class="task-top"><div class="task-num">2</div><div><div class="prompt">Choose the correct first name.</div><div class="helper">Surname is Popov.</div></div></div></div>
+                <div class="task"><div class="task-top"><div class="task-num">3</div><div><div class="prompt">Choose the room number.</div><div class="helper">Name: Sam.</div></div></div></div>
+                <div class="task"><div class="task-top"><div class="task-num">4</div><div><div class="prompt">Choose the correct day.</div><div class="helper">A simple day-of-the-week check.</div></div></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-slide="7">
+          <div class="left">
+            <div class="counter">8/10</div>
+            <div class="hero-text"><h1>Британское произношение</h1><p>A simple audio slide. Press play and choose what you hear. This uses the browser’s British English voice where available.</p></div>
+            <div class="audio-card">
+              <div>
+                <div style="font-size:1.5cqw;font-weight:950;margin-bottom:.38cqw">Listen and choose</div>
+                <div style="font-size:.82cqw;line-height:1.4;color:#d3e3ff;margin-bottom:.8cqw">Click the button to hear the phrase in a British voice. Then choose the correct transcript.</div>
+                <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+              </div>
+              <button class="audio-btn" id="playPhrase">▶ Play phrase</button>
+            </div>
+          </div>
+          <div class="right">
+            <div class="card dark">
+              <div class="card-header"><div><h3 class="card-title">Audio mini-check</h3><p class="card-sub">Unit-friendly listening check.</p></div><div class="point">2 tasks</div></div>
+              <div class="panel-stack">
+                <div class="task" data-answer="b" data-choice-group="aud1"><div class="task-top"><div class="task-num">1</div><div><div class="prompt">Choose the phrase you hear.</div><div class="helper">Default phrase: “Bye. See you tomorrow.”</div></div></div><div class="btn-row"><button class="ans-btn" data-choice="aud1" data-value="a">Nice to meet you, too.</button><button class="ans-btn" data-choice="aud1" data-value="b">Bye. See you tomorrow.</button></div></div>
+                <div class="task" data-answer="a" data-choice-group="aud2"><div class="task-top"><div class="task-num">2</div><div><div class="prompt">Choose the natural café phrase.</div><div class="helper">Useful expression from 1A.</div></div></div><div class="btn-row"><button class="ans-btn" data-choice="aud2" data-value="a">A cappuccino, please.</button><button class="ans-btn" data-choice="aud2" data-value="b">Sunday, please.</button></div></div>
+                <div class="task"><div class="task-top"><div class="task-num">i</div><div><div class="prompt">If speech is unavailable</div><div class="helper">The slide still works visually, and you can keep the audio button as an optional enhancement.</div></div></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-slide="8">
+          <div class="left">
+            <div class="counter">9/10</div>
+            <div class="hero-text"><h1>Финальный мини-челлендж</h1><p>Open-response tasks: a clean final check before the result slide.</p></div>
+            <div class="card blue">
+              <div class="card-header"><div><h3 class="card-title">Type your answers</h3><p class="card-sub">Write the full corrected sentence or answer.</p></div><div class="point">4 tasks</div></div>
+              <div class="panel-stack">
+                <div class="task input-task" data-answer="i am maria"><div class="task-top"><div class="task-num">1</div><div><div class="prompt">Correct the sentence: <strong>I are Maria.</strong></div><div class="helper">Write the full correct sentence.</div></div></div><input class="word-input" data-input="f1" placeholder="Type your answer"></div>
+                <div class="task input-task" data-answer="am i in room 3"><div class="task-top"><div class="task-num">2</div><div><div class="prompt">Correct the question: <strong>Are I in Room 3?</strong></div><div class="helper">Write the full correct question.</div></div></div><input class="word-input" data-input="f2" placeholder="Type your answer"></div>
+                <div class="task input-task" data-answer="i am sam i am in room 5|i m sam i m in room 5"><div class="task-top"><div class="task-num">3</div><div><div class="prompt">Card info: <strong>Name: Sam • Room: 5</strong></div><div class="helper">Write two short sentences.</div></div></div><input class="word-input" data-input="f3" placeholder="Example: I’m Sam. …"></div>
+                <div class="task input-task" data-answer="my name is emma|my name s emma|i am emma|i m emma"><div class="task-top"><div class="task-num">4</div><div><div class="prompt">Emily says: “Hi! I’m Emily. What’s your name?”</div><div class="helper">Write a possible answer.</div></div></div><input class="word-input" data-input="f4" placeholder="Example: My name’s Emma."></div>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="result-map">
+              <div class="island i1"></div><div class="island i2"></div><div class="island i3"></div><div class="island i4"></div><div class="island i5"></div>
+              <div class="path"></div>
+              <div class="milestone m1">Grammar</div><div class="milestone m2">Numbers</div><div class="milestone m3">Days</div><div class="milestone m4">Dialogue</div>
+              <div class="treasure"></div>
+              <div style="position:relative;z-index:2;max-width:9.5cqw;margin-top:.2cqw"><div style="font-size:1.8cqw;font-weight:950;line-height:1">Almost there</div><div style="font-size:.85cqw;line-height:1.45;color:#d9e7ff;margin-top:.35cqw">Complete this last slide, then open the result screen.</div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-slide="9">
+          <div class="left">
+            <div class="counter">10/10</div>
+            <div class="hero-text"><h1>Отличная работа!</h1><p>The final slide gives a clearer, more attractive summary with a circular score and block-by-block breakdown.</p></div>
+            <div class="card dark">
+              <div class="card-header"><div><h3 class="card-title">Test complete</h3><p class="card-sub">Your final result appears here after checking all slides.</p></div><div class="point">result</div></div>
+              <div class="score-ring-wrap">
+                <div class="score-ring" id="scoreRing" style="--pct:0"><strong id="finalScore">0<small>/ 30</small></strong></div>
+                <div class="stats-list">
+                  <div class="stat-row"><span>Grammar</span><div class="stat-bar"><span id="barGrammar" style="width:0%"></span></div><span id="txtGrammar">0/8</span></div>
+                  <div class="stat-row"><span>Vocabulary</span><div class="stat-bar"><span id="barVocab" style="width:0%"></span></div><span id="txtVocab">0/8</span></div>
+                  <div class="stat-row"><span>Days & details</span><div class="stat-bar"><span id="barDays" style="width:0%"></span></div><span id="txtDays">0/5</span></div>
+                  <div class="stat-row"><span>Practical English</span><div class="stat-bar"><span id="barPractical" style="width:0%"></span></div><span id="txtPractical">0/5</span></div>
+                  <div class="stat-row"><span>Final challenge</span><div class="stat-bar"><span id="barFinal" style="width:0%"></span></div><span id="txtFinal">0/4</span></div>
+                </div>
+              </div>
+              <div class="action-buttons">
+                <button class="review" id="reviewBtn">Просмотр ошибок</button>
+                <button class="again" id="restartBtn">Пройти ещё раз</button>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="card blue">
+              <div class="card-header"><div><h3 class="card-title">Teacher view</h3><p class="card-sub">Suggested mastery threshold: <strong>24 / 30</strong>.</p></div><div class="point">note</div></div>
+              <div class="panel-stack">
+                <div class="task"><div class="task-top"><div class="task-num">✓</div><div><div class="prompt">24–30 points</div><div class="helper">Secure. The student can move on confidently.</div></div></div></div>
+                <div class="task"><div class="task-top"><div class="task-num">↺</div><div><div class="prompt">18–23 points</div><div class="helper">Good attempt, but review the highlighted sections first.</div></div></div></div>
+                <div class="task"><div class="task-top"><div class="task-num">!</div><div><div class="prompt">0–17 points</div><div class="helper">More targeted review is recommended before the next lesson.</div></div></div></div>
+                <div class="task"><div class="task-top"><div class="task-num">✦</div><div><div class="prompt">Why this version is better</div><div class="helper">Separate slides, bigger readable blocks, cleaner cover preview, and a friendlier final result screen.</div></div></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="navbar">
+        <div class="navset">
+          <button class="navbtn secondary" id="prevBtn">← Назад</button>
+          <button class="navbtn primary" id="nextBtn">Далее →</button>
+          <button class="navbtn gold" id="checkBtn">Проверить</button>
+        </div>
+        <div class="slide-dots" id="dots"></div>
+        <div class="feedback" id="feedback">Slide-based interactive version • preview cover included</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const TOTAL_SLIDES = 10;
+  let current = 0;
+  const slides = [...document.querySelectorAll('.slide')];
+  const dots = document.getElementById('dots');
+  const topProgress = document.getElementById('topProgress');
+  const feedback = document.getElementById('feedback');
+  const state = {};
+  let dragChip = null;
+
+  const normalize = (s='') => s.toLowerCase().replace(/[’']/g,' ').replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
+
+  for(let i=0;i<TOTAL_SLIDES;i++){
+    const b=document.createElement('button');
+    b.type='button';
+    b.addEventListener('click',()=>goTo(i));
+    dots.appendChild(b);
+  }
+
+  function updateDots(){
+    [...dots.children].forEach((d,i)=>d.classList.toggle('active',i===current));
+    topProgress.textContent = `${current+1} / ${TOTAL_SLIDES}`;
+    document.getElementById('prevBtn').disabled = current===0;
+    document.getElementById('nextBtn').disabled = current===TOTAL_SLIDES-1;
+  }
+
+  function goTo(index){
+    current = Math.max(0, Math.min(TOTAL_SLIDES-1, index));
+    slides.forEach((s,i)=>s.classList.toggle('active',i===current));
+    updateDots();
+  }
+
+  document.getElementById('prevBtn').addEventListener('click',()=>goTo(current-1));
+  document.getElementById('nextBtn').addEventListener('click',()=>goTo(current+1));
+
+  // generic choice handlers
+  document.querySelectorAll('[data-choice]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const group = btn.dataset.choice;
+      state[group] = btn.dataset.value;
+      document.querySelectorAll(`[data-choice="${group}"]`).forEach(el=>el.classList.remove('selected','active'));
+      document.querySelectorAll(`[data-choice="${group}"]`).forEach(el=>{ if(el.dataset.value===btn.dataset.value) el.classList.add('selected','active'); });
+    });
+  });
+
+  // gap selections
+  document.querySelectorAll('[data-gap]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const group = btn.dataset.gap;
+      state[group] = btn.dataset.value;
+      document.querySelectorAll(`[data-gap="${group}"]`).forEach(el=>el.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // id cards
+  document.querySelectorAll('.id-choices button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const group = btn.dataset.group;
+      state[group] = btn.dataset.value;
+      document.querySelectorAll(`[data-group="${group}"]`).forEach(el=>el.classList.remove('selected'));
+      btn.classList.add('selected');
+    });
+  });
+
+  // drag days
+  document.querySelectorAll('.day-chip').forEach(chip=>{
+    chip.addEventListener('dragstart',e=>{dragChip=chip; e.dataTransfer.setData('text/plain', chip.dataset.value);});
+  });
+  document.querySelectorAll('.day-target').forEach(target=>{
+    target.addEventListener('dragover',e=>e.preventDefault());
+    target.addEventListener('drop',e=>{
+      e.preventDefault();
+      const val = e.dataTransfer.getData('text/plain');
+      if(!val) return;
+      // return any existing chip in target to pool
+      if(target.firstElementChild) document.getElementById('dayPool').appendChild(target.firstElementChild);
+      target.innerHTML = '';
+      target.appendChild(dragChip);
+      state[`day${target.dataset.day}`] = val;
+    });
+    target.addEventListener('click',()=>{
+      if(target.firstElementChild){
+        document.getElementById('dayPool').appendChild(target.firstElementChild);
+        delete state[`day${target.dataset.day}`];
+      }
+    });
+  });
+
+  // input mirroring from left notepad to right tasks optional
+  const pairs = [['n1','n1b'],['n2','n2b'],['n3','n3b'],['n4','n4b']];
+  pairs.forEach(([a,b])=>{
+    const ia=document.querySelector(`[data-input="${a}"]`);
+    const ib=document.querySelector(`[data-input="${b}"]`);
+    if(ia&&ib){
+      ia.addEventListener('input',()=>{state[a]=ia.value;});
+      ib.addEventListener('input',()=>{state[b]=ib.value;});
+    }
+  });
+  document.querySelectorAll('.input-task input').forEach(inp=>inp.addEventListener('input',()=>{state[inp.dataset.input||inp.getAttribute('data-input')||inp.parentElement.querySelector('[data-input]')?.dataset.input||Math.random()] = inp.value;}));
+
+  // speech synthesis
+  function speak(text){
+    if(!('speechSynthesis' in window)){
+      feedback.textContent = 'Speech synthesis is not available in this browser.';
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-GB';
+    utter.rate = .92;
+    const voices = window.speechSynthesis.getVoices();
+    const gb = voices.find(v => /en-GB/i.test(v.lang)) || voices.find(v => /English/i.test(v.name));
+    if(gb) utter.voice = gb;
+    window.speechSynthesis.speak(utter);
+    feedback.textContent = `Audio: “${text}”`;
+  }
+  document.getElementById('audioMaster').addEventListener('click',()=>speak('Hello. A cappuccino, please. Bye. See you tomorrow.'));
+  document.getElementById('playPhrase').addEventListener('click',()=>speak('Bye. See you tomorrow.'));
+
+  function grade(){
+    let sections = {grammar:0,vocab:0,days:0,practical:0,final:0};
+
+    // grammar slide 1 + gaps slide2 = 8
+    const grammarKeys = [['s1q1','b'],['s1q2','a'],['s1q3','b'],['s1q4','a'],['g1','are'],['g2','s'],['g3','m'],['g4','re']];
+    grammarKeys.forEach(([k,v])=>{ if(state[k]===v) sections.grammar++; });
+
+    // vocab numbers slide3 + audio slide7 one practical vocab? we use 4 numbers + 4 ids = 8? Better vocab = 8 from slide3 and slide6
+    const numAnswers = [['n1b','two'],['n2b','seven'],['n3b','four'],['n4b','eight']];
+    numAnswers.forEach(([k,v])=>{ const el=document.querySelector(`[data-input="${k}"]`); if(el && normalize(el.value)===normalize(v)) sections.vocab++; });
+    [['id1','London'],['id2','Sofia'],['id3','5'],['id4','Wednesday']].forEach(([k,v])=>{ if(normalize(state[k]||'')===normalize(v)) sections.vocab++; });
+
+    // days = 5 -> 1 big day order worth 5
+    const correctDays = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+    correctDays.forEach((d,i)=>{ if((state[`day${i+1}`]||'')===d) sections.days += (i<5?0:0); });
+    // score by correct positions compressed to 5 points
+    const dayCorrect = correctDays.filter((d,i)=>(state[`day${i+1}`]||'')===d).length;
+    sections.days = Math.round(dayCorrect/7*5);
+
+    // practical 5 = 4 dialogue + 1 audio exact? plus second audio and maybe cover not scored? let's do 5 from m1-4 and aud1 (choose heard phrase), aud2 moved to final? But target 5. Use m1-4 + aud1 =5; aud2 ignored? maybe include as bonus? Let's instead practical max 5 via proportional across 6 items.
+    const pracRaw = [['m1','a'],['m2','a'],['m3','a'],['m4','a'],['aud1','b'],['aud2','a']].reduce((n,[k,v])=>n + ((state[k]===v)?1:0),0);
+    sections.practical = Math.round(pracRaw/6*5);
+
+    // final 4
+    const finalInputs = [
+      ['f1',['i am maria']],
+      ['f2',['am i in room 3']],
+      ['f3',['i am sam i am in room 5','i m sam i m in room 5']],
+      ['f4',['my name is emma','my name s emma','i am emma','i m emma']]
+    ];
+    finalInputs.forEach(([k,arr])=>{
+      const el=document.querySelector(`[data-input="${k}"]`);
+      if(el && arr.map(normalize).includes(normalize(el.value))) sections.final++;
+    });
+
+    const total = sections.grammar + sections.vocab + sections.days + sections.practical + sections.final;
+    return {sections,total};
+  }
+
+  function updateResult(){
+    const {sections,total} = grade();
+    const pct = Math.round(total/30*100);
+    document.getElementById('scoreRing').style.setProperty('--pct', pct);
+    document.getElementById('finalScore').innerHTML = `${total}<small>/ 30</small>`;
+    const map = [
+      ['Grammar',sections.grammar,8,'barGrammar','txtGrammar'],
+      ['Vocabulary',sections.vocab,8,'barVocab','txtVocab'],
+      ['Days & details',sections.days,5,'barDays','txtDays'],
+      ['Practical English',sections.practical,5,'barPractical','txtPractical'],
+      ['Final challenge',sections.final,4,'barFinal','txtFinal']
+    ];
+    map.forEach(([name,score,max,bar,txt])=>{
+      document.getElementById(bar).style.width = `${score/max*100}%`;
+      document.getElementById(txt).textContent = `${score}/${max}`;
+    });
+    return {sections,total,pct};
+  }
+
+  document.getElementById('checkBtn').addEventListener('click',()=>{
+    const {total} = updateResult();
+    if(current !== 9) goTo(9);
+    feedback.textContent = total >= 24 ? `Excellent result: ${total}/30.` : `Current result: ${total}/30. You can review and try again.`;
+  });
+  document.getElementById('restartBtn').addEventListener('click',()=>{
+    Object.keys(state).forEach(k=>delete state[k]);
+    document.querySelectorAll('.selected,.active').forEach(el=>el.classList.remove('selected','active'));
+    document.querySelectorAll('input').forEach(inp=>inp.value='');
+    document.querySelectorAll('.day-target').forEach(t=>{ if(t.firstElementChild) document.getElementById('dayPool').appendChild(t.firstElementChild); t.innerHTML=''; });
+    goTo(0);
+    updateResult();
+    feedback.textContent = 'Restarted. All answers cleared.';
+  });
+  document.getElementById('reviewBtn').addEventListener('click',()=>{ goTo(1); feedback.textContent = 'Review the slides and press “Проверить” again.'; });
+
+  // preload speech voices
+  if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged = ()=>{}; }
+  updateDots();
+  updateResult();
+})();
+</script>
+</body>
+</html>

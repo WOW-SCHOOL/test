@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "type": "rich",
+  "provider_name": "WOW SCHOOL",
+  "provider_url": "https://wow-school.github.io/test/",
+  "title": "English File Beginner • Unit 1A • Café Slides",
+  "html": "<iframe src=\"https://wow-school.github.io/test/ef-beginner-unit-1a-slides-v2/?v=2\" width=\"1200\" height=\"675\" frameborder=\"0\" scrolling=\"no\" allowfullscreen></iframe>",
+  "width": 1200,
+  "height": 675,
+  "thumbnail_url": "https://wow-school.github.io/test/ef-beginner-unit-1a-slides-v2/preview.png?v=2",
+  "thumbnail_width": 1200,
+  "thumbnail_height": 630
+}
