@@ -106,29 +106,34 @@ button { font:inherit; }
 @keyframes pulseAudio { to { box-shadow:0 0 1.2cqw #fff,0 0 2.2cqw #ffd85b; } }
 
 .slots {
-  position:absolute; left:7.5%; right:7.5%; top:43.1%; bottom:8.6%;
-  display:grid; grid-template-rows:1fr 1fr; gap:3.8%;
+  position:absolute; left:8.15%; right:8.15%; top:41.35%; bottom:9.35%;
+  display:grid; grid-template-rows:1fr 1fr; gap:4.7%;
 }
 .slot {
-  position:relative; border-radius:1cqw; display:grid; place-items:center;
+  position:relative; display:grid; place-items:center; overflow:hidden;
+  background:transparent; box-shadow:none; transition:.18s transform;
+}
+.slot::before {
+  content:""; position:absolute; inset:0; border-radius:1cqw;
   border:.16cqw dashed #ffffffc9; background:#0d0a0752;
   box-shadow:inset 0 .4cqw 1cqw #0008;
   transition:.18s background,.18s border,.18s box-shadow,.18s transform;
 }
 .slot:empty::after {
-  content:"DROP WORD"; color:#fff6; font-size:.83cqw; font-weight:950; letter-spacing:.13em;
+  content:"DROP WORD"; position:relative; z-index:1; color:#fff6; font-size:.83cqw; font-weight:950; letter-spacing:.13em;
 }
-.slot.ready { border-color:#fff4a3; background:#5a3c1845; transform:scale(1.02); }
-.slot.filled {
+.slot.ready { transform:scale(1.015); }
+.slot.ready::before { border-color:#fff4a3; background:#5a3c1845; }
+.slot.filled::before {
   border-style:solid; border-color:#b6ffca; background:linear-gradient(180deg,#184727df,#102d1acf);
   box-shadow:inset 0 0 1.2cqw #56f18a44,0 0 .95cqw #56f18a68;
 }
-.slot.filled::before {
-  content:"✓"; position:absolute; right:.48cqw; top:.34cqw; width:1.25cqw; height:1.25cqw;
+.slot.filled::after {
+  content:"✓"; position:absolute; z-index:2; right:.48cqw; top:.34cqw; width:1.25cqw; height:1.25cqw;
   display:grid; place-items:center; border-radius:50%; color:#12361d; font-size:.75cqw; font-weight:1000; background:#83ffae;
 }
 .locked-card {
-  width:92%; height:78%; display:flex; align-items:center; justify-content:center;
+  position:relative; z-index:1; width:88%; height:72%; display:flex; align-items:center; justify-content:center;
   border-radius:.75cqw; color:#18351f; background:linear-gradient(#effff2,#bdf3cc);
   font-size:1.05cqw; font-weight:1000; letter-spacing:.01em;
   box-shadow:0 .25cqw .7cqw #0005;
