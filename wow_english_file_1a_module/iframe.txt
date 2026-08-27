@@ -1,0 +1,7 @@
+<iframe
+  src="YOUR_GITHUB_PAGES_URL/index.html"
+  title="WOW SCHOOL — English File Beginner 1A"
+  style="width:100%; aspect-ratio:16/9; border:0; overflow:hidden; border-radius:16px;"
+  allow="autoplay"
+  loading="lazy">
+</iframe>
