@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>English File Beginner • Unit 1A • Choose the correct option</title>
+<style>
+  :root{
+    --sky1:#0b63e6;
+    --sky2:#12bff0;
+    --navy:#06234f;
+    --ink:#15213a;
+    --muted:#6d7890;
+    --green:#38c96b;
+    --green-soft:#e8f8ee;
+    --red:#ef5d68;
+    --red-soft:#fff0f2;
+    --yellow:#ffc928;
+    --card:#ffffff;
+    --shadow:0 30px 70px rgba(5,35,79,.26);
+  }
+  *{box-sizing:border-box}
+  html,body{width:100%;height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink)}
+  body{overflow:hidden;background:#0b7de8}
+  button{font:inherit}
+  .stage{
+    position:relative;width:100vw;height:100vh;min-height:620px;overflow:hidden;
+    background:
+      radial-gradient(circle at 16% 18%,rgba(255,255,255,.38),transparent 5%),
+      radial-gradient(circle at 82% 24%,rgba(255,255,255,.22),transparent 10%),
+      linear-gradient(180deg,var(--sky1),var(--sky2) 58%,#d5f3ff 58%,#fff8df 59%,#f6dd9b 100%);
+  }
+  .cloud{position:absolute;background:#fff;border-radius:999px;filter:drop-shadow(0 8px 12px rgba(25,96,165,.10));opacity:.9}
+  .cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border-radius:50%}
+  .cloud.one{width:150px;height:36px;left:7%;top:15%}.cloud.one:before{width:58px;height:58px;left:22px;bottom:4px}.cloud.one:after{width:76px;height:76px;right:18px;bottom:3px}
+  .cloud.two{width:120px;height:28px;right:8%;top:28%;opacity:.75}.cloud.two:before{width:48px;height:48px;left:16px;bottom:3px}.cloud.two:after{width:62px;height:62px;right:12px;bottom:2px}
+  .sea{position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(180deg,#159fd9 0,#0b76b6 52%,#075793 100%);clip-path:polygon(0 18%,100% 0,100% 100%,0 100%)}
+  .shore{position:absolute;left:0;right:0;bottom:25%;height:34px;background:rgba(255,255,255,.88);filter:blur(1px);clip-path:polygon(0 62%,18% 45%,35% 72%,52% 28%,72% 62%,100% 24%,100% 100%,0 100%)}
+  .plane{position:absolute;left:6%;top:7%;font-size:64px;transform:rotate(8deg);filter:drop-shadow(0 14px 12px rgba(4,50,105,.24));animation:floatPlane 5s ease-in-out infinite}
+  @keyframes floatPlane{0%,100%{transform:translateY(0) rotate(8deg)}50%{transform:translateY(-8px) rotate(6deg)}}
+  .route{position:absolute;left:6%;bottom:5%;width:280px;height:95px;border:3px dashed rgba(255,255,255,.75);border-color:rgba(255,255,255,.8) transparent transparent rgba(255,255,255,.8);border-radius:50%;transform:rotate(8deg)}
+  .pin{position:absolute;left:5.2%;bottom:9%;font-size:44px;filter:drop-shadow(0 10px 8px rgba(0,0,0,.18))}
+  .camera{position:absolute;right:6%;bottom:5.5%;font-size:48px;transform:rotate(8deg);filter:drop-shadow(0 10px 8px rgba(0,0,0,.18))}
+
+  .topbar{position:absolute;left:50%;top:4.5%;transform:translateX(-50%);width:min(1120px,90vw);display:flex;justify-content:space-between;align-items:flex-start;color:#fff;z-index:5}
+  .heading h1{margin:0;font-size:clamp(26px,3vw,42px);line-height:1.03;letter-spacing:-.035em;text-shadow:0 3px 14px rgba(0,54,130,.22)}
+  .heading p{margin:8px 0 0;font-size:15px;font-weight:700;opacity:.9}
+  .counter{padding:10px 15px;border-radius:14px;background:rgba(5,45,112,.34);border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(10px);font-weight:900;box-shadow:0 10px 28px rgba(3,52,115,.18)}
+
+  .phone-wrap{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);z-index:4;width:min(465px,86vw)}
+  .phone{position:relative;border-radius:48px;background:linear-gradient(145deg,#111827,#334155 45%,#0b1324);padding:10px;box-shadow:var(--shadow),0 0 0 2px rgba(255,255,255,.45) inset}
+  .phone:before{content:"";position:absolute;inset:5px;border-radius:43px;border:1px solid rgba(255,255,255,.36);pointer-events:none}
+  .screen{min-height:590px;border-radius:39px;background:linear-gradient(180deg,#f9fbff,#f4f7fb);overflow:hidden;position:relative;padding:58px 24px 24px}
+  .island{position:absolute;top:16px;left:50%;transform:translateX(-50%);width:116px;height:30px;border-radius:999px;background:#07090e;box-shadow:0 2px 8px rgba(0,0,0,.28) inset}
+  .app-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;color:#8090a8;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+  .mini-progress{height:8px;border-radius:999px;background:#e4e9f0;overflow:hidden;margin-bottom:24px}
+  .mini-progress>div{height:100%;width:10%;background:linear-gradient(90deg,#1da7ff,#1ed5c3);border-radius:999px;transition:width .35s ease}
+  .card{background:#fff;border-radius:28px;padding:25px 20px 20px;box-shadow:0 14px 35px rgba(23,53,94,.12);border:1px solid #eaf0f6}
+  .qnum{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#eef5ff;color:#1674e8;font-weight:950;margin-bottom:16px}
+  .question{font-size:clamp(21px,3vh,29px);font-weight:850;line-height:1.28;letter-spacing:-.025em;min-height:76px;display:flex;align-items:center}
+  .hint{font-size:13px;color:var(--muted);margin:7px 0 18px;font-weight:650}
+  .answers{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .answer{border:2px solid #e2e8f0;border-radius:17px;background:#fff;padding:14px 12px;cursor:pointer;font-size:18px;font-weight:900;color:#21324f;box-shadow:0 6px 14px rgba(21,33,58,.05);transition:.18s ease}
+  .answer:hover{transform:translateY(-2px);border-color:#8ac9ff;box-shadow:0 10px 20px rgba(17,111,224,.10)}
+  .answer.selected{border-color:#168cff;background:#eef8ff;color:#075fb5;transform:translateY(-2px)}
+  .answer.correct{border-color:var(--green);background:var(--green-soft);color:#1a8b45}
+  .answer.wrong{border-color:var(--red);background:var(--red-soft);color:#b63b49;animation:shake .25s linear 1}
+  @keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+  .feedback{min-height:54px;margin-top:16px;border-radius:15px;padding:11px 13px;font-size:14px;font-weight:800;display:flex;align-items:center;opacity:0;transform:translateY(5px);transition:.2s ease}
+  .feedback.show{opacity:1;transform:none}
+  .feedback.good{background:var(--green-soft);color:#188444}.feedback.bad{background:var(--red-soft);color:#b53a48}
+  .actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:18px}
+  .primary{border:0;border-radius:17px;padding:15px 18px;background:linear-gradient(180deg,#ffd331,#ffb913);color:#332300;font-weight:950;cursor:pointer;box-shadow:0 9px 0 #e6a30e,0 15px 24px rgba(230,163,14,.25);transition:.15s ease}
+  .primary:active{transform:translateY(4px);box-shadow:0 5px 0 #e6a30e,0 9px 15px rgba(230,163,14,.18)}
+  .primary:disabled{filter:grayscale(.3);opacity:.55;cursor:not-allowed;box-shadow:0 6px 0 #c3b174}
+  .ghost{border:0;background:transparent;color:#6b7e97;font-weight:800;cursor:pointer;padding:8px}
+  .footer-line{margin-top:18px;display:flex;justify-content:space-between;font-size:11px;color:#9aa7b8;font-weight:800}
+
+  .finish{display:none;text-align:center;padding-top:6px}
+  .finish.show{display:block}
+  .quiz.hide{display:none}
+  .trophy{font-size:62px;filter:drop-shadow(0 12px 13px rgba(255,185,19,.25));margin:4px 0 8px}
+  .finish h2{font-size:30px;margin:0 0 7px;letter-spacing:-.03em}.finish p{margin:0;color:#718099;font-weight:700}
+  .score-ring{width:170px;height:170px;margin:24px auto;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#31c66a var(--score-deg,0deg),#e9edf2 0);position:relative}
+  .score-ring:after{content:"";position:absolute;width:132px;height:132px;border-radius:50%;background:#fff}
+  .score-value{position:relative;z-index:2;font-size:34px;font-weight:950;color:#173457}.score-value small{display:block;font-size:12px;color:#8190a4;margin-top:2px}
+  .summary-box{background:#f6f8fb;border-radius:18px;padding:14px;margin-top:12px;font-size:14px;color:#5f6e84;font-weight:750}
+
+  @media(max-height:760px){
+    .stage{min-height:540px}.topbar{top:2.5%}.phone-wrap{top:54%;width:min(410px,83vw)}.screen{min-height:520px;padding-top:52px}.question{min-height:55px;font-size:21px}.card{padding-top:18px}.feedback{min-height:46px}.footer-line{margin-top:10px}
+  }
+  @media(max-width:620px){
+    .topbar{width:90vw}.heading p{display:none}.heading h1{font-size:25px}.plane{font-size:46px;left:1%}.camera,.route,.pin{opacity:.6}.phone-wrap{width:91vw;top:54%}.screen{min-height:570px}.answers{grid-template-columns:1fr}.answer{padding:12px}.question{font-size:22px}
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="cloud one"></div><div class="cloud two"></div>
+  <div class="plane">✈️</div><div class="sea"></div><div class="shore"></div><div class="route"></div><div class="pin">📍</div><div class="camera">📷</div>
+
+  <div class="topbar">
+    <div class="heading">
+      <h1>Выберите правильный вариант</h1>
+      <p>Choose the correct word.</p>
+    </div>
+    <div class="counter" id="counter">1/10</div>
+  </div>
+
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="screen">
+        <div class="island"></div>
+        <div class="quiz" id="quiz">
+          <div class="app-label"><span>Unit 1A • Grammar</span><span id="streak">0 ✓</span></div>
+          <div class="mini-progress"><div id="progress"></div></div>
+          <div class="card">
+            <div class="qnum" id="qnum">1</div>
+            <div class="question" id="question"></div>
+            <div class="hint" id="hint"></div>
+            <div class="answers" id="answers"></div>
+            <div class="feedback" id="feedback"></div>
+          </div>
+          <div class="actions">
+            <button class="primary" id="checkBtn" disabled>ПРОВЕРИТЬ</button>
+            <button class="ghost" id="resetCurrent">Сбросить выбор</button>
+          </div>
+          <div class="footer-line"><span>English File Beginner</span><span>Unit 1A</span></div>
+        </div>
+
+        <div class="finish" id="finish">
+          <div class="trophy">🏆</div>
+          <h2>Отличная работа!</h2>
+          <p>Первое задание Unit 1A завершено.</p>
+          <div class="score-ring" id="scoreRing"><div class="score-value" id="scoreValue"></div></div>
+          <div class="summary-box" id="summaryBox"></div>
+          <div class="actions" style="margin-top:18px"><button class="primary" id="restartBtn">ПРОЙТИ ЕЩЁ РАЗ</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const items = [
+    {q:'_____ you Helen?', a:['Am','Are'], correct:1, hint:'Choose the correct form of be.'},
+    {q:'I _____ Mike.', a:['am','are'], correct:0, hint:'Introduce yourself.'},
+    {q:'You _____ in Room 4.', a:['am','are'], correct:1, hint:'Use the correct form with you.'},
+    {q:'I _____ not Anna.', a:['am','are'], correct:0, hint:'Make a negative sentence.'},
+    {q:'_____ I late?', a:['Am','Are'], correct:0, hint:'Make a question with I.'},
+    {q:'You _____ my teacher.', a:['am','are'], correct:1, hint:'Choose the correct verb.'},
+    {q:'I _____ from Spain.', a:['am','are'], correct:0, hint:'Say where you are from.'},
+    {q:'_____ you from London?', a:['Am','Are'], correct:1, hint:'Ask about someone\'s country or city.'},
+    {q:'No, I _____ not. I\'m from Bristol.', a:['am','are'], correct:0, hint:'Complete the short answer.'},
+    {q:'Yes, you _____.', a:['am','are'], correct:1, hint:'Complete the short answer.'}
+  ];
+
+  let index = 0, selected = null, checked = false, score = 0, streak = 0;
+  const q = id => document.getElementById(id);
+  const question=q('question'), hint=q('hint'), answers=q('answers'), feedback=q('feedback'), checkBtn=q('checkBtn');
+
+  function render(){
+    const item=items[index]; selected=null; checked=false;
+    q('counter').textContent=`${index+1}/${items.length}`;
+    q('qnum').textContent=index+1;
+    q('progress').style.width=`${((index+1)/items.length)*100}%`;
+    q('streak').textContent=`${streak} ✓`;
+    question.textContent=item.q; hint.textContent=item.hint;
+    answers.innerHTML=''; feedback.className='feedback'; feedback.textContent='';
+    item.a.forEach((text,i)=>{
+      const b=document.createElement('button'); b.className='answer'; b.textContent=text;
+      b.addEventListener('click',()=>select(i,b)); answers.appendChild(b);
+    });
+    checkBtn.textContent='ПРОВЕРИТЬ'; checkBtn.disabled=true;
+    q('resetCurrent').style.visibility='visible';
+  }
+
+  function select(i,btn){
+    if(checked) return;
+    selected=i; [...answers.children].forEach(x=>x.classList.remove('selected')); btn.classList.add('selected'); checkBtn.disabled=false;
+  }
+
+  function check(){
+    if(selected===null) return;
+    const item=items[index];
+    if(!checked){
+      checked=true;
+      const buttons=[...answers.children];
+      buttons[item.correct].classList.add('correct');
+      if(selected===item.correct){
+        score++; streak++; feedback.textContent='✓ Верно! Отличный выбор.'; feedback.className='feedback show good';
+      } else {
+        streak=0; buttons[selected].classList.add('wrong'); feedback.textContent=`Почти. Правильный вариант: “${item.a[item.correct]}”.`; feedback.className='feedback show bad';
+      }
+      q('streak').textContent=`${streak} ✓`;
+      checkBtn.textContent=index===items.length-1?'ПОКАЗАТЬ РЕЗУЛЬТАТ':'ДАЛЕЕ →';
+      q('resetCurrent').style.visibility='hidden';
+    } else {
+      if(index<items.length-1){ index++; render(); }
+      else finish();
+    }
+  }
+
+  function finish(){
+    q('quiz').classList.add('hide'); q('finish').classList.add('show');
+    const pct=Math.round(score/items.length*100);
+    q('scoreRing').style.setProperty('--score-deg',`${pct*3.6}deg`);
+    q('scoreValue').innerHTML=`${score}/${items.length}<small>${pct}%</small>`;
+    q('summaryBox').textContent = pct===100 ? 'Без ошибок — формы am / are освоены отлично.' : pct>=80 ? 'Очень хороший результат. Можно переходить к следующему заданию.' : 'Хорошее начало. Пройдите ещё раз и попробуйте улучшить результат.';
+  }
+
+  q('checkBtn').addEventListener('click',check);
+  q('resetCurrent').addEventListener('click',()=>{ if(!checked){selected=null;[...answers.children].forEach(x=>x.classList.remove('selected'));checkBtn.disabled=true;} });
+  q('restartBtn').addEventListener('click',()=>{index=0;score=0;streak=0;q('finish').classList.remove('show');q('quiz').classList.remove('hide');render();});
+  render();
+})();
+</script>
+</body>
+</html>
+
+
