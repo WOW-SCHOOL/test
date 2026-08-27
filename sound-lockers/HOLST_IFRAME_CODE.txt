@@ -1,10 +1,11 @@
 <iframe
-  src="https://wow-school.github.io/test/sound-lockers/?v=1"
+  src="https://wow-school.github.io/test/sound-lockers/?v=3"
   title="Sound Lockers"
   width="1200"
   height="675"
   scrolling="no"
   frameborder="0"
   style="border:0; border-radius:18px; overflow:hidden;"
+  allow="autoplay"
   allowfullscreen>
 </iframe>

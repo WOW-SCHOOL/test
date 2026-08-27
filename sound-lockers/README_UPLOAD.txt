@@ -1,34 +1,49 @@
-SOUND LOCKERS — one-repository version
+SOUND LOCKERS v3 — READY FOR THE EXISTING WOW-SCHOOL/test REPOSITORY
 
-Do NOT delete or move your current Grammar Switchboard files.
+UPLOAD
+Open the existing GitHub repository:
+WOW-SCHOOL / test
 
-Add this folder to the existing repository:
-    /sound-lockers/
+Open the existing folder:
+sound-lockers/
 
-The folder must contain:
-    index.html
-    preview.png
-    oembed.json
+Replace the old Sound Lockers files with EVERYTHING from the sound-lockers folder in this archive,
+INCLUDING the assets folder.
 
-Then the exercise URL will be:
-    https://wow-school.github.io/test/sound-lockers/
+Required structure:
+sound-lockers/
+  index.html
+  preview.png
+  oembed.json
+  HOLST_IFRAME_CODE.txt
+  HOLST_URL.txt
+  AUDIO_SOURCES.txt
+  VOICE_STRATEGY.txt
+  assets/
+    lockers-bg.webp
 
-Recommended Holst URL:
-    https://wow-school.github.io/test/sound-lockers/?v=1
+GITHUB PAGES URL
+https://wow-school.github.io/test/sound-lockers/
 
-IMPORTANT CONTENT NOTE:
-The reference word bank contained "hello" and "two".
-For phonetic consistency in this finished version I changed:
-    hello -> pen
-    two   -> go
+HOLST — recommended new object
+Delete the previous Sound Lockers object and insert:
+https://wow-school.github.io/test/sound-lockers/?v=3
 
-That gives exactly two correct cards per sound locker:
-    /h/   help, Helen
-    /aɪ/  nice, five
-    /iː/  meet, tea
-    /e/   spell, pen
-    /eɪ/  table, name
-    /əʊ/  Poland, go
+The ?v=3 suffix is intentional so Holst refreshes its preview/cache.
 
-The word list is easy to edit in index.html:
-look for <div class="card" data-answer="...">word</div>.
+DESIGN
+The earlier warm wooden classroom + six colourful lockers has been preserved.
+The interactive layer is modernised instead of replacing the design:
+- responsive 16:9 composition
+- all six lockers stay visible
+- no internal scrolling
+- bright drop-state glows
+- green successful placement and locker unlock state
+- drag & drop plus click-to-place fallback
+- self-check, reset, progress and finish celebration
+- Wordwall-style oEmbed preview
+
+AUDIO
+No browser TTS.
+The word buttons play real human British-English pronunciation recordings from Wikimedia Commons /
+the Shtooka Project. Internet access is required when audio is first played.

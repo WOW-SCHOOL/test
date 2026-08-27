@@ -1,0 +1,33 @@
+HUMAN AUDIO SOURCES / ATTRIBUTION
+
+Primary source:
+Wikimedia Commons — British English pronunciation recordings.
+
+Most recordings used by this exercise are from:
+Association Shtooka / Shtooka Project
+Speaker: Judith Franck
+Speaker location stated on source pages: London, England
+License on the Shtooka files: Creative Commons Attribution 3.0 United States.
+
+Examples:
+- En-uk-house.ogg
+- En-uk-a bike.ogg
+- En-uk-tree.ogg
+- En-uk-egg.ogg
+- En-uk-a train.ogg
+- En-uk-phone.ogg
+- En-uk-hello.ogg
+- En-uk-hospital.ogg
+- En-uk-child.ogg
+- En-uk-fight.ogg
+- En-uk-tea.ogg
+- En-uk-cheese.ogg
+- En-uk-bed.ogg
+- En-uk-red.ogg
+- En-uk-table.ogg
+- En-uk-cake.ogg
+- En-uk-coat.ogg
+- En-uk-cold.ogg
+
+The HTML streams the recordings directly from Wikimedia Commons via Special:FilePath.
+No browser Text-to-Speech voice is used for the vocabulary audio.

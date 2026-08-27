@@ -1,0 +1,22 @@
+VOICE STRATEGY — SOUND LOCKERS v3
+
+THIS VERSION
+The exercise does NOT use browser SpeechSynthesis and does NOT generate a robotic voice at runtime.
+Vocabulary audio is played from real human British-English pronunciation recordings hosted by
+Wikimedia Commons / the Shtooka Project.
+
+The Shtooka files used for the core model examples identify a female speaker from London, England
+(Judith Franck) and are licensed for reuse under CC BY 3.0 US. See AUDIO_SOURCES.txt.
+
+WHY THIS APPROACH FOR SINGLE WORDS
+For isolated phonics vocabulary, a verified human pronunciation is preferable to synthesizing
+each word on the learner's device. It gives stable stress, vowel quality and British pronunciation
+without depending on whatever voice is installed in Chrome/Windows.
+
+FOR FUTURE SENTENCES / DIALOGUES
+Recommended premium generation path:
+1. ElevenLabs Eleven v3 — highest-fidelity / most expressive ElevenLabs model.
+2. Google Cloud Chirp 3 HD with English (United Kingdom), en-GB — strong alternative.
+
+Those services require an account/API key to generate and store bespoke audio.
+For this ready-to-upload version no API key is required.
