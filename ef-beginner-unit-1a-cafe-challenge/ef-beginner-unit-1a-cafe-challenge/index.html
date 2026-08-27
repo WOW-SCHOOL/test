@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>English File Beginner • Unit 1A • Café Checkpoint</title>
+<meta name="description" content="Interactive unit challenge for English File Beginner 1A." />
+<style>
+  :root{
+    --bg:#06111e;
+    --panel:#091a2f;
+    --panel-2:#0d2340;
+    --line:#39d8ff;
+    --line-soft:rgba(57,216,255,.28);
+    --purple:#8a5bff;
+    --pink:#ff59cf;
+    --green:#7bff8f;
+    --yellow:#ffd968;
+    --red:#ff6f8c;
+    --white:#f7fbff;
+    --muted:#9bb5cd;
+    --shadow:0 0 22px rgba(57,216,255,.12), inset 0 0 24px rgba(255,255,255,.02);
+    --radius:22px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--white)}
+  body{
+    overflow:auto;
+    background:
+      radial-gradient(circle at 10% 10%, rgba(0,214,255,.18), transparent 26%),
+      radial-gradient(circle at 88% 8%, rgba(134,91,255,.20), transparent 22%),
+      radial-gradient(circle at 50% 100%, rgba(255,94,201,.10), transparent 24%),
+      linear-gradient(180deg,#03111d 0%, #051423 55%, #04111c 100%);
+  }
+  .app{width:min(1540px,100%);margin:0 auto;padding:18px 18px 24px}
+  .hero{
+    position:sticky;top:0;z-index:10;
+    background:linear-gradient(180deg, rgba(6,17,30,.98), rgba(8,20,38,.94));
+    border:1px solid rgba(57,216,255,.32);
+    border-radius:28px;
+    box-shadow:0 0 24px rgba(57,216,255,.12), inset 0 0 40px rgba(138,91,255,.08);
+    backdrop-filter:blur(10px);
+    padding:16px 18px 14px;
+    margin-bottom:14px;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:16px;align-items:center}
+  .eyebrow{display:inline-flex;gap:10px;align-items:center;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font-weight:800;color:#d7e7f8;font-size:13px;letter-spacing:.03em;text-transform:uppercase}
+  .title{margin:12px 0 10px;font-size:clamp(34px,4.4vw,66px);line-height:.96;font-weight:950;letter-spacing:-.03em}
+  .title .accent{background:linear-gradient(90deg,#4ae5ff,#c67bff 55%,#ff78d8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .subtitle{max-width:760px;color:#bdd2e4;font-size:15px;line-height:1.45;margin:0 0 12px}
+  .badge-row{display:flex;flex-wrap:wrap;gap:10px}
+  .badge{padding:9px 12px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.08);font-size:13px;font-weight:800;color:#deeffe}
+  .hero-visual{
+    min-height:210px;border-radius:24px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.08);
+    background:
+      radial-gradient(circle at 20% 10%, rgba(255,255,255,.18), transparent 18%),
+      radial-gradient(circle at 82% 22%, rgba(57,216,255,.24), transparent 18%),
+      linear-gradient(135deg, rgba(138,91,255,.30), rgba(11,28,52,.88) 40%, rgba(6,19,34,.94) 100%);
+    box-shadow:var(--shadow);
+  }
+  .cup{position:absolute;bottom:18px;left:24px;width:110px;height:118px;border-radius:0 0 22px 22px;background:linear-gradient(180deg,#fefefe,#dce7f5);box-shadow:0 14px 28px rgba(0,0,0,.22)}
+  .cup:before{content:"";position:absolute;left:9px;right:9px;top:10px;height:20px;border-radius:999px;background:linear-gradient(180deg,#b16d35,#5a3413)}
+  .cup:after{content:"";position:absolute;right:-22px;top:24px;width:32px;height:42px;border:8px solid #ebf4ff;border-left:none;border-radius:0 18px 18px 0}
+  .steam,.steam:before,.steam:after{position:absolute;content:"";width:28px;height:70px;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.45),rgba(255,255,255,0));filter:blur(1px)}
+  .steam{left:40px;top:32px;transform:rotate(-10deg)} .steam:before{left:28px;top:-6px;transform:rotate(10deg)} .steam:after{left:56px;top:2px;transform:rotate(-8deg)}
+  .phone{position:absolute;right:18px;bottom:18px;width:180px;height:120px;border-radius:22px;background:linear-gradient(135deg,#0b1426,#111f3b);border:1px solid rgba(255,255,255,.1);box-shadow:0 14px 30px rgba(0,0,0,.32);padding:14px}
+  .screen{height:100%;border-radius:14px;background:linear-gradient(180deg,#141e35,#0a1324);padding:10px;border:1px solid rgba(57,216,255,.16)}
+  .screen-bar{height:10px;border-radius:999px;background:linear-gradient(90deg,#50e4ff,#a67cff);margin-bottom:10px}
+  .screen-chip{height:20px;border-radius:10px;background:rgba(255,255,255,.08);margin-bottom:8px}
+  .screen-chip.short{width:72%}
+  .hero-circle{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.1)}
+  .c1{width:140px;height:140px;top:-30px;right:110px;background:rgba(57,216,255,.06)}
+  .c2{width:110px;height:110px;bottom:24px;left:180px;background:rgba(255,89,207,.06)}
+
+  .control-bar{margin-top:14px;display:grid;grid-template-columns:1fr auto auto auto;gap:12px;align-items:center}
+  .progress-wrap{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+  .progress{flex:1;height:14px;border-radius:999px;background:#0a1629;border:1px solid rgba(255,255,255,.08);overflow:hidden}
+  .progress-bar{height:100%;width:0;background:linear-gradient(90deg,#48e3ff,#95ff92 50%,#d780ff 100%);transition:width .25s ease}
+  .progress-text{font-weight:900;font-size:14px;color:#dff2ff;min-width:112px;text-align:right}
+  .stat{padding:10px 14px;border-radius:16px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);font-weight:900;min-width:110px;text-align:center}
+  .btn{appearance:none;border:none;cursor:pointer;border-radius:16px;padding:12px 16px;font:inherit;font-weight:900;color:#ecfbff;background:linear-gradient(180deg,#11335f,#0a1e3d);border:1px solid rgba(57,216,255,.36);box-shadow:0 0 16px rgba(57,216,255,.12)}
+  .btn.secondary{background:linear-gradient(180deg,#341d63,#221243);border-color:rgba(198,123,255,.32)}
+  .btn:hover{filter:brightness(1.08)}
+
+  .board{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:14px}
+  .panel{background:linear-gradient(180deg,rgba(10,24,46,.96),rgba(7,18,34,.96));border:1px solid rgba(57,216,255,.18);border-radius:26px;box-shadow:var(--shadow);padding:16px;overflow:hidden;position:relative}
+  .panel:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(57,216,255,.05),transparent 26%,rgba(198,123,255,.05) 70%,transparent);pointer-events:none}
+  .panel-header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}
+  .panel-title{font-size:24px;font-weight:950;letter-spacing:-.02em;margin:0}
+  .panel-note{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.35}
+  .pill{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font-size:12px;font-weight:800;color:#d9eafd;white-space:nowrap}
+
+  .switch-grid,.mcq-grid,.input-grid{display:grid;gap:10px}
+  .task{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);border-radius:18px;padding:12px}
+  .task-head{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+  .num{flex:0 0 36px;height:36px;border-radius:12px;display:grid;place-items:center;font-weight:950;background:linear-gradient(180deg,#8a5bff,#5a33d8)}
+  .q{font-size:15px;font-weight:800;line-height:1.35;color:#edf7ff}
+  .help{font-size:12px;color:var(--muted);margin-top:4px}
+  .choice-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .choice-btn,.chip,.token,.day-chip,.target,.word-card{border:none;font:inherit}
+  .choice-btn{padding:12px 10px;border-radius:14px;cursor:pointer;font-weight:900;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.10);color:#dff0ff;text-align:left}
+  .choice-btn:hover{background:rgba(255,255,255,.07)}
+  .choice-btn.selected{outline:2px solid rgba(72,227,255,.6);background:rgba(72,227,255,.10)}
+
+  .dock{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .word-bank,.target-bank{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .word-card{cursor:grab;padding:12px 10px;border-radius:16px;background:linear-gradient(180deg,#12294b,#0b1a32);border:1px solid rgba(57,216,255,.18);font-weight:900;text-align:center;color:#e8f8ff}
+  .word-card.dragging{opacity:.45}
+  .target{min-height:58px;display:grid;place-items:center;border-radius:18px;border:2px dashed rgba(255,255,255,.18);background:rgba(255,255,255,.03);font-weight:950;color:#e6f8ff}
+  .target.over{border-color:rgba(72,227,255,.8);background:rgba(72,227,255,.08)}
+  .target.filled{border-style:solid;background:rgba(123,255,143,.08);border-color:rgba(123,255,143,.4)}
+
+  .build-grid{display:grid;gap:12px}
+  .builder-zone{display:grid;gap:10px}
+  .answer-strip{min-height:54px;display:flex;flex-wrap:wrap;gap:8px;padding:10px;border-radius:16px;background:rgba(255,255,255,.03);border:1px dashed rgba(255,255,255,.16)}
+  .token-bank{display:flex;flex-wrap:wrap;gap:8px}
+  .token{padding:10px 12px;border-radius:999px;background:linear-gradient(180deg,#13284a,#0d1b33);border:1px solid rgba(255,255,255,.10);color:#ebf9ff;font-weight:900;cursor:pointer}
+  .token.used{opacity:.35;pointer-events:none}
+  .mini-actions{display:flex;gap:8px;flex-wrap:wrap}
+  .mini-btn{border:none;border-radius:12px;padding:8px 10px;background:#141f35;border:1px solid rgba(255,255,255,.08);color:#d9ecff;font-weight:800;cursor:pointer}
+
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip,.day-chip{padding:10px 12px;border-radius:999px;cursor:pointer;background:linear-gradient(180deg,#12284a,#0c1a31);border:1px solid rgba(255,255,255,.10);font-weight:900;color:#edf8ff}
+  .chip.selected,.day-chip.selected{outline:2px solid rgba(72,227,255,.55);background:rgba(72,227,255,.10)}
+
+  .scene{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:stretch}
+  .scene-box{border-radius:20px;min-height:250px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,#112341,#0c172b);padding:16px;position:relative;overflow:hidden}
+  .scene-box:before{content:"";position:absolute;inset:auto -30px -30px auto;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(57,216,255,.18),transparent 62%)}
+  .scene-title{font-size:18px;font-weight:950;margin-bottom:10px}
+  .scene-bubble{padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:#ddecfb;margin-bottom:10px;max-width:85%}
+  .scene-bubble.alt{margin-left:auto;background:rgba(138,91,255,.12)}
+  .scene-cafe{position:absolute;left:16px;right:16px;bottom:16px;height:96px;border-radius:20px;background:linear-gradient(180deg,#3f250e,#251306)}
+  .scene-counter{position:absolute;left:22px;bottom:92px;width:120px;height:70px;border-radius:18px 18px 8px 8px;background:linear-gradient(180deg,#f8fbff,#d8e7f5)}
+  .scene-cup{position:absolute;right:38px;bottom:104px;width:54px;height:58px;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#fff,#dde7f2)}
+  .scene-cup:before{content:"";position:absolute;left:4px;right:4px;top:5px;height:10px;border-radius:999px;background:#74431d}
+
+  .input{width:100%;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:#0d1b31;color:#eff8ff;font:inherit;font-weight:800;outline:none}
+  .input::placeholder{color:#7091b2}
+  .feedback{margin-top:10px;padding:12px 14px;border-radius:16px;font-weight:900;display:none}
+  .feedback.show{display:block}
+  .feedback.ok{background:rgba(123,255,143,.10);color:#dffff0;border:1px solid rgba(123,255,143,.30)}
+  .feedback.bad{background:rgba(255,111,140,.10);color:#ffe6ed;border:1px solid rgba(255,111,140,.28)}
+
+  .task.correct{border-color:rgba(123,255,143,.45);background:rgba(123,255,143,.06)}
+  .task.wrong{border-color:rgba(255,111,140,.42);background:rgba(255,111,140,.05)}
+  .task.pending{border-color:rgba(255,217,104,.42)}
+
+  .summary{margin-top:14px;padding:16px;border-radius:24px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,#0b1a2e,#091522);display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+  .summary h3{margin:0 0 6px;font-size:26px}
+  .summary p{margin:0;color:#b9d0e2}
+  .summary .result{font-size:40px;font-weight:950;letter-spacing:-.03em;background:linear-gradient(90deg,#49e4ff,#9dff87,#d57cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  @media(max-width:1100px){
+    .hero-grid,.board,.scene{grid-template-columns:1fr}
+    .control-bar{grid-template-columns:1fr 1fr;}
+    .progress-wrap{grid-column:1 / -1}
+  }
+  @media(max-width:760px){
+    .app{padding:10px}
+    .hero{position:relative;border-radius:20px}
+    .control-bar{grid-template-columns:1fr}
+    .choice-row,.word-bank,.target-bank{grid-template-columns:1fr}
+    .dock{grid-template-columns:1fr}
+    .title{font-size:34px}
+  }
+
+  /* Holst fit */
+  html,body{width:100%;height:100%}
+  body.holst-fit{overflow:hidden!important}
+  body.holst-fit .app{position:absolute!important;width:1540px!important;max-width:none!important;margin:0!important;transform-origin:top left!important;will-change:transform}
+  body.holst-fit .hero{position:relative!important;top:auto!important}
+</style>
+</head>
+<body class="holst-fit">
+<div class="app" id="app">
+  <header class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">English File Beginner • Unit 1A</div>
+        <h1 class="title">Café <span class="accent">Checkpoint</span></h1>
+        <p class="subtitle">Interactive unit challenge for <strong>be (I / you)</strong>, <strong>numbers 0–10</strong>, <strong>days of the week</strong>, and basic café / greeting language. Designed as a standalone iframe-ready mini-module with a modern visual style.</p>
+        <div class="badge-row">
+          <div class="badge">24 tasks</div>
+          <div class="badge">6 interactive zones</div>
+          <div class="badge">Instant scoring</div>
+          <div class="badge">Holst / iframe friendly</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="cup"><div class="steam"></div></div>
+        <div class="phone"><div class="screen"><div class="screen-bar"></div><div class="screen-chip"></div><div class="screen-chip short"></div><div class="screen-chip"></div></div></div>
+        <div class="hero-circle c1"></div>
+        <div class="hero-circle c2"></div>
+      </div>
+    </div>
+    <div class="control-bar">
+      <div class="progress-wrap">
+        <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="progress-text" id="progressText">0 / 24 done</div>
+      </div>
+      <div class="stat" id="scoreBox">Score: 0 / 24</div>
+      <button class="btn" id="checkBtn" type="button">Check answers</button>
+      <button class="btn secondary" id="resetBtn" type="button">Reset</button>
+    </div>
+  </header>
+
+  <main class="board">
+    <section class="panel" id="panel-switch">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">01 • Neon Switchboard</h2>
+          <div class="panel-note">Choose the correct form in each sentence.</div>
+        </div>
+        <div class="pill">4 tasks</div>
+      </div>
+      <div class="switch-grid">
+        <div class="task choice-task" data-answer="b" data-id="1">
+          <div class="task-head"><div class="num">1</div><div><div class="q">_____ you Helen?</div><div class="help">Choose the correct question form.</div></div></div>
+          <div class="choice-row">
+            <button class="choice-btn" data-value="a">A • Am</button>
+            <button class="choice-btn" data-value="b">B • Are</button>
+          </div>
+        </div>
+        <div class="task choice-task" data-answer="a" data-id="2">
+          <div class="task-head"><div class="num">2</div><div><div class="q">I _____ Mike.</div><div class="help">Short introduction.</div></div></div>
+          <div class="choice-row">
+            <button class="choice-btn" data-value="a">A • am</button>
+            <button class="choice-btn" data-value="b">B • are</button>
+          </div>
+        </div>
+        <div class="task choice-task" data-answer="b" data-id="3">
+          <div class="task-head"><div class="num">3</div><div><div class="q">You _____ in Room 4.</div><div class="help">Use the correct form of <em>be</em>.</div></div></div>
+          <div class="choice-row">
+            <button class="choice-btn" data-value="a">A • am</button>
+            <button class="choice-btn" data-value="b">B • are</button>
+          </div>
+        </div>
+        <div class="task choice-task" data-answer="a" data-id="4">
+          <div class="task-head"><div class="num">4</div><div><div class="q">I _____ not Anna.</div><div class="help">Negative form.</div></div></div>
+          <div class="choice-row">
+            <button class="choice-btn" data-value="a">A • am</button>
+            <button class="choice-btn" data-value="b">B • are</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-numbers">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">02 • Number Dock</h2>
+          <div class="panel-note">Drag each word card to the correct number target.</div>
+        </div>
+        <div class="pill">4 tasks</div>
+      </div>
+      <div class="dock">
+        <div class="word-bank">
+          <div class="word-card" draggable="true" data-word="three">three</div>
+          <div class="word-card" draggable="true" data-word="seven">seven</div>
+          <div class="word-card" draggable="true" data-word="zero">zero</div>
+          <div class="word-card" draggable="true" data-word="nine">nine</div>
+        </div>
+        <div class="target-bank">
+          <div class="target match-target" data-answer="zero" data-id="5">0</div>
+          <div class="target match-target" data-answer="three" data-id="6">3</div>
+          <div class="target match-target" data-answer="seven" data-id="7">7</div>
+          <div class="target match-target" data-answer="nine" data-id="8">9</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-build">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">03 • Build It</h2>
+          <div class="panel-note">Click the words in the correct order to build the sentence.</div>
+        </div>
+        <div class="pill">4 tasks</div>
+      </div>
+      <div class="build-grid">
+        <div class="task build-task" data-answer="i am leo" data-id="9">
+          <div class="task-head"><div class="num">9</div><div><div class="q">Build the sentence.</div><div class="help">Target: <strong>I am Leo.</strong></div></div></div>
+          <div class="builder-zone">
+            <div class="answer-strip"></div>
+            <div class="token-bank">
+              <button class="token">am</button><button class="token">Leo</button><button class="token">I</button>
+            </div>
+            <div class="mini-actions"><button class="mini-btn clear-build">Clear</button></div>
+          </div>
+        </div>
+
+        <div class="task build-task" data-answer="are you kate" data-id="10">
+          <div class="task-head"><div class="num">10</div><div><div class="q">Build the question.</div><div class="help">Target: <strong>Are you Kate?</strong></div></div></div>
+          <div class="builder-zone">
+            <div class="answer-strip"></div>
+            <div class="token-bank">
+              <button class="token">you</button><button class="token">Kate</button><button class="token">Are</button>
+            </div>
+            <div class="mini-actions"><button class="mini-btn clear-build">Clear</button></div>
+          </div>
+        </div>
+
+        <div class="task build-task" data-answer="i m not tom" data-id="11">
+          <div class="task-head"><div class="num">11</div><div><div class="q">Build the negative sentence.</div><div class="help">Target: <strong>I’m not Tom.</strong></div></div></div>
+          <div class="builder-zone">
+            <div class="answer-strip"></div>
+            <div class="token-bank">
+              <button class="token">Tom</button><button class="token">I’m</button><button class="token">not</button>
+            </div>
+            <div class="mini-actions"><button class="mini-btn clear-build">Clear</button></div>
+          </div>
+        </div>
+
+        <div class="task build-task" data-answer="you are right" data-id="12">
+          <div class="task-head"><div class="num">12</div><div><div class="q">Build the sentence.</div><div class="help">Target: <strong>You are right.</strong></div></div></div>
+          <div class="builder-zone">
+            <div class="answer-strip"></div>
+            <div class="token-bank">
+              <button class="token">right</button><button class="token">are</button><button class="token">You</button>
+            </div>
+            <div class="mini-actions"><button class="mini-btn clear-build">Clear</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-days">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">04 • Week Track</h2>
+          <div class="panel-note">Choose the correct day of the week.</div>
+        </div>
+        <div class="pill">4 tasks</div>
+      </div>
+      <div class="mcq-grid">
+        <div class="task chip-task" data-answer="wednesday" data-id="13">
+          <div class="task-head"><div class="num">13</div><div><div class="q">Monday → Tuesday → _____ → Thursday</div><div class="help">Pick the missing day.</div></div></div>
+          <div class="chips"><button class="day-chip" data-value="friday">Friday</button><button class="day-chip" data-value="wednesday">Wednesday</button><button class="day-chip" data-value="sunday">Sunday</button></div>
+        </div>
+        <div class="task chip-task" data-answer="saturday" data-id="14">
+          <div class="task-head"><div class="num">14</div><div><div class="q">Friday → _____ → Sunday</div><div class="help">What day is in the middle?</div></div></div>
+          <div class="chips"><button class="day-chip" data-value="monday">Monday</button><button class="day-chip" data-value="tuesday">Tuesday</button><button class="day-chip" data-value="saturday">Saturday</button></div>
+        </div>
+        <div class="task chip-task" data-answer="monday" data-id="15">
+          <div class="task-head"><div class="num">15</div><div><div class="q">What day comes before Tuesday?</div><div class="help">Choose the correct answer.</div></div></div>
+          <div class="chips"><button class="day-chip" data-value="thursday">Thursday</button><button class="day-chip" data-value="monday">Monday</button><button class="day-chip" data-value="saturday">Saturday</button></div>
+        </div>
+        <div class="task chip-task" data-answer="bye see you tomorrow" data-id="16">
+          <div class="task-head"><div class="num">16</div><div><div class="q">Choose the natural goodbye phrase.</div><div class="help">A short closing expression.</div></div></div>
+          <div class="chips"><button class="day-chip" data-value="bye see you tomorrow">Bye. See you tomorrow.</button><button class="day-chip" data-value="i m wednesday">I’m Wednesday.</button><button class="day-chip" data-value="hello room four">Hello, Room 4.</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-cafe">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">05 • Café Scene</h2>
+          <div class="panel-note">Choose the best reply in a real mini-situation.</div>
+        </div>
+        <div class="pill">4 tasks</div>
+      </div>
+      <div class="scene">
+        <div class="scene-box">
+          <div class="scene-title">Mini Dialogue</div>
+          <div class="scene-bubble">Barista: Hello. What’s your name?</div>
+          <div class="scene-bubble alt">Customer: ?</div>
+          <div class="scene-bubble">Friend: Nice to meet you.</div>
+          <div class="scene-bubble alt">You: ?</div>
+          <div class="scene-counter"></div>
+          <div class="scene-cup"></div>
+          <div class="scene-cafe"></div>
+        </div>
+        <div class="mcq-grid">
+          <div class="task choice-task" data-answer="a" data-id="17">
+            <div class="task-head"><div class="num">17</div><div><div class="q">Barista: “What’s your name?”</div><div class="help">Pick the most natural reply.</div></div></div>
+            <div class="choice-row"><button class="choice-btn" data-value="a">A • I’m Alex.</button><button class="choice-btn" data-value="b">B • You’re Alex.</button></div>
+          </div>
+          <div class="task choice-task" data-answer="b" data-id="18">
+            <div class="task-head"><div class="num">18</div><div><div class="q">“Nice to meet you.”</div><div class="help">Choose the correct answer.</div></div></div>
+            <div class="choice-row"><button class="choice-btn" data-value="a">A • Goodbye.</button><button class="choice-btn" data-value="b">B • Nice to meet you, too.</button></div>
+          </div>
+          <div class="task choice-task" data-answer="a" data-id="19">
+            <div class="task-head"><div class="num">19</div><div><div class="q">You leave the café.</div><div class="help">Choose the goodbye phrase.</div></div></div>
+            <div class="choice-row"><button class="choice-btn" data-value="a">A • Bye. See you tomorrow.</button><button class="choice-btn" data-value="b">B • I’m not Tom.</button></div>
+          </div>
+          <div class="task choice-task" data-answer="b" data-id="20">
+            <div class="task-head"><div class="num">20</div><div><div class="q">What matches “A cappuccino, please.”?</div><div class="help">Pick the correct situation.</div></div></div>
+            <div class="choice-row"><button class="choice-btn" data-value="a">A • Asking for a day of the week</button><button class="choice-btn" data-value="b">B • Ordering a drink in a café</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-final">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">06 • Final Mission</h2>
+          <div class="panel-note">Correct the errors and complete two short open-response tasks.</div>
+        </div>
+        <div class="pill">4 tasks</div>
+      </div>
+      <div class="input-grid">
+        <div class="task input-task" data-answer="i am maria" data-id="21">
+          <div class="task-head"><div class="num">21</div><div><div class="q">Correct the sentence: <strong>I are Maria.</strong></div><div class="help">Write the full correct sentence.</div></div></div>
+          <input class="input" type="text" placeholder="Type your answer here" />
+        </div>
+        <div class="task input-task" data-answer="am i in room 3" data-id="22">
+          <div class="task-head"><div class="num">22</div><div><div class="q">Correct the question: <strong>Are I in Room 3?</strong></div><div class="help">Write the full correct question.</div></div></div>
+          <input class="input" type="text" placeholder="Type your answer here" />
+        </div>
+        <div class="task input-task" data-answer="i m sam i m in room 5|i am sam i am in room 5" data-id="23">
+          <div class="task-head"><div class="num">23</div><div><div class="q">Card info: <strong>Name: Sam • Room: 5</strong></div><div class="help">Write two short sentences.</div></div></div>
+          <input class="input" type="text" placeholder="Example: I’m …" />
+        </div>
+        <div class="task input-task" data-answer="i m emma|my name s emma|i am emma|my name is emma" data-id="24">
+          <div class="task-head"><div class="num">24</div><div><div class="q">Emily says: “Hi! I’m Emily. What’s your name?”</div><div class="help">Type a possible answer as the student.</div></div></div>
+          <input class="input" type="text" placeholder="Example: I’m …" />
+        </div>
+      </div>
+      <div class="feedback" id="feedbackBox"></div>
+    </section>
+  </main>
+
+  <section class="summary">
+    <div>
+      <h3>Unit 1A complete?</h3>
+      <p>Press <strong>Check answers</strong> to see the result. A practical mastery target for this unit can be <strong>19 / 24</strong> or higher.</p>
+    </div>
+    <div class="result" id="finalResult">0 / 24</div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const progressBar = document.getElementById('progressBar');
+  const progressText = document.getElementById('progressText');
+  const scoreBox = document.getElementById('scoreBox');
+  const finalResult = document.getElementById('finalResult');
+  const feedbackBox = document.getElementById('feedbackBox');
+  const totalTasks = 24;
+
+  const normalize = (str='') => str
+    .toLowerCase()
+    .replace(/[’']/g, ' ')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  function updateProgress(){
+    let answered = 0;
+    document.querySelectorAll('.choice-task').forEach(task => { if(task.dataset.choice) answered++; });
+    document.querySelectorAll('.match-target').forEach(target => { if(target.dataset.value) answered++; });
+    document.querySelectorAll('.build-task').forEach(task => { if(task.querySelector('.answer-strip').dataset.answer) answered++; });
+    document.querySelectorAll('.chip-task').forEach(task => { if(task.dataset.choice) answered++; });
+    document.querySelectorAll('.input-task input').forEach(input => { if(input.value.trim()) answered++; });
+    progressBar.style.width = `${answered/totalTasks*100}%`;
+    progressText.textContent = `${answered} / ${totalTasks} done`;
+  }
+
+  document.querySelectorAll('.choice-task').forEach(task => {
+    task.querySelectorAll('.choice-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        task.dataset.choice = btn.dataset.value;
+        task.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        task.classList.remove('correct','wrong','pending');
+        updateProgress();
+      });
+    });
+  });
+
+  let dragged = null;
+  document.querySelectorAll('.word-card').forEach(card => {
+    card.addEventListener('dragstart', e => { dragged = card; card.classList.add('dragging'); e.dataTransfer.setData('text/plain', card.dataset.word); });
+    card.addEventListener('dragend', () => { dragged = null; card.classList.remove('dragging'); });
+  });
+  document.querySelectorAll('.match-target').forEach(target => {
+    target.addEventListener('dragover', e => { e.preventDefault(); target.classList.add('over'); });
+    target.addEventListener('dragleave', () => target.classList.remove('over'));
+    target.addEventListener('drop', e => {
+      e.preventDefault(); target.classList.remove('over');
+      const value = e.dataTransfer.getData('text/plain');
+      target.dataset.value = value;
+      target.textContent = `${target.textContent.split(' — ')[0]} — ${value}`;
+      target.classList.add('filled');
+      if(dragged) dragged.style.opacity = '.35';
+      updateProgress();
+    });
+    target.addEventListener('click', () => {
+      if(target.dataset.value){
+        const current = target.dataset.value;
+        const card = [...document.querySelectorAll('.word-card')].find(c => c.dataset.word === current);
+        if(card) card.style.opacity = '1';
+        delete target.dataset.value;
+        target.textContent = target.textContent.split(' — ')[0];
+        target.classList.remove('filled','correct','wrong','pending');
+        updateProgress();
+      }
+    });
+  });
+
+  document.querySelectorAll('.build-task').forEach(task => {
+    const strip = task.querySelector('.answer-strip');
+    strip.dataset.answer = '';
+    task.querySelectorAll('.token').forEach(token => {
+      token.addEventListener('click', () => {
+        const chip = document.createElement('span');
+        chip.className = 'chip';
+        chip.textContent = token.textContent;
+        chip.style.cursor = 'pointer';
+        chip.style.background = 'rgba(123,255,143,.12)';
+        chip.style.border = '1px solid rgba(123,255,143,.34)';
+        strip.appendChild(chip);
+        strip.dataset.answer = `${strip.dataset.answer} ${token.textContent}`.trim();
+        token.classList.add('used');
+        chip.addEventListener('click', () => {
+          token.classList.remove('used');
+          chip.remove();
+          strip.dataset.answer = [...strip.querySelectorAll('.chip')].map(el => el.textContent).join(' ');
+          updateProgress();
+        });
+        updateProgress();
+      });
+    });
+    task.querySelector('.clear-build').addEventListener('click', () => {
+      strip.innerHTML = '';
+      strip.dataset.answer = '';
+      task.querySelectorAll('.token').forEach(token => token.classList.remove('used'));
+      task.classList.remove('correct','wrong','pending');
+      updateProgress();
+    });
+  });
+
+  document.querySelectorAll('.chip-task').forEach(task => {
+    task.querySelectorAll('.day-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        task.dataset.choice = chip.dataset.value;
+        task.querySelectorAll('.day-chip').forEach(c => c.classList.remove('selected'));
+        chip.classList.add('selected');
+        task.classList.remove('correct','wrong','pending');
+        updateProgress();
+      });
+    });
+  });
+
+  document.querySelectorAll('.input-task input').forEach(input => {
+    input.addEventListener('input', updateProgress);
+  });
+
+  function checkAnswers(){
+    let score = 0;
+    let pending = 0;
+
+    document.querySelectorAll('.task').forEach(t => t.classList.remove('correct','wrong','pending'));
+    feedbackBox.className = 'feedback';
+
+    document.querySelectorAll('.choice-task').forEach(task => {
+      if(!task.dataset.choice){ task.classList.add('pending'); pending++; return; }
+      if(task.dataset.choice === task.dataset.answer){ task.classList.add('correct'); score++; }
+      else task.classList.add('wrong');
+    });
+
+    document.querySelectorAll('.match-target').forEach(target => {
+      if(!target.dataset.value){ target.classList.add('pending'); pending++; return; }
+      if(target.dataset.value === target.dataset.answer){ target.classList.add('correct'); score++; }
+      else target.classList.add('wrong');
+    });
+
+    document.querySelectorAll('.build-task').forEach(task => {
+      const given = normalize(task.querySelector('.answer-strip').dataset.answer || '');
+      const correct = normalize(task.dataset.answer);
+      if(!given){ task.classList.add('pending'); pending++; return; }
+      if(given === correct){ task.classList.add('correct'); score++; }
+      else task.classList.add('wrong');
+    });
+
+    document.querySelectorAll('.chip-task').forEach(task => {
+      if(!task.dataset.choice){ task.classList.add('pending'); pending++; return; }
+      if(normalize(task.dataset.choice) === normalize(task.dataset.answer)){ task.classList.add('correct'); score++; }
+      else task.classList.add('wrong');
+    });
+
+    document.querySelectorAll('.input-task').forEach(task => {
+      const input = task.querySelector('input');
+      const given = normalize(input.value);
+      const answers = task.dataset.answer.split('|').map(normalize);
+      if(!given){ task.classList.add('pending'); pending++; return; }
+      if(answers.includes(given)){ task.classList.add('correct'); score++; }
+      else task.classList.add('wrong');
+    });
+
+    scoreBox.textContent = `Score: ${score} / ${totalTasks}`;
+    finalResult.textContent = `${score} / ${totalTasks}`;
+
+    if(score >= 19){
+      feedbackBox.textContent = `Great job! You scored ${score}/${totalTasks}. This is a strong Unit 1A result.`;
+      feedbackBox.className = 'feedback show ok';
+    } else {
+      feedbackBox.textContent = `You scored ${score}/${totalTasks}. Review the highlighted tasks and try again.`;
+      feedbackBox.className = 'feedback show bad';
+    }
+  }
+
+  function resetAll(){
+    document.querySelectorAll('.task').forEach(t => t.classList.remove('correct','wrong','pending'));
+    document.querySelectorAll('.choice-task').forEach(task => {
+      delete task.dataset.choice;
+      task.querySelectorAll('.choice-btn').forEach(btn => btn.classList.remove('selected'));
+    });
+    document.querySelectorAll('.match-target').forEach(target => {
+      delete target.dataset.value;
+      target.textContent = target.textContent.split(' — ')[0];
+      target.classList.remove('filled','over');
+    });
+    document.querySelectorAll('.word-card').forEach(card => card.style.opacity = '1');
+    document.querySelectorAll('.build-task').forEach(task => {
+      task.querySelector('.answer-strip').innerHTML = '';
+      task.querySelector('.answer-strip').dataset.answer = '';
+      task.querySelectorAll('.token').forEach(token => token.classList.remove('used'));
+    });
+    document.querySelectorAll('.chip-task').forEach(task => {
+      delete task.dataset.choice;
+      task.querySelectorAll('.day-chip').forEach(chip => chip.classList.remove('selected'));
+    });
+    document.querySelectorAll('.input-task input').forEach(input => input.value = '');
+    scoreBox.textContent = 'Score: 0 / 24';
+    finalResult.textContent = '0 / 24';
+    feedbackBox.className = 'feedback';
+    feedbackBox.textContent = '';
+    updateProgress();
+  }
+
+  document.getElementById('checkBtn').addEventListener('click', checkAnswers);
+  document.getElementById('resetBtn').addEventListener('click', resetAll);
+
+  function fitBoard(){
+    const app = document.getElementById('app');
+    if(!document.body.classList.contains('holst-fit') || !app) return;
+    app.style.transform = 'none';
+    app.style.left = '0px';
+    app.style.top = '0px';
+
+    const naturalW = 1540;
+    const naturalH = app.scrollHeight;
+    const vw = Math.max(1, window.innerWidth);
+    const vh = Math.max(1, window.innerHeight);
+    const scale = Math.min(vw / naturalW, vh / naturalH);
+    const left = Math.max(0, (vw - naturalW * scale) / 2);
+    const top = Math.max(0, (vh - naturalH * scale) / 2);
+
+    app.style.left = left + 'px';
+    app.style.top = top + 'px';
+    app.style.transform = `scale(${scale})`;
+  }
+
+  window.addEventListener('resize', fitBoard, {passive:true});
+  window.addEventListener('orientationchange', fitBoard, {passive:true});
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitBoard);
+  requestAnimationFrame(() => requestAnimationFrame(fitBoard));
+
+  updateProgress();
+})();
+</script>
+</body>
+</html>
