@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Grammar Switchboard</title>
+<link rel="alternate" type="application/json+oembed" href="https://wow-school.github.io/test/grammar-switchboard-v2/oembed.json" title="Grammar Switchboard oEmbed" />
+<meta name="description" content="Interactive Grammar Switchboard exercise: choose A or B and check your answers." />
+<meta property="og:title" content="Grammar Switchboard" />
+<meta property="og:description" content="Interactive English grammar exercise — choose A or B." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://wow-school.github.io/test/grammar-switchboard-v2/" />
+<meta property="og:image" content="https://wow-school.github.io/test/grammar-switchboard-v2/preview.png?v=2" />
+<meta property="og:image:secure_url" content="https://wow-school.github.io/test/grammar-switchboard-v2/preview.png?v=2" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Grammar Switchboard interactive exercise preview" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Grammar Switchboard" />
+<meta name="twitter:description" content="Interactive English grammar exercise — choose A or B." />
+<meta name="twitter:image" content="https://wow-school.github.io/test/grammar-switchboard-v2/preview.png?v=2" />
+<link rel="image_src" href="https://wow-school.github.io/test/grammar-switchboard-v2/preview.png?v=2" />
+<style>
+  :root{
+    --bg:#040817;
+    --panel:#07152b;
+    --panel2:#0b1e3b;
+    --line:#19cfff;
+    --violet:#8f45ff;
+    --violet2:#d23cff;
+    --green:#98ff53;
+    --white:#f7fbff;
+    --muted:#9db1c7;
+    --bad:#ff5c7a;
+    --good:#7dff74;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--white);font-family:Inter,Segoe UI,Arial,sans-serif}
+  body{
+    min-height:100vh;
+    overflow:auto;
+    background:
+      radial-gradient(circle at 50% -10%, rgba(0,203,255,.20), transparent 30%),
+      radial-gradient(circle at 0% 45%, rgba(119,47,255,.22), transparent 33%),
+      radial-gradient(circle at 100% 45%, rgba(0,213,255,.16), transparent 30%),
+      linear-gradient(180deg,#040817 0%,#050a19 100%);
+  }
+  .app{width:min(1540px,100%);margin:0 auto;padding:14px 16px 18px}
+  .top{
+    position:sticky;top:0;z-index:8;
+    border:1px solid rgba(41,211,255,.45);
+    border-radius:18px;
+    background:linear-gradient(180deg,rgba(7,20,42,.97),rgba(4,12,28,.96));
+    box-shadow:0 0 18px rgba(0,206,255,.25), inset 0 0 26px rgba(144,66,255,.12);
+    padding:12px 16px 10px;
+    margin-bottom:12px;
+    backdrop-filter:blur(8px)
+  }
+  .title{
+    margin:0;text-align:center;text-transform:uppercase;letter-spacing:.045em;
+    font-weight:950;font-size:clamp(25px,4vw,58px);line-height:.95;
+    text-shadow:0 0 10px rgba(255,255,255,.55),0 0 18px rgba(0,207,255,.55)
+  }
+  .subrow{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin-top:9px}
+  .instruction{
+    background:linear-gradient(90deg,#5221c5,#8a27f0 55%,#5221c5);
+    border:1px solid rgba(176,116,255,.8);
+    box-shadow:0 0 16px rgba(151,50,255,.35);
+    border-radius:999px;padding:6px 22px;font-weight:800;font-size:clamp(14px,1.5vw,20px)
+  }
+  .controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center}
+  button{font:inherit}
+  .action{
+    border:1px solid rgba(91,216,255,.55);border-radius:11px;padding:7px 12px;cursor:pointer;
+    color:#eafeff;background:linear-gradient(180deg,#10315a,#0a1931);font-weight:800;
+    box-shadow:inset 0 0 13px rgba(22,195,255,.08)
+  }
+  .action:hover{filter:brightness(1.18)}
+  .score{min-width:92px;text-align:center;color:#cbf7ff;font-weight:900;font-size:14px}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .card{
+    display:grid;grid-template-columns:42px minmax(0,1fr) minmax(330px,1.12fr);
+    gap:10px;align-items:center;
+    min-height:82px;padding:8px 10px;
+    border:1px solid rgba(116,67,255,.75);border-radius:16px;
+    background:linear-gradient(135deg,rgba(5,22,47,.98),rgba(7,16,37,.98));
+    box-shadow:inset 0 0 20px rgba(0,190,255,.06),0 0 0 1px rgba(0,214,255,.11);
+    transition:.18s ease;
+  }
+  .card:hover{transform:translateY(-1px);border-color:rgba(65,209,255,.75)}
+  .num{
+    display:grid;place-items:center;width:38px;height:38px;border-radius:9px;
+    background:linear-gradient(145deg,#7c31f4,#5220c9);font-weight:950;font-size:18px;
+    box-shadow:0 0 14px rgba(129,52,255,.35)
+  }
+  .q{font-size:clamp(15px,1.34vw,20px);font-weight:750;line-height:1.18;text-align:center}
+  .switcher{
+    display:grid;grid-template-columns:1fr 66px 1fr;align-items:center;gap:8px;
+    min-height:56px;border-radius:12px;padding:5px 7px;
+    border:1px solid rgba(58,177,221,.22);background:rgba(7,23,46,.65)
+  }
+  .opt{
+    min-width:0;border:1px solid transparent;background:transparent;color:#c99bff;
+    border-radius:9px;padding:7px 8px;cursor:pointer;display:flex;gap:8px;align-items:center;justify-content:flex-start;
+    font-weight:800;line-height:1.04;text-align:left;transition:.16s ease;
+  }
+  .opt[data-side="a"]{color:var(--green)}
+  .opt:hover{background:rgba(255,255,255,.055)}
+  .letter{font-size:28px;font-weight:950;line-height:1}
+  .otxt{font-size:clamp(13px,1.1vw,18px);word-break:normal}
+
+  .track{
+    width:66px;height:34px;border-radius:999px;position:relative;justify-self:center;
+    background:#111d34;border:2px solid #75869f;box-shadow:inset 0 0 9px rgba(0,0,0,.65);
+    pointer-events:none;
+  }
+  .thumb{
+    position:absolute;top:50%;left:50%;width:25px;height:25px;border-radius:50%;
+    transform:translate(-50%,-50%);transition:.18s cubic-bezier(.2,.8,.2,1);
+    background:#efffff;border:2px solid #caffbe;box-shadow:0 0 6px #fff,0 0 14px #7fff55;
+  }
+  .card[data-choice="a"] .thumb{left:20%}
+  .card[data-choice="b"] .thumb{left:80%}
+  .card[data-choice="a"] .opt[data-side="a"],
+  .card[data-choice="b"] .opt[data-side="b"]{
+    background:rgba(137,255,82,.07);border-color:rgba(137,255,82,.42)
+  }
+  .card[data-choice="b"] .opt[data-side="b"]{background:rgba(169,76,255,.08);border-color:rgba(169,76,255,.48)}
+
+  .card.correct{border-color:rgba(115,255,108,.85);box-shadow:0 0 16px rgba(92,255,95,.16),inset 0 0 18px rgba(92,255,95,.05)}
+  .card.wrong{border-color:rgba(255,92,122,.92);box-shadow:0 0 16px rgba(255,92,122,.12)}
+  .card.unanswered{border-color:rgba(255,203,82,.82)}
+  .card.correct::after,.card.wrong::after,.card.unanswered::after{
+    align-self:center;justify-self:end;font-size:18px;font-weight:950
+  }
+  .card.correct::after{content:"✓";color:var(--good)}
+  .card.wrong::after{content:"✕";color:var(--bad)}
+  .card.unanswered::after{content:"•";color:#ffd66e}
+
+  .legend{margin:12px auto 0;text-align:center;color:#8fa8bd;font-size:12px;letter-spacing:.01em}
+
+  @media(max-width:1050px){
+    .grid{grid-template-columns:1fr}
+    .card{grid-template-columns:42px minmax(0,1fr) minmax(320px,1.2fr)}
+  }
+  @media(max-width:680px){
+    .app{padding:8px}
+    .top{position:static;border-radius:14px}
+    .card{grid-template-columns:36px 1fr;gap:8px;min-height:112px}
+    .num{width:34px;height:34px}
+    .q{text-align:left}
+    .switcher{grid-column:1/-1;grid-template-columns:1fr 58px 1fr}
+    .track{width:58px}
+    .letter{font-size:24px}
+  }
+</style>
+
+<style id="holst-fit">
+  /* Holst auto-fit mode: keep the original 2-column board and scale the whole exercise
+     to the available iframe viewport, so no internal scrolling is needed. */
+  html,body{width:100%;height:100%;overflow:hidden!important;}
+  body{min-height:100%!important;}
+  .app{
+    position:absolute!important;
+    width:1540px!important;
+    max-width:none!important;
+    margin:0!important;
+    transform-origin:top left!important;
+    will-change:transform;
+  }
+  .top{position:relative!important;top:auto!important;}
+  .title{font-size:52px!important;}
+  .instruction{font-size:18px!important;}
+  .grid{grid-template-columns:1fr 1fr!important;gap:10px!important;}
+  .card{
+    grid-template-columns:42px minmax(0,1fr) minmax(330px,1.12fr)!important;
+    min-height:82px!important;
+    gap:10px!important;
+    padding:8px 10px!important;
+  }
+  .num{width:38px!important;height:38px!important;font-size:18px!important;}
+  .q{font-size:18px!important;text-align:center!important;}
+  .switcher{grid-column:auto!important;grid-template-columns:1fr 66px 1fr!important;min-height:56px!important;}
+  .track{width:66px!important;height:34px!important;}
+  .letter{font-size:28px!important;}
+  .otxt{font-size:16px!important;}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <h1 class="title">Grammar Switchboard</h1>
+    <div class="subrow">
+      <div class="instruction">Choose A or B.</div>
+      <div class="controls">
+        <button class="action" id="checkBtn" type="button">Check answers</button>
+        <button class="action" id="resetBtn" type="button">Reset</button>
+        <div class="score" id="score">0 / 15</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="grid" id="grid">
+    <section class="card" data-answer="b">
+      <div class="num">1</div><div class="q">_____’s your name?</div>
+      <div class="switcher"><button class="opt" data-side="a"><span class="letter">A</span><span class="otxt">Who</span></button><div class="track"><span class="thumb"></span></div><button class="opt" data-side="b"><span class="letter">B</span><span class="otxt">What</span></button></div>
+    </section>
+    <section class="card" data-answer="a">
+      <div class="num">9</div><div class="q">He’s Swiss.<br>_____ name is Ken.</div>
+      <div class="switcher"><button class="opt" data-side="a"><span class="letter">A</span><span class="otxt">His</span></button><div class="track"><span class="thumb"></span></div><button class="opt" data-side="b"><span class="letter">B</span><span class="otxt">Her</span></button></div>
+    </section>
+
+    <section class="card" data-answer="b">
+      <div class="num">2</div><div class="q">A Where are my sunglasses?<br>B _____ in your bag.</div>
+      <div class="switcher"><button class="opt" data-side="a"><span class="letter">A</span><span class="otxt">It’s</span></button><div class="track"><span class="thumb"></span></div><button class="opt" data-side="b"><span class="letter">B</span><span class="otxt">They’re</span></button></div>
+    </section>
+    <section class="card" data-answer="a">
+      <div class="num">10</div><div class="q">We’re Mr and Mrs Brown. _____ son is in class 4.</div>
+      <div class="switcher"><button class="opt" data-side="a"><span class="letter">A</span><span class="otxt">Our</span></button><div class="track"><span class="thumb"></span></div><button class="opt" data-side="b"><span class="letter">B</span><span class="otxt">Their</span></button></div>
+    </section>
+
+    <section class="card" data-answer="a">
+      <div class="num">3</div><div class="q">These are Swiss _____.</div>
+      <div class="switcher"><button class="opt" data-side="a"><span class="letter">A</span><span class="otxt">watches</span></button><div class="track"><span class="thumb"></span></div><button class="opt" data-side="b"><span class="letter">B</span><span class="otxt">watchs</span></button></div>
+    </section>
+    <section class="card" data-answer="b">
+      <div class="num">11</div><div class="q">Justin is _____ brother.</div>
+      <div class="switcher"><button class="opt" data-side="a"><span class="letter">A</span><span class="otxt">Sophies</span></button><div class="track"><span class="thumb"></span></div><button class="opt" data-side="b"><span class="letter">B</span><span class="otxt">Sophie’s</span></button></div>
+    </section>
+
+    <section class="card" data-answer="b">
+      <div class="num">4</div><div class="q">Kyoto and Osaka are two important _____ in Japan.</div>
+      <div class="switcher"><button class="opt" data-side="a"><span class="letter">A</span><span class="otxt">citys</span></button><div class="track"><span class="thumb"></span></div><button class="opt" data-side="b"><span class="letter">B</span><span class="otxt">cities</span></button></div>
+    </section>
+    <section class="card" data-answer="b">
+      <div class="num">12</div><div class="q">My _____ is Amanda.</div>
+      <div class="switcher"><button class="opt" data-side="a"><span class="letter">A</span><span class="otxt">name’s wife</span></button><div class="track"><span class="thumb"></span></div><button class="opt" data-side="b"><span class="letter">B</span><span class="otxt">wife’s name</span></button></div>
+    </section>
+
+    <section class="card" data-answer="a">
+      <div class="num">5</div><div class="q">A What’s _____?<br>B It’s a key ring.</div>
+      <div class="switcher"><button class="opt" data-side="a"><span class="letter">A</span><span class="otxt">this</span></button><div class="track"><span class="thumb"></span></div><button class="opt" data-side="b"><span class="letter">B</span><span class="otxt">these</span></button></div>
+    </section>
+    <section class="card" data-answer="a">
+      <div class="num">13</div><div class="q">These chairs are _____.</div>
+      <div class="switcher"><button class="opt" data-side="a"><span class="letter">A</span><span class="otxt">very expensive</span></button><div class="track"><span class="thumb"></span></div><button class="opt" data-side="b"><span class="letter">B</span><span class="otxt">very expensives</span></button></div>
+    </section>
+
+    <section class="card" data-answer="a">
+      <div class="num">6</div><div class="q">How much are _____ T-shirts?</div>
+      <div class="switcher"><button class="opt" data-side="a"><span class="letter">A</span><span class="otxt">those</span></button><div class="track"><span class="thumb"></span></div><button class="opt" data-side="b"><span class="letter">B</span><span class="otxt">that</span></button></div>
+    </section>
+    <section class="card" data-answer="b">
+      <div class="num">14</div><div class="q">A Ferrari is a _____.</div>
+      <div class="switcher"><button class="opt" data-side="a"><span class="letter">A</span><span class="otxt">car fast</span></button><div class="track"><span class="thumb"></span></div><button class="opt" data-side="b"><span class="letter">B</span><span class="otxt">fast car</span></button></div>
+    </section>
+
+    <section class="card" data-answer="b">
+      <div class="num">7</div><div class="q">Look at _____ house over there. It’s beautiful.</div>
+      <div class="switcher"><button class="opt" data-side="a"><span class="letter">A</span><span class="otxt">this</span></button><div class="track"><span class="thumb"></span></div><button class="opt" data-side="b"><span class="letter">B</span><span class="otxt">that</span></button></div>
+    </section>
+    <section class="card" data-answer="a">
+      <div class="num">15</div><div class="q">They’re _____.</div>
+      <div class="switcher"><button class="opt" data-side="a"><span class="letter">A</span><span class="otxt">good photos</span></button><div class="track"><span class="thumb"></span></div><button class="opt" data-side="b"><span class="letter">B</span><span class="otxt">goods photos</span></button></div>
+    </section>
+
+    <section class="card" data-answer="b">
+      <div class="num">8</div><div class="q">_____ my friend, Tom.</div>
+      <div class="switcher"><button class="opt" data-side="a"><span class="letter">A</span><span class="otxt">It’s</span></button><div class="track"><span class="thumb"></span></div><button class="opt" data-side="b"><span class="letter">B</span><span class="otxt">This is</span></button></div>
+    </section>
+  </main>
+
+  <div class="legend">Click A or B for each sentence, then press “Check answers”.</div>
+</div>
+<script>
+(() => {
+  const cards = [...document.querySelectorAll('.card')];
+  const score = document.getElementById('score');
+  const checkBtn = document.getElementById('checkBtn');
+  const resetBtn = document.getElementById('resetBtn');
+
+  cards.forEach(card => {
+    card.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        card.dataset.choice = btn.dataset.side;
+        card.classList.remove('correct','wrong','unanswered');
+      });
+    });
+  });
+
+  checkBtn.addEventListener('click', () => {
+    let right = 0;
+    cards.forEach(card => {
+      card.classList.remove('correct','wrong','unanswered');
+      const choice = card.dataset.choice;
+      if (!choice) {
+        card.classList.add('unanswered');
+      } else if (choice === card.dataset.answer) {
+        card.classList.add('correct');
+        right++;
+      } else {
+        card.classList.add('wrong');
+      }
+    });
+    score.textContent = `${right} / ${cards.length}`;
+  });
+
+  resetBtn.addEventListener('click', () => {
+    cards.forEach(card => {
+      delete card.dataset.choice;
+      card.classList.remove('correct','wrong','unanswered');
+    });
+    score.textContent = `0 / ${cards.length}`;
+  });
+})();
+</script>
+
+<script id="holst-fit-script">
+(() => {
+  const app = document.querySelector('.app');
+  function fitBoard(){
+    if(!app) return;
+    app.style.transform='none';
+    app.style.left='0px';
+    app.style.top='0px';
+
+    const naturalW = 1540;
+    const naturalH = app.scrollHeight;
+    const vw = Math.max(1, window.innerWidth);
+    const vh = Math.max(1, window.innerHeight);
+    const scale = Math.min(vw / naturalW, vh / naturalH);
+    const left = Math.max(0, (vw - naturalW * scale) / 2);
+    const top = Math.max(0, (vh - naturalH * scale) / 2);
+
+    app.style.left = left + 'px';
+    app.style.top = top + 'px';
+    app.style.transform = `scale(${scale})`;
+  }
+
+  window.addEventListener('resize', fitBoard, {passive:true});
+  window.addEventListener('orientationchange', fitBoard, {passive:true});
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitBoard);
+  requestAnimationFrame(() => requestAnimationFrame(fitBoard));
+})();
+</script>
+</body>
+</html>
