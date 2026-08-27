@@ -27,9 +27,9 @@ https://wow-school.github.io/test/sound-lockers/
 
 HOLST — recommended new object
 Delete the previous Sound Lockers object and insert:
-https://wow-school.github.io/test/sound-lockers/?v=3
+https://wow-school.github.io/test/sound-lockers/?v=4
 
-The ?v=3 suffix is intentional so Holst refreshes its preview/cache.
+The ?v=4 suffix is intentional so Holst refreshes its preview/cache.
 
 DESIGN
 The earlier warm wooden classroom + six colourful lockers has been preserved.
