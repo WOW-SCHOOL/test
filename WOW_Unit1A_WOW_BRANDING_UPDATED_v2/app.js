@@ -5,7 +5,7 @@ addEventListener('resize',fit);fit();
 const app=document.getElementById('app');
 const SECTIONS=['phrases','grammar','numbers','days','reading','pron','listening'];
 const LABELS={phrases:'Words & Phrases',grammar:'Grammar',numbers:'Numbers',days:'Days & Goodbye',reading:'Reading',pron:'Pronunciation',listening:'Listening'};
-const STORAGE_KEY='wow1a_v6';
+const STORAGE_KEY='wow1a_v7';
 
 const data={
  phrases:[
