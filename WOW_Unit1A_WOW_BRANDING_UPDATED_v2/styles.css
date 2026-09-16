@@ -141,3 +141,51 @@ img{display:block;max-width:100%}
 .tag.a{left:20px;top:48px;transform:rotate(-7deg)}
 .tag.b{right:14px;bottom:50px;transform:rotate(7deg)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* GLOBAL IMAGE SAFETY UPDATE */
+.sceneFrame,
+.readingArtFrame,
+.headphoneVisual,
+.heroVisual,
+.heroImageWrap,
+[class*="Visual"],
+[class*="Frame"]{
+  overflow:hidden;
+}
+
+.sceneImg,
+.readingArt,
+.heroImage,
+img{
+  border-radius:22px;
+}
+
+.sceneImg{
+  max-width:100%;
+  max-height:100%;
+  object-fit:cover;
+}
+
+/* Keep all left visual panels inside their cards */
+.blockBody > :first-child,
+.sceneFrame{
+  min-width:0;
+  max-width:100%;
+}
+
+/* Block 7 listening image containment */
+.headphoneVisual{
+  width:100%;
+  height:100%;
+  min-width:0;
+  min-height:0;
+  border-radius:22px;
+}
+
+.headphoneVisual img,
+.headphoneVisual .sceneImg{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:22px;
+}
