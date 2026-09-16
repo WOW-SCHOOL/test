@@ -104,7 +104,7 @@ function orderedOptions(sec,idx,opts){
  return opts.slice(offset).concat(opts.slice(0,offset));
 }
 function header(){
- return `<div class="noise"></div><div class="header"><div class="brandHeader"><div class="brandIconWrap"><img class="brandIcon" src="assets/images/brand-icon.png" alt="WOW SCHOOL"></div><div class="brandCopy"><div class="brandName">WOW SCHOOL</div><div class="brandMeta">online english school · wow-school.ru</div><div class="brandModule">interactive lesson module · Unit 1A</div></div></div><div class="unitBadge"><span>English File Beginner</span><strong>Unit 1A</strong></div></div>`
+ return `<div class="noise"></div><div class="header"><div class="brandHeader"><div class="brandCopy"><div class="brandName">WOW SCHOOL</div><div class="brandMeta">online english school · wow-school.ru</div><div class="brandModule">interactive lesson module · Unit 1A</div></div></div><div class="unitBadge"><span>English File Beginner</span><strong>Unit 1A</strong></div></div>`
 }
 function shell(inner){return `${header()}<section class="shell"><div class="content">${inner}</div></section>`}
 function progress(n){return `<div class="progressBox"><strong>Блок ${n}/7</strong><div class="track"><i style="width:${n/7*100}%"></i></div></div>`}
@@ -129,7 +129,7 @@ function providerUrls(text){
   `https://translate.googleapis.com/translate_tts?ie=UTF-8&client=gtx&tl=en-GB&q=${q}`
  ];
 }
-function splitTTS(text,max=165){
+function splitTTS(text,max=260){
  const clean=text.replace(/\s+/g,' ').trim();
  if(clean.length<=max)return [clean];
  const out=[];let rest=clean;
@@ -156,13 +156,14 @@ function playUrl(url,token){
   const a=ttsAudio;currentAudio=a;
   let finished=false;
   const cleanup=()=>{a.onended=a.onerror=a.onstalled=a.onabort=null;clearTimeout(timer)};
-  const timer=setTimeout(()=>{if(finished)return;finished=true;cleanup();reject(new Error('timeout'))},12000);
+  const timer=setTimeout(()=>{if(finished)return;finished=true;cleanup();reject(new Error('timeout'))},30000);
   a.onended=()=>{if(finished)return;finished=true;cleanup();resolve()};
   a.onerror=()=>{if(finished)return;finished=true;cleanup();reject(new Error('audio error'))};
   a.onstalled=()=>{};
   a.onabort=()=>{if(finished)return;finished=true;cleanup();reject(new Error('aborted'))};
   a.referrerPolicy='no-referrer';
   a.src=url;
+  a.currentTime=0;
   a.load();
   const p=a.play();
   if(p&&typeof p.catch==='function')p.catch(err=>{if(finished)return;finished=true;cleanup();reject(err)});
