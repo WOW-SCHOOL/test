@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="620" viewBox="0 0 960 620" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="960" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EAF5FF"/>
+      <stop offset="1" stop-color="#F6ECFF"/>
+    </linearGradient>
+    <linearGradient id="counter" x1="0" y1="416" x2="0" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E7B085"/>
+      <stop offset="1" stop-color="#C98A5E"/>
+    </linearGradient>
+    <linearGradient id="machine" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#DCE7F8"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="620" rx="36" fill="url(#bg)"/>
+  <circle cx="120" cy="92" r="70" fill="#DDF0FF"/>
+  <circle cx="810" cy="520" r="110" fill="#E6D7FF"/>
+  <rect y="420" width="960" height="200" fill="url(#counter)"/>
+  <rect x="72" y="172" width="270" height="210" rx="28" fill="url(#machine)"/>
+  <rect x="98" y="198" width="118" height="24" rx="12" fill="#244D91" opacity="0.12"/>
+  <rect x="110" y="238" width="78" height="112" rx="18" fill="#F6FAFF" stroke="#C8D8F1" stroke-width="4"/>
+  <rect x="206" y="238" width="106" height="112" rx="18" fill="#F6FAFF" stroke="#C8D8F1" stroke-width="4"/>
+  <circle cx="149" cy="292" r="22" fill="#C8D8F1"/>
+  <rect x="231" y="260" width="56" height="18" rx="9" fill="#D1E0F5"/>
+  <rect x="231" y="291" width="56" height="18" rx="9" fill="#D1E0F5"/>
+  <rect x="231" y="322" width="40" height="18" rx="9" fill="#D1E0F5"/>
+  <g transform="translate(536 180)">
+    <circle cx="72" cy="54" r="34" fill="#FFD7BF"/>
+    <path d="M44 48C46 26 59 14 74 14C90 14 102 27 101 48" fill="#17366F"/>
+    <rect x="30" y="88" width="86" height="126" rx="28" fill="#4D8FF0"/>
+    <rect x="26" y="110" width="16" height="84" rx="8" fill="#4D8FF0"/>
+    <rect x="104" y="110" width="16" height="84" rx="8" fill="#4D8FF0"/>
+    <rect x="20" y="208" width="106" height="18" rx="9" fill="#C2D7F8" opacity="0.5"/>
+  </g>
+  <g transform="translate(390 240)">
+    <ellipse cx="102" cy="118" rx="98" ry="20" fill="#DCE9FA" opacity="0.7"/>
+    <rect x="36" y="30" width="116" height="80" rx="28" fill="#FFFFFF"/>
+    <rect x="40" y="34" width="108" height="72" rx="24" fill="url(#machine)"/>
+    <path d="M148 54H172C189 54 202 67 202 84C202 101 189 114 172 114H156" stroke="#E3EDF8" stroke-width="16" stroke-linecap="round"/>
+    <ellipse cx="94" cy="50" rx="44" ry="16" fill="#4B2818"/>
+    <ellipse cx="94" cy="50" rx="29" ry="10" fill="#C68C57"/>
+  </g>
+  <g transform="translate(720 190)">
+    <circle cx="44" cy="44" r="12" fill="#FFB26E"/>
+    <circle cx="80" cy="56" r="14" fill="#FFCF73"/>
+    <path d="M20 132C29 94 54 72 82 72C118 72 142 100 147 132" fill="#FFFFFF" opacity="0.92"/>
+    <circle cx="52" cy="40" r="10" fill="#FFCF73"/>
+    <path d="M24 132C24 96 53 66 89 66C124 66 153 96 153 132" stroke="#FFFFFF" stroke-width="8" opacity="0.92"/>
+  </g>
+  <rect x="660" y="102" width="184" height="42" rx="21" fill="#FFFFFF" opacity="0.94"/>
+  <text x="694" y="129" fill="#3B7BE0" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">Cafe speaking</text>
+</svg>

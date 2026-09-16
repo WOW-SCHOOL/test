@@ -81,147 +81,95 @@ function esc(x){return String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;',
 function solved(sec,i){return !!state.answers[sec]?.[i]?.solved}
 function firstCorrect(sec,i){return !!state.answers[sec]?.[i]?.firstCorrect}
 function score(sec){return Object.values(state.answers[sec]||{}).filter(x=>x.firstCorrect).length}
-function header(){return `<div class="noise"></div><div class="header"><div class="logoWrap"><div class="wowLogo"><strong>WOW</strong><i></i></div><div class="brandDivider"></div><div class="brandText"><strong>SCHOOL</strong><span>More English · Brighter Futures</span></div></div><div class="unitBadge"><span>English File Beginner</span><strong>Unit 1A</strong></div></div>`}
+function header(){return `<div class="noise"></div><div class="header"><div class="logoWrap"><img class="logoComposite" src="assets/images/logo-wow-school.svg" alt="WOW SCHOOL"></div><div class="unitBadge"><span>English File Beginner</span><strong>Unit 1A</strong></div></div>`}
 function shell(inner){return `${header()}<section class="shell"><div class="content">${inner}</div></section>`}
 function progress(n){return `<div class="progressBox"><strong>Блок ${n}/7</strong><div class="track"><i style="width:${n/7*100}%"></i></div></div>`}
 function title(n,t,sub){return `<div class="titlebar"><div class="titlewrap"><h1><span class="n">${n}.</span> ${t}</h1><p>${sub}</p></div>${progress(n)}</div>`}
 function miniProgress(sec,idx,total){return `<div class="internalProgress"><div class="miniDots">${Array.from({length:total},(_,i)=>`<i class="miniDot ${i<idx?'done':i===idx?'current':''}"></i>`).join('')}</div><div class="counter">Задание ${Math.min(idx+1,total)} из ${total}</div></div>`}
 function feedback(kind,text){return `<div class="feedbackBox ${kind}">${text}</div>`}
 
-/* audio engine: same Google British TTS as v5, hardened for Holst iframe. */
+/* audio engine v8: same Google UK voice as v5, but adapted for embedded Holst iframe.
+   Key changes: no referrer, one persistent <audio> element, no CORS mode,
+   whole dialogues as one request, and safe chunking only for long reading text. */
 let currentAudio=null,playToken=0;
+const ttsAudio=document.createElement('audio');
+ttsAudio.preload='auto';
+ttsAudio.setAttribute('playsinline','');
+ttsAudio.setAttribute('webkit-playsinline','');
+ttsAudio.referrerPolicy='no-referrer';
+ttsAudio.style.display='none';
+document.body.appendChild(ttsAudio);
 
-/*
-  IMPORTANT:
-  - Keep the same en-GB Google TTS family used in v5.
-  - StreamElements fallback was removed because its anonymous endpoint is no longer reliable.
-  - One persistent HTMLAudioElement is reused for the whole playback queue. This matters in
-    iframe/embedded boards: after the first user click, subsequent chunks continue on the
-    SAME media element instead of asking the browser for a new autoplay permission.
-  - Every request has a cache-buster because Google TTS audio can otherwise be cached badly
-    inside embedded browsers.
-*/
-function getAudioElement(){
- if(currentAudio)return currentAudio;
- const a=new Audio();
- a.preload='auto';
- currentAudio=a;
- return a;
-}
 function providerUrls(text){
- const q=encodeURIComponent(text);
- const len=[...text].length;
- const cb=`${Date.now()}-${Math.random().toString(36).slice(2)}`;
+ const q=encodeURIComponent(text.replace(/\s+/g,' ').trim());
  return [
-  `https://translate.googleapis.com/translate_tts?ie=UTF-8&client=gtx&tl=en-GB&q=${q}&total=1&idx=0&textlen=${len}&ttsspeed=1&cb=${cb}`,
-  `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en-GB&q=${q}&total=1&idx=0&textlen=${len}&ttsspeed=1&cb=${cb}`
+  `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en-GB&q=${q}`,
+  `https://translate.google.com/translate_tts?ie=UTF-8&client=gtx&tl=en-GB&q=${q}`,
+  `https://translate.googleapis.com/translate_tts?ie=UTF-8&client=gtx&tl=en-GB&q=${q}`
  ];
 }
-function splitTTS(text,max=145){
- const clean=String(text).replace(/\s+/g,' ').trim();
- if(clean.length<=max)return clean?[clean]:[];
- const sentences=clean.match(/[^.!?]+[.!?]?/g)||[clean];
- const out=[];
- for(const sentence0 of sentences){
-  let sentence=sentence0.trim();
-  while(sentence.length>max){
-   let cut=sentence.lastIndexOf(' ',max);
-   if(cut<50)cut=max;
-   out.push(sentence.slice(0,cut).trim());
-   sentence=sentence.slice(cut).trim();
+function splitTTS(text,max=165){
+ const clean=text.replace(/\s+/g,' ').trim();
+ if(clean.length<=max)return [clean];
+ const out=[];let rest=clean;
+ while(rest.length){
+  if(rest.length<=max){out.push(rest);break}
+  let cut=-1;
+  for(const mark of ['. ','? ','! ',', ','; ']){
+   const i=rest.lastIndexOf(mark,max);
+   if(i>Math.floor(max*.55)){cut=i+mark.length-1;break}
   }
-  if(sentence)out.push(sentence);
+  if(cut<0){cut=rest.lastIndexOf(' ',max);if(cut<Math.floor(max*.55))cut=max}
+  out.push(rest.slice(0,cut).trim());rest=rest.slice(cut).trim();
  }
- return out;
+ return out.filter(Boolean);
 }
 function stopAudio(){
  playToken++;
- if(currentAudio){
-  try{currentAudio.pause();currentAudio.removeAttribute('src');currentAudio.load()}catch(e){}
-  currentAudio=null;
- }
+ try{ttsAudio.pause();ttsAudio.removeAttribute('src');ttsAudio.load()}catch(e){}
+ currentAudio=null;
 }
-function playQueue(chunks,btn,idleLabel='▶ Прослушать'){
- stopAudio();
- const token=++playToken;
- const audio=getAudioElement();
- let chunkIndex=0,providerIndex=0;
- btn?.classList.add('busy');
- if(btn)btn.textContent='■ Стоп';
-
+function playUrl(url,token){
  return new Promise((resolve,reject)=>{
-  const finish=()=>{
-   if(token!==playToken)return;
-   try{audio.pause()}catch(e){}
-   currentAudio=null;
-   btn?.classList.remove('busy','error');
-   if(btn)btn.textContent=idleLabel;
-   resolve();
-  };
-  const failAll=()=>{
-   if(token!==playToken)return;
-   currentAudio=null;
-   btn?.classList.remove('busy');
-   btn?.classList.add('error');
-   if(btn)btn.textContent='Аудио недоступно';
-   setTimeout(()=>{
-    if(token===playToken){btn?.classList.remove('error');if(btn)btn.textContent=idleLabel}
-   },2200);
-   reject(new Error('British TTS unavailable'));
-  };
-  const loadCurrent=()=>{
-   if(token!==playToken)return;
-   if(chunkIndex>=chunks.length)return finish();
-   const urls=providerUrls(chunks[chunkIndex]);
-   if(providerIndex>=urls.length){providerIndex=0;return failAll()}
-
-   let started=false;
-   const watchdog=setTimeout(()=>{
-    if(token!==playToken||started)return;
-    providerIndex++;
-    try{audio.pause();audio.removeAttribute('src');audio.load()}catch(e){}
-    loadCurrent();
-   },6500);
-
-   audio.onplaying=()=>{started=true;clearTimeout(watchdog)};
-   audio.onended=()=>{
-    clearTimeout(watchdog);
-    if(token!==playToken)return;
-    chunkIndex++;
-    providerIndex=0;
-    loadCurrent();
-   };
-   audio.onerror=()=>{
-    clearTimeout(watchdog);
-    if(token!==playToken)return;
-    providerIndex++;
-    try{audio.pause();audio.removeAttribute('src');audio.load()}catch(e){}
-    loadCurrent();
-   };
-   audio.src=urls[providerIndex];
-   audio.load();
-   const pp=audio.play();
-   if(pp&&typeof pp.catch==='function')pp.catch(()=>{
-    clearTimeout(watchdog);
-    if(token!==playToken)return;
-    providerIndex++;
-    try{audio.pause();audio.removeAttribute('src');audio.load()}catch(e){}
-    loadCurrent();
-   });
-  };
-  loadCurrent();
+  if(token!==playToken)return reject(new Error('cancelled'));
+  const a=ttsAudio;currentAudio=a;
+  let finished=false;
+  const cleanup=()=>{a.onended=a.onerror=a.onstalled=a.onabort=null;clearTimeout(timer)};
+  const timer=setTimeout(()=>{if(finished)return;finished=true;cleanup();reject(new Error('timeout'))},12000);
+  a.onended=()=>{if(finished)return;finished=true;cleanup();resolve()};
+  a.onerror=()=>{if(finished)return;finished=true;cleanup();reject(new Error('audio error'))};
+  a.onstalled=()=>{};
+  a.onabort=()=>{if(finished)return;finished=true;cleanup();reject(new Error('aborted'))};
+  a.referrerPolicy='no-referrer';
+  a.src=url;
+  a.load();
+  const p=a.play();
+  if(p&&typeof p.catch==='function')p.catch(err=>{if(finished)return;finished=true;cleanup();reject(err)});
  });
 }
-async function playText(text,voice='Brian',btn){
- const label='▶ Прослушать';
- try{await playQueue(splitTTS(text),btn,label)}catch(e){}
+async function playChunk(text,token){
+ let lastErr=null;
+ for(const url of providerUrls(text)){
+  if(token!==playToken)throw new Error('cancelled');
+  try{await playUrl(url,token);return}catch(e){lastErr=e}
+ }
+ throw lastErr||new Error('No audio provider available');
 }
-async function playScript(lines,btn){
- /* Flatten the dialogue into one continuous playback queue. The voice quality stays the
-    same Google en-GB synthesis as v5, but Holst no longer has to authorize a new Audio()
-    object for every line. */
- const text=lines.map(l=>l.text).join(' ');
- try{await playQueue(splitTTS(text),btn,'▶ Прослушать')}catch(e){}
+async function playSequence(texts,btn,idleLabel='▶ Прослушать'){
+ stopAudio();
+ const token=++playToken;
+ btn?.classList.remove('error');btn?.classList.add('busy');if(btn)btn.textContent='■ Стоп';
+ try{
+  for(const text of texts){if(token!==playToken)return;await playChunk(text,token)}
+  if(token===playToken){btn?.classList.remove('busy');if(btn)btn.textContent=idleLabel}
+ }catch(e){
+  if(token===playToken){btn?.classList.remove('busy');btn?.classList.add('error');if(btn)btn.textContent='Аудио недоступно';setTimeout(()=>{btn?.classList.remove('error');if(btn)btn.textContent=idleLabel},2200)}
+ }
+}
+function playText(text,voice='Brian',btn){return playSequence(splitTTS(text),btn,'▶ Прослушать')}
+function playScript(lines,btn){
+ const whole=lines.map(x=>x.text).join(' ');
+ return playSequence(splitTTS(whole),btn,'▶ Прослушать');
 }
 function audioBtn(id,label='Прослушать'){return `<button class="audioBtn" id="${id}">▶ ${label}</button><span class="audioMeta">British English · online voice</span>`}
 
@@ -233,9 +181,45 @@ function recordAttempt(sec,i,isCorrect){
  if(isCorrect)a.solved=true;
  state.mistakes[`${sec}:${i}`]=isCorrect?null:true;save();
 }
+
+const PHRASE_CATEGORIES={
+ 'Hi':'Greeting','Hello':'Greeting','What’s your name?':'Question','Nice to meet you':'Polite phrase',
+ 'A cappuccino, please':'At the café','A tea, please':'At the café','Thanks':'Polite phrase',
+ 'Sorry':'Polite phrase','Just a minute':'Useful phrase','Goodbye':'Goodbye'
+};
+const WORD_TO_NUM={zero:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10};
+
+function objectGroup(n,variant='dot'){
+ const items=Array.from({length:n},(_,i)=>`<span class="countSticker ${variant} v${i%4}"></span>`).join('');
+ return `<div class="countGroup ${n>6?'compact':''}">${items||'<span class="countZero">0</span>'}</div>`;
+}
+function sequenceVisualFromText(q,variant='cup'){
+ const words=q.toLowerCase().replace(/_/g,'').replace(/,/g,'').split(/\s+/).filter(Boolean).filter(x=>x!=='');
+ const nums=words.filter(w=>WORD_TO_NUM[w]!==undefined).map(w=>WORD_TO_NUM[w]);
+ return `<div class="sequenceBoard">${nums.map((n,i)=>`<div class="sequenceCard"><span class="sequenceLabel">step ${i+1}</span>${objectGroup(n,variant)}</div>`).join('<div class="sequenceArrow">→</div>')}<div class="sequenceArrow">→</div><div class="sequenceCard question"><span class="sequenceLabel">next</span><div class="questionStamp">?</div><div class="tinyHint">listen and choose</div></div></div>`;
+}
+function renderPhraseVisual(item){
+ const cat=PHRASE_CATEGORIES[item.q]||'Lesson 1A';
+ return `<div class="sceneFrame phrasePanel"><img class="sceneImg" src="assets/images/phrase-cafe-modern.svg" alt="Cafe scene"><div class="visualBadge">${esc(cat)}</div><div class="speech modern">${esc(item.q)}</div></div>`;
+}
+function renderNumbersVisual(item,idx){
+ const variant=['cup','star','dot'][idx%3];
+ if(item.q.includes('___')){
+  return `<div class="numberVisual smart"><div class="numbersHeroBadge">Listen and continue</div>${sequenceVisualFromText(item.q,variant)}</div>`;
+ }
+ return `<div class="numberVisual smart"><div class="numbersHeroBadge">Count the items</div><div class="countShowcase">${objectGroup(item.visual,variant)}</div><div class="visualHint">Нажми «Прослушать» и выбери правильный вариант</div></div>`;
+}
+function weekdayIndex(q){return ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'].findIndex(d=>q.startsWith(d));}
+function renderDaysVisual(item){
+ if(item.q.startsWith('Goodbye')||item.q.startsWith('See you')){
+  return `<div class="daysVisualNew"><div class="byeScene"><div class="bubble left">Goodbye!</div><div class="bubble right">See you...</div><div class="byePeople"><span class="avatar pink"></span><span class="avatar blue"></span></div><div class="calendarMini"><span>next day?</span></div></div><div class="visualHint">Без подсказок по дням — ориентируйся на фразу и аудио</div></div>`;
+ }
+ const active=weekdayIndex(item.q);
+ return `<div class="daysVisualNew"><div class="weekRoute">${Array.from({length:7},(_,i)=>`<div class="routeStep ${i===active?'active':''} ${i===active+1?'next':''}"><span>${i+1}</span></div>${i<6?'<i class="routeLine"></i>':''}`).join('')}</div><div class="weekStory"><div class="weekCard current"><small>today</small><strong>Day ${active+1}</strong></div><div class="routeArrowBig">→</div><div class="weekCard question"><small>next</small><strong>?</strong></div></div><div class="visualHint">Определи следующий день недели</div></div>`;
+}
 function commonQuestionScreen(sec,blockNum,heading,sub,visualHTML,item,total,audioText,audioVoice='Brian',afterLast){
  const idx=state.idx[sec]||0;const done=solved(sec,idx);
- app.innerHTML=shell(`${title(blockNum,heading,sub)}<div class="blockBody"><div class="visualCard">${visualHTML}</div><div class="questionCard"><div class="kicker">${LABELS[sec]}</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Выбери правильный вариант. Если ошибёшься, можно попробовать ещё раз.</div><div class="answers">${item.o.map((o,oi)=>`<button class="answer" data-answer="${oi}" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div id="fb">${done?feedback('good','Верно! Переходим дальше.'):feedback('neutral','Ответ не выбран')}</div>${miniProgress(sec,idx,total)}</div></div><div class="footerActions"><div class="leftActions">${audioText?audioBtn('audio','Прослушать'):''}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===total-1?'Следующий блок →':'Следующее задание →'}</button></div>`);
+ app.innerHTML=shell(`${title(blockNum,heading,sub)}<div class="blockBody"><div class="visualCard">${visualHTML}</div><div class="questionCard"><div class="kicker">${LABELS[sec]}</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Выбери правильный вариант. Если ошибёшься, можно попробовать ещё раз.</div><div class="answers">${item.o.map((o,oi)=>`<button class="answer" data-answer="${oi}" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div class="statusWrap"><div id="fb">${done?feedback('good','Верно! Переходим дальше.'):feedback('neutral','Ответ не выбран')}</div>${miniProgress(sec,idx,total)}</div></div></div><div class="footerActions"><div class="leftActions">${audioText?audioBtn('audio','Прослушать'):''}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===total-1?'Следующий блок →':'Следующее задание →'}</button></div>`);
  const fb=document.getElementById('fb');
  document.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{
   if(solved(sec,idx))return;const ok=b.dataset.value===item.a;recordAttempt(sec,idx,ok);
@@ -246,12 +230,12 @@ function commonQuestionScreen(sec,blockNum,heading,sub,visualHTML,item,total,aud
  document.getElementById('next').onclick=()=>{if(idx<total-1){state.idx[sec]=idx+1;save();render()}else afterLast()};
 }
 
-function start(){app.innerHTML=shell(`<div class="hero"><div><div class="heroKicker">Unit Review · Lesson 1A</div><h1>A cappuccino,<span>please</span></h1><p>7 интерактивных блоков: фразы, verb be с I / you, numbers 0–10, days & goodbye, reading, pronunciation и listening. Всё — только по материалу Lesson 1A.</p><div class="heroBtns"><button class="btn primary" id="start">Начать →</button><button class="btn secondary" id="reset">Сбросить прогресс</button></div></div><div class="heroVisual"><div class="blob"><div class="cupIllo"><div class="saucerIllo"></div><div class="cupBody"></div><div class="cupHandle"></div></div><div class="tag a">7 блоков</div><div class="tag b">UK audio</div></div></div></div>`);document.getElementById('start').onclick=()=>{state.screen=1;save();render()};document.getElementById('reset').onclick=()=>{state=fresh();save();render()}}
-function phrases(){const sec='phrases',idx=state.idx[sec]||0,item=data.phrases[idx];const vis=`<div class="cafeScene"><div class="cupIllo"><div class="saucerIllo"></div><div class="cupBody"></div><div class="cupHandle"></div></div><div class="speech">${esc(item.q)}</div></div>`;commonQuestionScreen(sec,1,'Words & Phrases','Фраза всегда остаётся на экране — выбери перевод',vis,item,data.phrases.length,item.q,'Amy',()=>{state.screen=2;save();render()})}
+function start(){app.innerHTML=shell(`<div class="hero"><div><div class="heroKicker">Unit Review · Lesson 1A</div><h1>A cappuccino,<span>please</span></h1><p>7 интерактивных блоков: фразы, verb be с I / you, numbers 0–10, days & goodbye, reading, pronunciation и listening. Всё — только по материалу Lesson 1A.</p><div class="heroBtns"><button class="btn primary" id="start">Начать →</button><button class="btn secondary" id="reset">Сбросить прогресс</button></div></div><div class="heroVisual"><img class="heroImage" src="assets/images/phrase-cafe-modern.svg" alt="Cafe scene"><div class="tag a">7 блоков</div><div class="tag b">UK audio</div></div></div>`);document.getElementById('start').onclick=()=>{state.screen=1;save();render()};document.getElementById('reset').onclick=()=>{state=fresh();save();render()}}
+function phrases(){const sec='phrases',idx=state.idx[sec]||0,item=data.phrases[idx];commonQuestionScreen(sec,1,'Words & Phrases','Фраза всегда остаётся на экране — выбери перевод',renderPhraseVisual(item),item,data.phrases.length,item.q,'Amy',()=>{state.screen=2;save();render()})}
 function grammar(){const sec='grammar',idx=state.idx[sec]||0,item=data.grammar[idx];const vis=`<div class="grammarVisual"><div class="magnetBoard"><div class="magnetRow"><div class="magnet ${item.q.startsWith('You')||item.q.includes('you')?'you':'i'}">${item.q.startsWith('You')||item.q.includes('you')?'YOU':'I'}</div><div class="equals">+</div><div class="magnet be">BE</div></div><div class="grammarLegend">I am · You are · Am I? · Are you?</div></div></div>`;commonQuestionScreen(sec,2,'Grammar Check','verb be · только I / you',vis,item,data.grammar.length,item.q,'Brian',()=>{state.screen=3;save();render()})}
-function numbers(){const sec='numbers',idx=state.idx[sec]||0,item=data.numbers[idx];const n=item.visual;const cups=Array.from({length:Math.min(n,10)},()=>'<i class="miniCup"></i>').join('');const vis=`<div class="numberVisual"><div class="bigNumber">${n}</div><div class="cupCount">${cups}</div></div>`;commonQuestionScreen(sec,3,'Numbers 0–10','Узнай число и продолжи последовательность',vis,item,data.numbers.length,item.q,'Brian',()=>{state.screen=4;save();render()})}
-function days(){const sec='days',idx=state.idx[sec]||0,item=data.days[idx];const dayNames=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];const vis=`<div class="calendarVisual">${dayNames.map((d,i)=>`<div class="dayTile ${item.q.startsWith(d)?'today':''}"><b>${d}</b><span>${i+1}</span></div>`).join('')}</div>`;commonQuestionScreen(sec,4,'Days & Goodbye','Дни недели и фразы прощания',vis,item,data.days.length,item.q,'Amy',()=>{state.screen=5;save();render()})}
-function reading(){const sec='reading',idx=state.idx[sec]||0,item=data.reading.qs[idx],done=solved(sec,idx);app.innerHTML=shell(`${title(5,'Reading Café','Прочитай мини-историю и ответь на вопросы')}<div class="blockBody"><div class="visualCard"><div class="readingVisual"><div class="miniCafe"><div class="person a"><i class="head"></i><i class="body"></i></div><div class="person b"><i class="head"></i><i class="body"></i></div><div class="cafeCup"></div><div class="counterBar"></div></div><div class="readText">${data.reading.text}</div></div></div><div class="questionCard"><div class="kicker">Reading comprehension</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Ответь только по тексту.</div><div class="answers">${item.o.map((o,oi)=>`<button class="answer" data-answer="${oi}" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div id="fb">${done?feedback('good','Верно!'):feedback('neutral','Ответ не выбран')}</div>${miniProgress(sec,idx,data.reading.qs.length)}</div></div><div class="footerActions"><div class="leftActions">${audioBtn('readAudio','Послушать текст')}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===data.reading.qs.length-1?'Следующий блок →':'Следующее задание →'}</button></div>`);
+function numbers(){const sec='numbers',idx=state.idx[sec]||0,item=data.numbers[idx];commonQuestionScreen(sec,3,'Numbers 0–10','Слушай, считай и выбирай правильный вариант',renderNumbersVisual(item,idx),item,data.numbers.length,item.q,'Brian',()=>{state.screen=4;save();render()})}
+function days(){const sec='days',idx=state.idx[sec]||0,item=data.days[idx];commonQuestionScreen(sec,4,'Days & Goodbye','Определи следующий день или нужную фразу',renderDaysVisual(item),item,data.days.length,item.q,'Amy',()=>{state.screen=5;save();render()})}
+function reading(){const sec='reading',idx=state.idx[sec]||0,item=data.reading.qs[idx],done=solved(sec,idx);app.innerHTML=shell(`${title(5,'Reading Café','Прочитай мини-историю и ответь на вопросы')}<div class="blockBody"><div class="visualCard"><div class="readingVisual"><div class="readingArtFrame"><img class="readingArt" src="assets/images/reading-cafe-modern.svg" alt="Reading cafe scene"></div><div class="readText">${data.reading.text}</div></div></div><div class="questionCard"><div class="kicker">Reading comprehension</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Ответь только по тексту.</div><div class="answers">${item.o.map((o,oi)=>`<button class="answer" data-answer="${oi}" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div class="statusWrap"><div id="fb">${done?feedback('good','Верно!'):feedback('neutral','Ответ не выбран')}</div>${miniProgress(sec,idx,data.reading.qs.length)}</div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('readAudio','Послушать текст')}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===data.reading.qs.length-1?'Следующий блок →':'Следующее задание →'}</button></div>`);
  document.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{if(solved(sec,idx))return;const ok=b.dataset.value===item.a;recordAttempt(sec,idx,ok);if(ok){b.classList.add('correct');document.getElementById('fb').innerHTML=feedback('good','Верно!');document.querySelectorAll('[data-answer]').forEach(x=>x.disabled=true);document.getElementById('next').disabled=false}else{b.classList.add('wrongFlash');document.getElementById('fb').innerHTML=feedback('bad','Пока нет. Перечитай текст и попробуй ещё раз.');setTimeout(()=>b.classList.remove('wrongFlash'),500)}});
  document.getElementById('readAudio').onclick=function(){const plain=data.reading.text.replace(/<[^>]+>/g,'').replace(/[“”]/g,'');if(this.classList.contains('busy')){stopAudio();this.classList.remove('busy');this.textContent='▶ Послушать текст'}else{const sentences=plain.split(/(?<=[.!?])\s+/).filter(Boolean).map((t,i)=>({text:t,voice:i%2?'Brian':'Amy'}));playScript(sentences,this)}};
  document.getElementById('next').onclick=()=>{if(idx<data.reading.qs.length-1){state.idx[sec]=idx+1;save();render()}else{state.screen=6;save();render()}};
@@ -263,7 +247,7 @@ function pron(){const bins=['/h/','/aɪ/','/iː/'];const allDone=Object.keys(sta
  document.getElementById('pronAudio').onclick=function(){if(state.selectedPron===null){document.getElementById('pronHint').textContent='Сначала выбери слово';return}const word=data.pron[state.selectedPron].w;if(this.classList.contains('busy')){stopAudio();this.classList.remove('busy');this.textContent='▶ Послушать выбранное слово'}else playText(word,'Amy',this)};
  document.getElementById('next').onclick=()=>{state.screen=7;save();render()};
 }
-function listening(){const sec='listening',idx=state.idx[sec]||0,item=data.listening.qs[idx],done=solved(sec,idx),script=data.listening.scripts.find(s=>s.id===item.script);app.innerHTML=shell(`${title(7,'Listening Mission','Слушай диалог и отвечай — только язык Lesson 1A')}<div class="blockBody"><div class="visualCard"><div class="headphoneVisual"><div class="headphones"><i class="hpBand"></i><i class="ear l"></i><i class="ear r"></i></div></div></div><div class="questionCard"><div class="kicker">Dialogue ${script.id}</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Диалог можно прослушать несколько раз.</div><div class="answers">${item.o.map((o,oi)=>`<button class="answer" data-answer="${oi}" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div id="fb">${done?feedback('good','Верно!'):feedback('neutral','Сначала прослушай диалог')}</div>${miniProgress(sec,idx,data.listening.qs.length)}</div></div><div class="footerActions"><div class="leftActions">${audioBtn('listenAudio',`Диалог ${script.id}`)}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===data.listening.qs.length-1?'Результат →':'Следующее задание →'}</button></div>`);
+function listening(){const sec='listening',idx=state.idx[sec]||0,item=data.listening.qs[idx],done=solved(sec,idx),script=data.listening.scripts.find(s=>s.id===item.script);app.innerHTML=shell(`${title(7,'Listening Mission','Слушай диалог и отвечай — только язык Lesson 1A')}<div class="blockBody"><div class="visualCard"><div class="headphoneVisual"><div class="headphones"><i class="hpBand"></i><i class="ear l"></i><i class="ear r"></i></div></div></div><div class="questionCard"><div class="kicker">Dialogue ${script.id}</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Диалог можно прослушать несколько раз.</div><div class="answers">${item.o.map((o,oi)=>`<button class="answer" data-answer="${oi}" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div class="statusWrap"><div id="fb">${done?feedback('good','Верно!'):feedback('neutral','Сначала прослушай диалог')}</div>${miniProgress(sec,idx,data.listening.qs.length)}</div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('listenAudio',`Диалог ${script.id}`)}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===data.listening.qs.length-1?'Результат →':'Следующее задание →'}</button></div>`);
  document.getElementById('listenAudio').onclick=function(){if(this.classList.contains('busy')){stopAudio();this.classList.remove('busy');this.textContent=`▶ Диалог ${script.id}`}else playScript(script.lines,this)};
  document.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{if(solved(sec,idx))return;const ok=b.dataset.value===item.a;recordAttempt(sec,idx,ok);if(ok){b.classList.add('correct');document.getElementById('fb').innerHTML=feedback('good','Верно!');document.querySelectorAll('[data-answer]').forEach(x=>x.disabled=true);document.getElementById('next').disabled=false}else{b.classList.add('wrongFlash');document.getElementById('fb').innerHTML=feedback('bad','Пока нет. Прослушай ещё раз.');setTimeout(()=>b.classList.remove('wrongFlash'),500)}});
  document.getElementById('next').onclick=()=>{if(idx<data.listening.qs.length-1){state.idx[sec]=idx+1;save();render()}else{state.screen=8;save();render()}};
