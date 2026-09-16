@@ -1,10 +1,7 @@
 {
-  "voice_spec": {
-    "accent": "British English (en-GB)",
-    "style": "natural, warm, conversational, teacher-friendly",
-    "pace": "0.92x natural speed",
-    "format": "MP3, 44.1 kHz or 48 kHz, 128 kbps+"
-  },
+  "accent": "British English (en-GB)",
+  "voice_style": "natural, warm, clear, conversational; no announcer voice",
+  "pace": "natural to slightly slow (0.92–0.96x)",
   "files": {
     "phrases_1.mp3": [
       "Hi",
@@ -14,12 +11,7 @@
       "A cappuccino, please",
       "A tea, please",
       "Thanks",
-      "Sorry",
-      "Just a minute",
-      "Goodbye",
-      "Bye",
-      "See you on Friday",
-      "See you tomorrow"
+      "Sorry"
     ],
     "numbers_1.mp3": [
       "zero",
@@ -64,7 +56,10 @@
       "Helen.",
       "Ellen?",
       "No, Helen.",
-      "Helen. OK."
+      "Helen. OK.",
+      "Are you Diana?",
+      "No, I’m not. I’m Helen.",
+      "Sorry."
     ],
     "listening_2.mp3": [
       "Hello. Are you Helen?",
