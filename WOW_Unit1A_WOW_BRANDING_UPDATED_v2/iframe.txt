@@ -3,6 +3,7 @@
   title="WOW SCHOOL · English File Beginner · Unit 1A Review"
   frameborder="0"
   scrolling="no"
+  loading="lazy"
   allow="autoplay; fullscreen"
   referrerpolicy="no-referrer"
   allowfullscreen
