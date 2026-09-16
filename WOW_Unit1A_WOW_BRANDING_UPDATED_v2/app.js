@@ -5,6 +5,7 @@ addEventListener('resize',fit);fit();
 const app=document.getElementById('app');
 const SECTIONS=['phrases','grammar','numbers','days','reading','pron','listening'];
 const LABELS={phrases:'Words & Phrases',grammar:'Grammar',numbers:'Numbers',days:'Days & Goodbye',reading:'Reading',pron:'Pronunciation',listening:'Listening'};
+const STORAGE_KEY='wow1a_v6';
 
 const data={
  phrases:[
@@ -27,47 +28,64 @@ const data={
   {q:'Are you Diana?',a:'No, I’m not',o:['No, I’m not','No, you aren’t']},{q:'Am I in room 8?',a:'No, you aren’t',o:['No, you aren’t','No, I’m not']}
  ],
  numbers:[
-  {q:'zero',a:'0',o:['0','2','10'],visual:0},{q:'three',a:'3',o:['3','7','9'],visual:3},
-  {q:'five',a:'5',o:['4','5','6'],visual:5},{q:'seven',a:'7',o:['1','7','8'],visual:7},
-  {q:'nine',a:'9',o:['6','8','9'],visual:9},{q:'one, two, ___',a:'three',o:['three','five','ten'],visual:3},
-  {q:'seven, eight, ___',a:'nine',o:['nine','six','zero'],visual:9},{q:'eight, nine, ___',a:'ten',o:['ten','three','five'],visual:10},
-  {q:'two, three, ___',a:'four',o:['four','six','ten'],visual:4},{q:'four, five, ___',a:'six',o:['three','six','eight'],visual:6}
+  {q:'zero',a:'0',o:['0','2','10']},{q:'three',a:'3',o:['3','7','9']},
+  {q:'five',a:'5',o:['4','5','6']},{q:'seven',a:'7',o:['1','7','8']},
+  {q:'nine',a:'9',o:['6','8','9']},{q:'one, two, ___',a:'three',o:['three','five','ten']},
+  {q:'seven, eight, ___',a:'nine',o:['nine','six','zero']},{q:'eight, nine, ___',a:'ten',o:['ten','three','five']},
+  {q:'two, three, ___',a:'four',o:['four','six','ten']},{q:'four, five, ___',a:'six',o:['three','six','eight']}
  ],
  days:[
-  {q:'Monday →',a:'Tuesday',o:['Tuesday','Friday','Sunday']},{q:'Tuesday →',a:'Wednesday',o:['Wednesday','Monday','Saturday']},
-  {q:'Wednesday →',a:'Thursday',o:['Thursday','Tuesday','Friday']},{q:'Thursday →',a:'Friday',o:['Friday','Sunday','Monday']},
-  {q:'Friday →',a:'Saturday',o:['Saturday','Thursday','Tuesday']},{q:'Saturday →',a:'Sunday',o:['Sunday','Friday','Monday']},
-  {q:'Goodbye, Tom. See you on ___',a:'Friday',o:['Friday','five','tea']},{q:'See you ___',a:'tomorrow',o:['tomorrow','cappuccino','Helen']}
+  {q:'Monday →',a:'Tuesday',o:['Tuesday','Friday','Sunday'],audio:'Monday'},
+  {q:'Tuesday →',a:'Wednesday',o:['Wednesday','Monday','Saturday'],audio:'Tuesday'},
+  {q:'Wednesday →',a:'Thursday',o:['Thursday','Tuesday','Friday'],audio:'Wednesday'},
+  {q:'Thursday →',a:'Friday',o:['Friday','Sunday','Monday'],audio:'Thursday'},
+  {q:'Friday →',a:'Saturday',o:['Saturday','Thursday','Tuesday'],audio:'Friday'},
+  {q:'Saturday →',a:'Sunday',o:['Sunday','Friday','Monday'],audio:'Saturday'},
+  {q:'Goodbye, Tom. See you on ___',a:'Friday',o:['Friday','tea','five'],audio:null},
+  {q:'See you ___',a:'tomorrow',o:['Helen','tomorrow','cappuccino'],audio:null}
  ],
  reading:{
-  text:`<b>Hi, I’m Helen.</b> I’m at a café. “Hello,” says Tom. “What’s your name?” “Helen.” “Nice to meet you,” says Tom. “Nice to meet you,” says Helen. Tom says, “A cappuccino, please.” Helen says, “Thanks. Goodbye, Tom. See you tomorrow.” Tom says, “Bye.””`,
+  text:`<b>Hi, I’m Helen.</b> I’m at a café. “Hello,” says Tom. “What’s your name?” “Helen,” she says. “Nice to meet you,” says Tom. “Nice to meet you,” says Helen. Tom says, “A cappuccino, please.” Helen says, “Thanks. Goodbye, Tom. See you tomorrow.” Tom says, “Bye.”`,
   qs:[
    {q:'What’s her name?',a:'Helen',o:['Helen','Ellen','Diana']},
-   {q:'What does Helen order?',a:'A tea',o:['A tea','A cappuccino','Two teas']},
-   {q:'What’s the man’s name?',a:'Tom',o:['Tom','Dom','Mike']},
+   {q:'What does Helen say after “Thanks”?',a:'Goodbye, Tom',o:['Goodbye, Tom','Nice to meet you','A tea, please']},
+   {q:'What’s the man’s name?',a:'Tom',o:['Mike','Tom','Dom']},
    {q:'What does Tom order?',a:'A cappuccino',o:['A tea','A cappuccino','Three teas']},
-   {q:'When do they see each other?',a:'Tomorrow',o:['Tomorrow','Friday','Monday']}
+   {q:'When do they see each other?',a:'Tomorrow',o:['Friday','Monday','Tomorrow']}
   ]
  },
  pron:[{w:'hello',a:'/h/'},{w:'Helen',a:'/h/'},{w:'hi',a:'/h/'},{w:'I’m',a:'/aɪ/'},{w:'five',a:'/aɪ/'},{w:'nine',a:'/aɪ/'},{w:'meet',a:'/iː/'},{w:'tea',a:'/iː/'}],
  listening:{
   scripts:[
    {id:1,lines:[
-    {voice:'Amy',text:'Hello.'},{voice:'Brian',text:'Hi. A cappuccino, please.'},{voice:'Amy',text:'OK. What’s your name?'},{voice:'Brian',text:'Tom.'},{voice:'Amy',text:'Tom. Your cappuccino.'},{voice:'Brian',text:'Thanks.'}
+    {voice:'Amy',text:'Hello.'},
+    {voice:'Brian',text:'Hi. What’s your name?'},
+    {voice:'Amy',text:'I’m Helen.'},
+    {voice:'Brian',text:'Nice to meet you, Helen.'},
+    {voice:'Amy',text:'Nice to meet you, Tom.'},
+    {voice:'Brian',text:'A cappuccino, please.'},
+    {voice:'Amy',text:'Here you are.'},
+    {voice:'Brian',text:'Thanks. Goodbye.'}
    ]},
    {id:2,lines:[
-    {voice:'Brian',text:'Hi. Are you Helen?'},{voice:'Amy',text:'Yes, I am. And you’re Tom?'},{voice:'Brian',text:'Yes. Nice to meet you.'},{voice:'Amy',text:'Nice to meet you.'},{voice:'Brian',text:'A tea, please.'},{voice:'Amy',text:'Goodbye, Tom. See you on Friday.'},{voice:'Brian',text:'Bye.'}
+    {voice:'Brian',text:'Hi, Helen.'},
+    {voice:'Amy',text:'Hi, Tom.'},
+    {voice:'Brian',text:'A tea, please.'},
+    {voice:'Amy',text:'Sure. Here you are.'},
+    {voice:'Brian',text:'Thanks.'},
+    {voice:'Amy',text:'Goodbye, Tom. See you on Friday.'},
+    {voice:'Brian',text:'See you on Friday. Bye.'}
    ]}
   ],
   qs:[
-   {q:'What does Tom order?',a:'A cappuccino',o:['A cappuccino','A tea','Two teas'],script:1},
-   {q:'What name do you hear?',a:'Tom',o:['Tom','Dom','Mike'],script:1},
-   {q:'What phrase do you hear at the end?',a:'Thanks',o:['Thanks','Sorry','Goodbye'],script:1},
-   {q:'Are you Helen?',a:'Yes, I am',o:['Yes, I am','No, I’m not','Yes, you are'],script:2},
-   {q:'What is the man’s name?',a:'Tom',o:['Tom','Dom','Mike'],script:2},
-   {q:'What does Tom order?',a:'A tea',o:['A tea','A cappuccino','Three teas'],script:2},
-   {q:'What phrase do they say?',a:'Nice to meet you',o:['Nice to meet you','See you tomorrow','Goodbye'],script:2},
-   {q:'Which goodbye phrase do you hear?',a:'See you on Friday',o:['See you on Friday','See you on Monday','See you on Sunday'],script:2}
+   {q:'What does Tom order?',a:'A cappuccino',o:['A tea','A cappuccino','Two teas'],script:1},
+   {q:'What name do you hear?',a:'Helen',o:['Tom','Helen','Mike'],script:1},
+   {q:'What polite phrase does Tom say?',a:'Nice to meet you',o:['Thanks','Nice to meet you','See you tomorrow'],script:1},
+   {q:'What word do you hear at the end?',a:'Goodbye',o:['Bye','Goodbye','Sorry'],script:1},
+   {q:'What does Tom order?',a:'A tea',o:['A cappuccino','Two teas','A tea'],script:2},
+   {q:'Which day do you hear?',a:'Friday',o:['Monday','Friday','Sunday'],script:2},
+   {q:'What phrase do both speakers repeat?',a:'See you on Friday',o:['See you on Friday','Nice to meet you','What’s your name?'],script:2},
+   {q:'What word comes last?',a:'Bye',o:['Goodbye','See you tomorrow','Bye'],script:2}
   ]
  }
 };
@@ -75,22 +93,25 @@ const data={
 const MAX={phrases:data.phrases.length,grammar:data.grammar.length,numbers:data.numbers.length,days:data.days.length,reading:data.reading.qs.length,pron:data.pron.length,listening:data.listening.qs.length};
 const fresh=()=>({screen:0,idx:{phrases:0,grammar:0,numbers:0,days:0,reading:0,listening:0},answers:{phrases:{},grammar:{},numbers:{},days:{},reading:{},pron:{},listening:{}},mistakes:{},selectedPron:null});
 let state=fresh();
-try{const s=JSON.parse(localStorage.getItem('wow1a_v5'));if(s&&s.answers)state={...fresh(),...s,idx:{...fresh().idx,...(s.idx||{})},answers:{...fresh().answers,...s.answers}}}catch(e){}
-function save(){localStorage.setItem('wow1a_v5',JSON.stringify(state))}
+try{const s=JSON.parse(localStorage.getItem(STORAGE_KEY));if(s&&s.answers)state={...fresh(),...s,idx:{...fresh().idx,...(s.idx||{})},answers:{...fresh().answers,...s.answers}}}catch(e){}
+function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
 function esc(x){return String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function solved(sec,i){return !!state.answers[sec]?.[i]?.solved}
 function firstCorrect(sec,i){return !!state.answers[sec]?.[i]?.firstCorrect}
 function score(sec){return Object.values(state.answers[sec]||{}).filter(x=>x.firstCorrect).length}
-function header(){return `<div class="noise"></div><div class="header"><div class="logoWrap"><img class="logoComposite" src="assets/images/logo-wow-school.svg" alt="WOW SCHOOL"></div><div class="unitBadge"><span>English File Beginner</span><strong>Unit 1A</strong></div></div>`}
+function orderedOptions(sec,idx,opts){
+ const offset=((idx+sec.length)%opts.length);
+ return opts.slice(offset).concat(opts.slice(0,offset));
+}
+function header(){
+ return `<div class="noise"></div><div class="header"><div class="brandHeader"><div class="brandIconWrap"><img class="brandIcon" src="assets/images/brand-icon.png" alt="WOW SCHOOL"></div><div class="brandCopy"><div class="brandName">WOW SCHOOL</div><div class="brandMeta">online english school · wow-school.ru</div><div class="brandModule">interactive lesson module · Unit 1A</div></div></div><div class="unitBadge"><span>English File Beginner</span><strong>Unit 1A</strong></div></div>`
+}
 function shell(inner){return `${header()}<section class="shell"><div class="content">${inner}</div></section>`}
 function progress(n){return `<div class="progressBox"><strong>Блок ${n}/7</strong><div class="track"><i style="width:${n/7*100}%"></i></div></div>`}
 function title(n,t,sub){return `<div class="titlebar"><div class="titlewrap"><h1><span class="n">${n}.</span> ${t}</h1><p>${sub}</p></div>${progress(n)}</div>`}
 function miniProgress(sec,idx,total){return `<div class="internalProgress"><div class="miniDots">${Array.from({length:total},(_,i)=>`<i class="miniDot ${i<idx?'done':i===idx?'current':''}"></i>`).join('')}</div><div class="counter">Задание ${Math.min(idx+1,total)} из ${total}</div></div>`}
 function feedback(kind,text){return `<div class="feedbackBox ${kind}">${text}</div>`}
 
-/* audio engine v8: same Google UK voice as v5, but adapted for embedded Holst iframe.
-   Key changes: no referrer, one persistent <audio> element, no CORS mode,
-   whole dialogues as one request, and safe chunking only for long reading text. */
 let currentAudio=null,playToken=0;
 const ttsAudio=document.createElement('audio');
 ttsAudio.preload='auto';
@@ -172,6 +193,16 @@ function playScript(lines,btn){
  return playSequence(splitTTS(whole),btn,'▶ Прослушать');
 }
 function audioBtn(id,label='Прослушать'){return `<button class="audioBtn" id="${id}">▶ ${label}</button><span class="audioMeta">British English · online voice</span>`}
+function sanitizeAudioText(text){
+ return String(text)
+  .replace(/_{2,}/g,'')
+  .replace(/→/g,'')
+  .replace(/\s+,/g,',')
+  .replace(/\s{2,}/g,' ')
+  .replace(/[“”]/g,'')
+  .trim()
+  .replace(/[,.]\s*$/,'');
+}
 
 function recordAttempt(sec,i,isCorrect){
  let a=state.answers[sec][i];
@@ -187,38 +218,26 @@ const PHRASE_CATEGORIES={
  'A cappuccino, please':'At the café','A tea, please':'At the café','Thanks':'Polite phrase',
  'Sorry':'Polite phrase','Just a minute':'Useful phrase','Goodbye':'Goodbye'
 };
-const WORD_TO_NUM={zero:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10};
 
-function objectGroup(n,variant='dot'){
- const items=Array.from({length:n},(_,i)=>`<span class="countSticker ${variant} v${i%4}"></span>`).join('');
- return `<div class="countGroup ${n>6?'compact':''}">${items||'<span class="countZero">0</span>'}</div>`;
-}
-function sequenceVisualFromText(q,variant='cup'){
- const words=q.toLowerCase().replace(/_/g,'').replace(/,/g,'').split(/\s+/).filter(Boolean).filter(x=>x!=='');
- const nums=words.filter(w=>WORD_TO_NUM[w]!==undefined).map(w=>WORD_TO_NUM[w]);
- return `<div class="sequenceBoard">${nums.map((n,i)=>`<div class="sequenceCard"><span class="sequenceLabel">step ${i+1}</span>${objectGroup(n,variant)}</div>`).join('<div class="sequenceArrow">→</div>')}<div class="sequenceArrow">→</div><div class="sequenceCard question"><span class="sequenceLabel">next</span><div class="questionStamp">?</div><div class="tinyHint">listen and choose</div></div></div>`;
-}
 function renderPhraseVisual(item){
  const cat=PHRASE_CATEGORIES[item.q]||'Lesson 1A';
  return `<div class="sceneFrame phrasePanel"><img class="sceneImg" src="assets/images/cafe-speaking.png" alt="Cafe speaking"><div class="visualBadge">${esc(cat)}</div><div class="speech modern">${esc(item.q)}</div></div>`;
 }
-function renderNumbersVisual(item,idx){
- if(item.q.includes('___')){
-  return `<div class="numberVisual smart"><div class="numbersHeroBadge">Listen and continue</div>${sequenceVisualFromText(item.q,'dot')}</div>`;
- }
- return `<div class="numberVisual smart"><div class="numberImagePlaceholder">🔊</div><div class="visualHint">Послушай слово и выбери правильный вариант</div></div>`;
+function renderNumbersVisual(item){
+ const hint=item.q.includes('___')?'Continue the sequence':'Listen and choose the number';
+ return `<div class="sceneFrame numbersPanel"><img class="sceneImg contain padded" src="assets/images/numbers-hero.png" alt="Numbers 0 to 10"><div class="visualBadge">Numbers 0–10</div><div class="floatingCard">${esc(hint)}</div></div>`;
 }
 function weekdayIndex(q){return ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'].findIndex(d=>q.startsWith(d));}
 function renderDaysVisual(item){
  if(item.q.startsWith('Goodbye')||item.q.startsWith('See you')){
-  return `<div class="daysVisualNew"><div class="dayCardScene"><div class="dayIcon">💬</div><div class="questionStamp">?</div><div class="visualHint">Слушай фразу и выбери правильный ответ</div></div></div>`;
+  return `<div class="daysVisualNew"><div class="weekRouteSimple speechMode"><div class="routeLabel">GOODBYE</div><div class="routeQuestion">see you ... ?</div></div><div class="visualHint">Выбери нужное слово или фразу</div></div>`;
  }
- const active=weekdayIndex(item.q);
- return `<div class="daysVisualNew"><div class="weekRouteSimple"><div class="routeLabel">DAY</div><div class="routeQuestion">→ ?</div></div><div class="visualHint">Определи следующий день недели</div></div>`;
+ const day=item.q.replace('→','').trim();
+ return `<div class="daysVisualNew"><div class="weekRouteSimple"><div class="routeLabel">DAY</div><div class="routeQuestion">${esc(day)} → ?</div></div><div class="visualHint">Определи следующий день недели</div></div>`;
 }
 function commonQuestionScreen(sec,blockNum,heading,sub,visualHTML,item,total,audioText,audioVoice='Brian',afterLast){
- const idx=state.idx[sec]||0;const done=solved(sec,idx);
- app.innerHTML=shell(`${title(blockNum,heading,sub)}<div class="blockBody"><div class="visualCard">${visualHTML}</div><div class="questionCard"><div class="kicker">${LABELS[sec]}</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Выбери правильный вариант. Если ошибёшься, можно попробовать ещё раз.</div><div class="answers">${item.o.map((o,oi)=>`<button class="answer" data-answer="${oi}" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div class="statusWrap"><div id="fb">${done?feedback('good','Верно! Переходим дальше.'):feedback('neutral','Ответ не выбран')}</div>${miniProgress(sec,idx,total)}</div></div></div><div class="footerActions"><div class="leftActions">${audioText?audioBtn('audio','Прослушать'):''}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===total-1?'Следующий блок →':'Следующее задание →'}</button></div>`);
+ const idx=state.idx[sec]||0;const done=solved(sec,idx);const options=orderedOptions(sec,idx,item.o);
+ app.innerHTML=shell(`${title(blockNum,heading,sub)}<div class="blockBody"><div class="visualCard">${visualHTML}</div><div class="questionCard"><div class="kicker">${LABELS[sec]}</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Выбери правильный вариант. Если ошибёшься, можно попробовать ещё раз.</div><div class="answers">${options.map((o,oi)=>`<button class="answer" data-answer="${oi}" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div class="statusWrap"><div id="fb">${done?feedback('good','Верно! Переходим дальше.'):feedback('neutral','Ответ не выбран')}</div>${miniProgress(sec,idx,total)}</div></div></div><div class="footerActions"><div class="leftActions">${audioText?audioBtn('audio','Прослушать'):''}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===total-1?'Следующий блок →':'Следующее задание →'}</button></div>`);
  const fb=document.getElementById('fb');
  document.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{
   if(solved(sec,idx))return;const ok=b.dataset.value===item.a;recordAttempt(sec,idx,ok);
@@ -229,28 +248,43 @@ function commonQuestionScreen(sec,blockNum,heading,sub,visualHTML,item,total,aud
  document.getElementById('next').onclick=()=>{if(idx<total-1){state.idx[sec]=idx+1;save();render()}else afterLast()};
 }
 
-function start(){app.innerHTML=shell(`<div class="hero"><div><div class="heroKicker">Unit Review · Lesson 1A</div><h1>A cappuccino,<span>please</span></h1><p>7 интерактивных блоков: фразы, verb be с I / you, numbers 0–10, days & goodbye, reading, pronunciation и listening. Всё — только по материалу Lesson 1A.</p><div class="heroBtns"><button class="btn primary" id="start">Начать →</button><button class="btn secondary" id="reset">Сбросить прогресс</button></div></div><div class="heroVisual"><img class="heroImage" src="assets/images/cafe-speaking.png" alt="Cafe speaking"><div class="tag a">7 блоков</div><div class="tag b">UK audio</div></div></div>`);document.getElementById('start').onclick=()=>{state.screen=1;save();render()};document.getElementById('reset').onclick=()=>{state=fresh();save();render()}}
-function phrases(){const sec='phrases',idx=state.idx[sec]||0,item=data.phrases[idx];commonQuestionScreen(sec,1,'Words & Phrases','Фраза всегда остаётся на экране — выбери перевод',renderPhraseVisual(item),item,data.phrases.length,item.q,'Amy',()=>{state.screen=2;save();render()})}
+function start(){
+ app.innerHTML=shell(`<div class="hero"><div><div class="heroKicker">WOW SCHOOL · proprietary lesson module</div><h1>A cappuccino,<span>please</span></h1><p>7 интерактивных блоков: фразы, verb be с I / you, numbers 0–10, days & goodbye, reading, pronunciation и listening. Всё — только по материалу Lesson 1A.</p><div class="heroBtns"><button class="btn primary" id="start">Начать →</button><button class="btn secondary" id="reset">Сбросить прогресс</button></div></div><div class="heroVisual"><img class="heroImage" src="assets/images/cafe-speaking.png" alt="Cafe lesson visual"><div class="tag a">WOW SCHOOL</div><div class="tag b">wow-school.ru</div></div></div>`);
+ document.getElementById('start').onclick=()=>{state.screen=1;save();render()};
+ document.getElementById('reset').onclick=()=>{state=fresh();save();render()}
+}
+function phrases(){const sec='phrases',idx=state.idx[sec]||0,item=data.phrases[idx];commonQuestionScreen(sec,1,'Words & Phrases','Фраза всегда остаётся на экране — выбери перевод',renderPhraseVisual(item),item,data.phrases.length,sanitizeAudioText(item.q),'Amy',()=>{state.screen=2;save();render()})}
 function grammar(){const sec='grammar',idx=state.idx[sec]||0,item=data.grammar[idx];const vis=`<div class="grammarVisual"><div class="magnetBoard"><div class="magnetRow"><div class="magnet ${item.q.startsWith('You')||item.q.includes('you')?'you':'i'}">${item.q.startsWith('You')||item.q.includes('you')?'YOU':'I'}</div><div class="equals">+</div><div class="magnet be">BE</div></div><div class="grammarLegend">I am · You are · Am I? · Are you?</div></div></div>`;commonQuestionScreen(sec,2,'Grammar Check','verb be · только I / you',vis,item,data.grammar.length,null,'Brian',()=>{state.screen=3;save();render()})}
-function numbers(){const sec='numbers',idx=state.idx[sec]||0,item=data.numbers[idx];commonQuestionScreen(sec,3,'Numbers 0–10','Слушай, считай и выбирай правильный вариант',renderNumbersVisual(item,idx),item,data.numbers.length,item.q,'Brian',()=>{state.screen=4;save();render()})}
-function days(){const sec='days',idx=state.idx[sec]||0,item=data.days[idx];commonQuestionScreen(sec,4,'Days & Goodbye','Определи следующий день или нужную фразу',renderDaysVisual(item),item,data.days.length,item.q,'Amy',()=>{state.screen=5;save();render()})}
-function reading(){const sec='reading',idx=state.idx[sec]||0,item=data.reading.qs[idx],done=solved(sec,idx);app.innerHTML=shell(`${title(5,'Reading Café','Прочитай мини-историю и ответь на вопросы')}<div class="blockBody"><div class="visualCard"><div class="readingVisual"><div class="readingArtFrame"><img class="readingArt" src="assets/images/cafe-conversation.png" alt="Reading cafe scene"></div><div class="readText">${data.reading.text}</div></div></div><div class="questionCard"><div class="kicker">Reading comprehension</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Ответь только по тексту.</div><div class="answers">${item.o.map((o,oi)=>`<button class="answer" data-answer="${oi}" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div class="statusWrap"><div id="fb">${done?feedback('good','Верно!'):feedback('neutral','Ответ не выбран')}</div>${miniProgress(sec,idx,data.reading.qs.length)}</div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('readAudio','Послушать текст')}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===data.reading.qs.length-1?'Следующий блок →':'Следующее задание →'}</button></div>`);
+function numbers(){const sec='numbers',idx=state.idx[sec]||0,item=data.numbers[idx];commonQuestionScreen(sec,3,'Numbers 0–10','Слушай, считай и выбирай правильный вариант',renderNumbersVisual(item),item,data.numbers.length,sanitizeAudioText(item.q),'Brian',()=>{state.screen=4;save();render()})}
+function days(){const sec='days',idx=state.idx[sec]||0,item=data.days[idx];commonQuestionScreen(sec,4,'Days & Goodbye','Определи следующий день или нужную фразу',renderDaysVisual(item),item,data.days.length,item.audio,'Amy',()=>{state.screen=5;save();render()})}
+function reading(){
+ const sec='reading',idx=state.idx[sec]||0,item=data.reading.qs[idx],done=solved(sec,idx),options=orderedOptions(sec,idx,item.o);
+ app.innerHTML=shell(`${title(5,'Reading Café','Прочитай мини-историю и ответь на вопросы')}<div class="blockBody"><div class="visualCard"><div class="readingVisual"><div class="readingArtFrame"><img class="readingArt" src="assets/images/cafe-conversation.png" alt="Reading cafe scene"></div><div class="readText">${data.reading.text}</div></div></div><div class="questionCard"><div class="kicker">Reading comprehension</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Ответь только по тексту.</div><div class="answers">${options.map((o,oi)=>`<button class="answer" data-answer="${oi}" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div class="statusWrap"><div id="fb">${done?feedback('good','Верно!'):feedback('neutral','Ответ не выбран')}</div>${miniProgress(sec,idx,data.reading.qs.length)}</div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('readAudio','Послушать текст')}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===data.reading.qs.length-1?'Следующий блок →':'Следующее задание →'}</button></div>`);
  document.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{if(solved(sec,idx))return;const ok=b.dataset.value===item.a;recordAttempt(sec,idx,ok);if(ok){b.classList.add('correct');document.getElementById('fb').innerHTML=feedback('good','Верно!');document.querySelectorAll('[data-answer]').forEach(x=>x.disabled=true);document.getElementById('next').disabled=false}else{b.classList.add('wrongFlash');document.getElementById('fb').innerHTML=feedback('bad','Пока нет. Перечитай текст и попробуй ещё раз.');setTimeout(()=>b.classList.remove('wrongFlash'),500)}});
- document.getElementById('readAudio').onclick=function(){const plain=data.reading.text.replace(/<[^>]+>/g,'').replace(/[“”]/g,'');if(this.classList.contains('busy')){stopAudio();this.classList.remove('busy');this.textContent='▶ Послушать текст'}else{const sentences=plain.split(/(?<=[.!?])\s+/).filter(Boolean).map((t,i)=>({text:t,voice:i%2?'Brian':'Amy'}));playScript(sentences,this)}};
+ document.getElementById('readAudio').onclick=function(){const plain=data.reading.text.replace(/<[^>]+>/g,'').replace(/[“”]/g,'');if(this.classList.contains('busy')){stopAudio();this.classList.remove('busy');this.textContent='▶ Послушать текст'}else playText(plain,'Amy',this)};
  document.getElementById('next').onclick=()=>{if(idx<data.reading.qs.length-1){state.idx[sec]=idx+1;save();render()}else{state.screen=6;save();render()}};
 }
-function pron(){const bins=['/h/','/aɪ/','/iː/'];const allDone=Object.keys(state.answers.pron).length===data.pron.length;app.innerHTML=shell(`${title(6,'Sound Sort','Перетащи слово в правильный звук или выбери слово и нажми на блок')}<div class="sortLayout"><div class="bins">${bins.map(b=>`<div class="bin" data-bin="${b}"><strong>${b}</strong><small>${b==='/h/'?'hello · Helen · hi':b==='/aɪ/'?'I’m · five · nine':'meet · tea'}</small><div class="binwords">${data.pron.map((x,i)=>state.answers.pron[i]?.solved&&x.a===b?`<button class="wordChip good" disabled>${esc(x.w)}</button>`:'').join('')}</div></div>`).join('')}</div><div class="wordBank">${data.pron.map((x,i)=>!state.answers.pron[i]?.solved?`<button draggable="true" class="wordChip ${state.selectedPron===i?'selected':''}" data-word="${i}">${esc(x.w)}</button>`:'').join('')}<span id="pronHint" class="audioMeta">${allDone?'Все слова распределены верно':'Выбери слово или перетащи его в блок'}</span></div></div><div class="footerActions"><div class="leftActions">${audioBtn('pronAudio','Послушать выбранное слово')}</div><button class="nextBtn" id="next" ${allDone?'':'disabled'}>Следующий блок →</button></div>`);
+function pron(){
+ const bins=['/h/','/aɪ/','/iː/'];const allDone=Object.keys(state.answers.pron).length===data.pron.length;
+ app.innerHTML=shell(`${title(6,'Sound Sort','Перетащи слово в правильный звук или выбери слово и нажми на блок')}<div class="sortLayout"><div class="bins">${bins.map(b=>`<div class="bin" data-bin="${b}"><strong>${b}</strong><small>${b==='/h/'?'hello · Helen · hi':b==='/aɪ/'?'I’m · five · nine':'meet · tea'}</small><div class="binwords">${data.pron.map((x,i)=>state.answers.pron[i]?.solved&&x.a===b?`<button class="wordChip good" disabled>${esc(x.w)}</button>`:'').join('')}</div></div>`).join('')}</div><div class="wordBank">${data.pron.map((x,i)=>!state.answers.pron[i]?.solved?`<button draggable="true" class="wordChip ${state.selectedPron===i?'selected':''}" data-word="${i}">${esc(x.w)}</button>`:'').join('')}<span id="pronHint" class="audioMeta">${allDone?'Все слова распределены верно':'Выбери слово или перетащи его в блок'}</span></div></div><div class="footerActions"><div class="leftActions">${audioBtn('pronAudio','Послушать выбранное слово')}</div><button class="nextBtn" id="next" ${allDone?'':'disabled'}>Следующий блок →</button></div>`);
  function tryPlace(i,bin){const x=data.pron[i];if(x.a===bin){let a=state.answers.pron[i]||{attempts:0,firstCorrect:null,solved:false};a.attempts++;if(a.firstCorrect===null)a.firstCorrect=true;a.solved=true;state.answers.pron[i]=a;state.selectedPron=null;save();render()}else{let a=state.answers.pron[i]||{attempts:0,firstCorrect:null,solved:false};a.attempts++;if(a.firstCorrect===null)a.firstCorrect=false;state.answers.pron[i]=a;save();const h=document.getElementById('pronHint');h.textContent=`${x.w}: это не ${bin}. Попробуй другой звук.`;h.style.color='#bd4053'}}
  document.querySelectorAll('[data-word]').forEach(w=>{const i=+w.dataset.word;w.onclick=()=>{state.selectedPron=i;save();render()};w.ondragstart=e=>{e.dataTransfer.setData('text/plain',String(i));e.dataTransfer.effectAllowed='move'}});
  document.querySelectorAll('[data-bin]').forEach(b=>{b.onclick=()=>{if(state.selectedPron!==null)tryPlace(state.selectedPron,b.dataset.bin)};b.ondragover=e=>{e.preventDefault();b.classList.add('dropTarget')};b.ondragleave=()=>b.classList.remove('dropTarget');b.ondrop=e=>{e.preventDefault();b.classList.remove('dropTarget');const i=+e.dataTransfer.getData('text/plain');if(Number.isInteger(i))tryPlace(i,b.dataset.bin)}});
  document.getElementById('pronAudio').onclick=function(){if(state.selectedPron===null){document.getElementById('pronHint').textContent='Сначала выбери слово';return}const word=data.pron[state.selectedPron].w;if(this.classList.contains('busy')){stopAudio();this.classList.remove('busy');this.textContent='▶ Послушать выбранное слово'}else playText(word,'Amy',this)};
  document.getElementById('next').onclick=()=>{state.screen=7;save();render()};
 }
-function listening(){const sec='listening',idx=state.idx[sec]||0,item=data.listening.qs[idx],done=solved(sec,idx),script=data.listening.scripts.find(s=>s.id===item.script);app.innerHTML=shell(`${title(7,'Listening Mission','Слушай диалог и отвечай — только язык Lesson 1A')}<div class="blockBody"><div class="visualCard"><div class="headphoneVisual"><img class="sceneImg" src="assets/images/listening-headphones.png" alt="Listening practice"></div></div><div class="questionCard"><div class="kicker">Dialogue ${script.id}</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Диалог можно прослушать несколько раз.</div><div class="answers">${item.o.map((o,oi)=>`<button class="answer" data-answer="${oi}" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div class="statusWrap"><div id="fb">${done?feedback('good','Верно!'):feedback('neutral','Сначала прослушай диалог')}</div>${miniProgress(sec,idx,data.listening.qs.length)}</div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('listenAudio',`Диалог ${script.id}`)}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===data.listening.qs.length-1?'Результат →':'Следующее задание →'}</button></div>`);
+function listening(){
+ const sec='listening',idx=state.idx[sec]||0,item=data.listening.qs[idx],done=solved(sec,idx),script=data.listening.scripts.find(s=>s.id===item.script),options=orderedOptions(sec,idx,item.o);
+ app.innerHTML=shell(`${title(7,'Listening Mission','Слушай новый диалог и отвечай — только язык Lesson 1A')}<div class="blockBody"><div class="visualCard"><div class="headphoneVisual"><img class="sceneImg contain padded" src="assets/images/listening-headphones.png" alt="Listening practice"></div></div><div class="questionCard"><div class="kicker">Dialogue ${script.id}</div><div class="prompt">${esc(item.q)}</div><div class="subprompt">Диалог можно прослушать несколько раз.</div><div class="answers">${options.map((o,oi)=>`<button class="answer" data-answer="${oi}" data-value="${esc(o)}" ${done?'disabled':''}>${esc(o)}</button>`).join('')}</div><div class="statusWrap"><div id="fb">${done?feedback('good','Верно!'):feedback('neutral','Сначала прослушай диалог')}</div>${miniProgress(sec,idx,data.listening.qs.length)}</div></div></div><div class="footerActions"><div class="leftActions">${audioBtn('listenAudio',`Диалог ${script.id}`)}</div><button class="nextBtn" id="next" ${done?'':'disabled'}>${idx===data.listening.qs.length-1?'Результат →':'Следующее задание →'}</button></div>`);
  document.getElementById('listenAudio').onclick=function(){if(this.classList.contains('busy')){stopAudio();this.classList.remove('busy');this.textContent=`▶ Диалог ${script.id}`}else playScript(script.lines,this)};
  document.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{if(solved(sec,idx))return;const ok=b.dataset.value===item.a;recordAttempt(sec,idx,ok);if(ok){b.classList.add('correct');document.getElementById('fb').innerHTML=feedback('good','Верно!');document.querySelectorAll('[data-answer]').forEach(x=>x.disabled=true);document.getElementById('next').disabled=false}else{b.classList.add('wrongFlash');document.getElementById('fb').innerHTML=feedback('bad','Пока нет. Прослушай ещё раз.');setTimeout(()=>b.classList.remove('wrongFlash'),500)}});
  document.getElementById('next').onclick=()=>{if(idx<data.listening.qs.length-1){state.idx[sec]=idx+1;save();render()}else{state.screen=8;save();render()}};
 }
-function results(){const keys=SECTIONS,totalMax=keys.reduce((n,k)=>n+MAX[k],0),total=keys.reduce((n,k)=>n+score(k),0),pct=Math.round(total/totalMax*100),sorted=[...keys].sort((a,b)=>score(b)/MAX[b]-score(a)/MAX[a]),best=sorted[0],weak=sorted.at(-1);app.innerHTML=shell(`<div class="titlebar"><div class="titlewrap"><h1>Your <span class="n">Results</span></h1><p>Итоги проверочной работы по Lesson 1A</p></div><div class="progressBox"><strong>Готово</strong><div class="track"><i style="width:100%"></i></div></div></div><div class="results"><div class="ring" style="--pct:${pct}"><strong>${pct}%</strong><span>с первого раза</span></div><div><div class="resultList">${keys.map(k=>{const p=Math.round(score(k)/MAX[k]*100);return `<div class="resrow"><label>${LABELS[k]}</label><div class="resbar"><i style="width:${p}%"></i></div><b>${score(k)}/${MAX[k]}</b></div>`}).join('')}</div><div class="coach"><div><strong>Сильнее всего</strong><p>${LABELS[best]} — лучший результат с первой попытки.</p></div><div><strong>Что повторить</strong><p>${LABELS[weak]} — этот блок стоит пройти ещё раз.</p></div></div><div class="heroBtns" style="margin-top:16px"><button class="btn primary" id="retry">Пройти ещё раз</button><button class="btn secondary" id="home">На главную</button></div></div></div>`);document.getElementById('retry').onclick=()=>{state=fresh();state.screen=1;save();render()};document.getElementById('home').onclick=()=>{state.screen=0;save();render()}}
+function results(){
+ const keys=SECTIONS,totalMax=keys.reduce((n,k)=>n+MAX[k],0),total=keys.reduce((n,k)=>n+score(k),0),pct=Math.round(total/totalMax*100),sorted=[...keys].sort((a,b)=>score(b)/MAX[b]-score(a)/MAX[a]),best=sorted[0],weak=sorted.at(-1);
+ app.innerHTML=shell(`<div class="titlebar"><div class="titlewrap"><h1>Your <span class="n">Results</span></h1><p>Итоги проверочной работы по Lesson 1A</p></div><div class="progressBox"><strong>Готово</strong><div class="track"><i style="width:100%"></i></div></div></div><div class="results"><div class="ring" style="--pct:${pct}"><strong>${pct}%</strong><span>с первого раза</span></div><div><div class="resultList">${keys.map(k=>{const p=Math.round(score(k)/MAX[k]*100);return `<div class="resrow"><label>${LABELS[k]}</label><div class="resbar"><i style="width:${p}%"></i></div><b>${score(k)}/${MAX[k]}</b></div>`}).join('')}</div><div class="coach"><div><strong>Сильнее всего</strong><p>${LABELS[best]} — лучший результат с первой попытки.</p></div><div><strong>Что повторить</strong><p>${LABELS[weak]} — этот блок стоит пройти ещё раз.</p></div></div><div class="heroBtns" style="margin-top:16px"><button class="btn primary" id="retry">Пройти ещё раз</button><button class="btn secondary" id="home">На главную</button></div></div></div>`);
+ document.getElementById('retry').onclick=()=>{state=fresh();state.screen=1;save();render()};
+ document.getElementById('home').onclick=()=>{state.screen=0;save();render()}
+}
 function render(){stopAudio();({0:start,1:phrases,2:grammar,3:numbers,4:days,5:reading,6:pron,7:listening,8:results}[state.screen]||start)()}
 render();
