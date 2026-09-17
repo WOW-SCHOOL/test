@@ -1,0 +1,98 @@
+{
+  "module": "English File Beginner · Unit 2A · Are you on holiday?",
+  "status": "visuals_integrated_audio_synthesis_restored",
+  "note": "Images fill their visual areas without placeholder overlap. Audio uses the original British-English online synthesis as primary, with browser en-GB synthesis only as a stability fallback; no local prerecorded TTS files are used.",
+  "planned_visuals": [
+    {
+      "file": "preview-2a.jpg",
+      "block": "Preview",
+      "purpose": "Unit cover",
+      "scene": "travellers meeting in a bright holiday / café / hotel setting",
+      "forbidden_clues": "no flags or written nationality answers"
+    },
+    {
+      "file": "block1-nationalities.jpg",
+      "block": 1,
+      "purpose": "Nationalities context",
+      "scene": "international travel / people meeting",
+      "forbidden_clues": "no visible flags tied to a current answer"
+    },
+    {
+      "file": "block2-grammar.jpg",
+      "block": 2,
+      "purpose": "Plural be context",
+      "scene": "small group of people talking",
+      "forbidden_clues": "no written grammar forms"
+    },
+    {
+      "file": "block3-country-nationality.jpg",
+      "block": 3,
+      "purpose": "Country to nationality listening",
+      "scene": "traveller listening / airport or city context",
+      "forbidden_clues": "no country names or flags"
+    },
+    {
+      "file": "block4-conversation.jpg",
+      "block": 4,
+      "purpose": "Useful phrases",
+      "scene": "people meeting at café / pub garden",
+      "forbidden_clues": "no speech bubbles with answers"
+    },
+    {
+      "file": "block5-reading.jpg",
+      "block": 5,
+      "purpose": "Reading context",
+      "scene": "four adults meeting at a café",
+      "forbidden_clues": "no text, flags or nationality symbols"
+    },
+    {
+      "file": "block7-listening.jpg",
+      "block": 7,
+      "purpose": "Listening context",
+      "scene": "two pairs of travellers talking",
+      "forbidden_clues": "no text or answer-revealing props"
+    }
+  ],
+  "included_visuals": [
+    {
+      "file": "preview-2a.jpg",
+      "block": "Preview",
+      "source": "generated preview cover"
+    },
+    {
+      "file": "block1-nationalities.jpg",
+      "block": 1,
+      "source": "generated nationalities matching scene"
+    },
+    {
+      "file": "block2-grammar.jpg",
+      "block": 2,
+      "source": "generated group conversation scene"
+    },
+    {
+      "file": "block3-country-nationality.jpg",
+      "block": 3,
+      "source": "generated countries and nationalities table scene"
+    },
+    {
+      "file": "block4-conversation.jpg",
+      "block": 4,
+      "source": "generated restaurant seating / useful phrases scene"
+    },
+    {
+      "file": "block5-reading.jpg",
+      "block": 5,
+      "source": "generated four-person café conversation scene"
+    },
+    {
+      "file": "block7-listening.jpg",
+      "block": 7,
+      "source": "generated travel and business listening scene"
+    },
+    {
+      "file": "block6-pronunciation-extra.jpg",
+      "block": "extra",
+      "source": "generated pronunciation-support visual (not used directly in the current layout)"
+    }
+  ]
+}
