@@ -1,0 +1,56 @@
+{
+  "unit": "Beginner Unit 2B — That's my bus!",
+  "stage": "final with inserted generated visuals",
+  "visuals": [
+    {
+      "filename": "preview.png",
+      "block": "Preview / start screen",
+      "purpose": "final branded preview cover",
+      "fit_mode": "cover",
+      "generated_or_existing": "generated-and-inserted"
+    },
+    {
+      "filename": "assets/images/block1-phrases-tram.png",
+      "block": "1 Words & Phrases",
+      "purpose": "students meeting at a transit stop",
+      "fit_mode": "cover",
+      "generated_or_existing": "generated-and-inserted"
+    },
+    {
+      "filename": "assets/images/block2-grammar-campus.png",
+      "block": "2 Grammar Check",
+      "purpose": "question words in a modern campus context",
+      "fit_mode": "cover",
+      "generated_or_existing": "generated-and-inserted"
+    },
+    {
+      "filename": "assets/images/block3-numbers-busstop.png",
+      "block": "3 Number Detective",
+      "purpose": "audio/number practice in a bus-stop setting",
+      "fit_mode": "cover",
+      "generated_or_existing": "generated-and-inserted"
+    },
+    {
+      "filename": "assets/images/block4-functional-cafe.png",
+      "block": "4 Phone & Personal Info",
+      "purpose": "phone and personal-info context",
+      "fit_mode": "cover",
+      "generated_or_existing": "generated-and-inserted"
+    },
+    {
+      "filename": "assets/images/block5-reading-travelbus.png",
+      "block": "5 Reading",
+      "purpose": "travel/bus arrival scene for reading context",
+      "fit_mode": "cover",
+      "generated_or_existing": "generated-and-inserted"
+    },
+    {
+      "filename": "assets/images/block7-listening-sunset-train.png",
+      "block": "7 Listening",
+      "purpose": "listening practice atmosphere",
+      "fit_mode": "cover",
+      "generated_or_existing": "generated-and-inserted"
+    }
+  ],
+  "next_visual_slots": []
+}
