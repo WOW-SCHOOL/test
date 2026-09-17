@@ -1,0 +1,68 @@
+{
+  "module": "Beginner · Unit 1 · Practical English Episode 1 · How do you spell it?",
+  "images": [
+    {
+      "filename": "preview-unit.jpg",
+      "block": "Preview",
+      "purpose": "WOW SCHOOL branded preview for Practical English Episode 1",
+      "fit-mode": "contain",
+      "generated-or-existing": "new-generated-user-approved",
+      "source-image": "ChatGPT Image 17 сент. 2026 г., 12_56_27.png"
+    },
+    {
+      "filename": "block1-classroom.jpg",
+      "block": "1",
+      "purpose": "Bright modern classroom context for classroom language",
+      "fit-mode": "contain",
+      "generated-or-existing": "new-generated-user-approved",
+      "source-image": "ChatGPT Image 17 сент. 2026 г., 12_56_49 (2).png"
+    },
+    {
+      "filename": "block2-personal-info.jpg",
+      "block": "2",
+      "purpose": "Natural conversation context for personal information",
+      "fit-mode": "contain",
+      "generated-or-existing": "new-generated-user-approved",
+      "source-image": "ChatGPT Image 17 сент. 2026 г., 12_56_51 (6).png"
+    },
+    {
+      "filename": "block3-spelling.jpg",
+      "block": "3",
+      "purpose": "Alphabet cards for spelling practice",
+      "fit-mode": "contain",
+      "generated-or-existing": "new-generated-user-approved",
+      "source-image": "ChatGPT Image 17 сент. 2026 г., 12_56_49 (3).png"
+    },
+    {
+      "filename": "block4-functional.jpg",
+      "block": "4",
+      "purpose": "Hotel check-in real-life English context",
+      "fit-mode": "contain",
+      "generated-or-existing": "new-generated-user-approved",
+      "source-image": "ChatGPT Image 17 сент. 2026 г., 12_56_50 (4).png"
+    },
+    {
+      "filename": "block5-reading-scene.png",
+      "block": "5",
+      "purpose": "Hotel reception context for reading",
+      "fit-mode": "contain",
+      "generated-or-existing": "new-generated-user-approved",
+      "source-image": "ChatGPT Image 17 сент. 2026 г., 12_56_48 (1).png"
+    },
+    {
+      "filename": "block7-listening.jpg",
+      "block": "7",
+      "purpose": "Restaurant phone-booking context for listening",
+      "fit-mode": "contain",
+      "generated-or-existing": "new-generated-user-approved",
+      "source-image": "ChatGPT Image 17 сент. 2026 г., 12_56_50 (5).png"
+    },
+    {
+      "filename": "logo-wow-school.svg",
+      "block": "Global",
+      "purpose": "WOW SCHOOL brand mark",
+      "fit-mode": "contain",
+      "generated-or-existing": "existing-WOW-template"
+    }
+  ]
+}
