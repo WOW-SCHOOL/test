@@ -1,0 +1,71 @@
+{
+  "module": "English File Beginner · 1&2 Revise and Check",
+  "status": "visuals_inserted",
+  "note": "Preview and block images inserted into the module archive in bright realistic WOW SCHOOL style.",
+  "planned_visuals": [
+    {
+      "file": "preview-review-1-2.jpg",
+      "block": "Preview",
+      "purpose": "Review cover",
+      "scene": "bright international English-learning / travel review scene",
+      "forbidden_clues": "no answers, no visible exercise text",
+      "fit-mode": "contain"
+    },
+    {
+      "file": "block1-vocabulary.jpg",
+      "block": 1,
+      "purpose": "Vocabulary review context",
+      "scene": "international students with classroom and travel objects",
+      "forbidden_clues": "no readable answer words or country-name clues",
+      "fit-mode": "contain"
+    },
+    {
+      "file": "block2-grammar.jpg",
+      "block": 2,
+      "purpose": "Grammar context",
+      "scene": "small mixed group speaking together",
+      "forbidden_clues": "no written grammar forms",
+      "fit-mode": "contain"
+    },
+    {
+      "file": "block3-listening-details.jpg",
+      "block": 3,
+      "purpose": "Numbers and personal-info listening",
+      "scene": "person listening and completing a simple contact form",
+      "forbidden_clues": "no readable phone/email/answer data",
+      "fit-mode": "contain"
+    },
+    {
+      "file": "block4-real-life.jpg",
+      "block": 4,
+      "purpose": "Functional English context",
+      "scene": "real-life meeting / classroom / reception interaction",
+      "forbidden_clues": "no speech bubbles or answer phrases",
+      "fit-mode": "contain"
+    },
+    {
+      "file": "block5-reading.jpg",
+      "block": 5,
+      "purpose": "Reading context",
+      "scene": "international students meeting in an English class",
+      "forbidden_clues": "no country flags tied to answers; no text",
+      "fit-mode": "contain"
+    },
+    {
+      "file": "block6-pronunciation.jpg",
+      "block": 6,
+      "purpose": "Pronunciation sort context",
+      "scene": "students matching picture cards and sounds at a table",
+      "forbidden_clues": "no visible answers or phonetic labels",
+      "fit-mode": "contain"
+    },
+    {
+      "file": "block7-listening.jpg",
+      "block": 7,
+      "purpose": "Listening context",
+      "scene": "two people exchanging simple personal information",
+      "forbidden_clues": "no readable names, phone numbers or emails",
+      "fit-mode": "contain"
+    }
+  ]
+}

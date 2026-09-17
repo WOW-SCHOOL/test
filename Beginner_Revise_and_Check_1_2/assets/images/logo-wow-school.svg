@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="160" viewBox="0 0 340 160" fill="none">
+  <defs>
+    <linearGradient id="g1" x1="22" y1="18" x2="182" y2="132" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3EA7FF"/>
+      <stop offset="1" stop-color="#2380E6"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="70" y1="120" x2="134" y2="104" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4BE7D2"/>
+      <stop offset="1" stop-color="#85F0DD"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="205" height="145" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#2876D5" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <rect x="12" y="16" width="182" height="112" rx="34" fill="url(#g1)"/>
+    <rect x="14" y="18" width="178" height="108" rx="32" stroke="rgba(255,255,255,0.45)" stroke-width="3"/>
+    <ellipse cx="103" cy="108" rx="36" ry="9" fill="url(#g2)"/>
+    <path d="M70 104C79.5 111.5 93.5 115.5 109 115.5C124.5 115.5 138 111.5 146 104" stroke="#66F0DF" stroke-width="7" stroke-linecap="round"/>
+    <text x="33" y="88" fill="white" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="900" letter-spacing="-4">WOW</text>
+  </g>
+  <line x1="221" y1="28" x2="221" y2="126" stroke="#C6D6F1" stroke-width="2"/>
+  <text x="246" y="72" fill="#0F2C65" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="900" letter-spacing="2">SCHOOL</text>
+  <text x="246" y="106" fill="#6B7DA2" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">More English · Brighter Futures</text>
+</svg>
