@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "type": "rich",
+  "provider_name": "WOW SCHOOL",
+  "provider_url": "https://wow-school.ru",
+  "title": "English File Beginner · Unit 1B Review",
+  "width": 1600,
+  "height": 900,
+  "html": "<iframe src=\"https://wow-school.github.io/test/wow_unit1b_v1/?v=1\" width=\"1600\" height=\"900\" frameborder=\"0\" scrolling=\"no\" allow=\"autoplay; fullscreen\" allowfullscreen></iframe>"
+}
