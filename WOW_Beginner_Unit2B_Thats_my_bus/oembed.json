@@ -1,10 +1,13 @@
 {
-  "version":"1.0",
-  "type":"rich",
-  "provider_name":"WOW SCHOOL",
-  "provider_url":"https://wow-school.ru",
-  "title":"English File Beginner · Unit 2B · That's my bus!",
-  "html":"<iframe src='URL_НОВОГО_МОДУЛЯ' width='1600' height='900' frameborder='0' scrolling='no' allow='autoplay; fullscreen' allowfullscreen></iframe>",
-  "width":1600,
-  "height":900
+  "version": "1.0",
+  "type": "rich",
+  "width": 1600,
+  "height": 900,
+  "title": "WOW SCHOOL · English File Beginner · Unit 2B · That’s my bus!",
+  "html": "<iframe src='https://wow-school.github.io/test/WOW_Beginner_Unit2B_Thats_my_bus/?v=3' width='1600' height='900' frameborder='0' scrolling='no' allow='autoplay; fullscreen' allowfullscreen></iframe>",
+  "provider_name": "WOW SCHOOL",
+  "provider_url": "https://wow-school.github.io/test/",
+  "thumbnail_url": "https://wow-school.github.io/test/WOW_Beginner_Unit2B_Thats_my_bus/preview.png?v=3",
+  "thumbnail_width": 1600,
+  "thumbnail_height": 900
 }
