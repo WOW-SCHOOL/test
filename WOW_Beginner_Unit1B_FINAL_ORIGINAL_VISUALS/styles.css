@@ -168,3 +168,30 @@ img{display:block;max-width:100%}
 .readingArt{object-fit:cover!important;padding:0!important;width:100%;height:100%;border-radius:22px}
 .heroImage{object-fit:contain!important;border-radius:28px}
 .visualCard,.sceneFrame,.readingArtFrame,.headphoneVisual{overflow:hidden!important}
+
+/* WOW SCHOOL v4 retrofit: helpers + safe micro-interactions. Original layout and palette are preserved. */
+.visualColumn{height:100%;min-height:0;display:flex;flex-direction:column;gap:10px}
+.visualColumn>.visualCard{height:auto!important;flex:1 1 auto;min-height:0}
+.visualHelpers{flex:0 0 auto;display:grid;gap:8px}
+.helperDetails{border-radius:17px;background:rgba(255,255,255,.92);border:1px solid #e0e9f6;box-shadow:0 9px 20px rgba(43,70,122,.07);overflow:hidden}
+.helperDetails summary{list-style:none;min-height:46px;padding:0 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;color:#24467e;font-size:14px;font-weight:950;transition:.16s}
+.helperDetails summary::-webkit-details-marker{display:none}
+.helperDetails summary:after{content:"+";width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#eef5ff;color:#378fe9;font-size:18px;line-height:1;transition:transform .16s,background .16s}
+.helperDetails[open] summary:after{transform:rotate(45deg);background:#e6f7f6;color:#169b96}
+.helperDetails summary:hover{background:#f7fbff}
+.helperBody{max-height:128px;overflow:auto;padding:0 15px 14px;color:#5a6f95;font-size:14px;line-height:1.45;font-weight:750}
+.transcript{display:grid;gap:8px;padding-top:2px}
+.transcriptLine{display:grid;grid-template-columns:92px 1fr;gap:9px;align-items:start}
+.transcriptLine strong{color:#17366f;font-size:13px;overflow-wrap:anywhere}
+.transcriptLine span{color:#5c6e91;font-weight:720}
+.answer:hover:not(:disabled){box-shadow:0 8px 17px rgba(45,108,184,.09),inset 0 1px 0 #fff}
+.answer:active:not(:disabled){transform:translateY(0) scale(.995)}
+.answer.correct{animation:wowSuccessPulse .30s ease-out}
+.audioBtn:hover:not(:disabled),.nextBtn:hover:not(:disabled),.ghostBtn:hover:not(:disabled),.btn:hover:not(:disabled),.wordChip:hover:not(:disabled){transform:translateY(-1px);filter:brightness(1.015)}
+.audioBtn:active:not(:disabled),.nextBtn:active:not(:disabled),.ghostBtn:active:not(:disabled),.btn:active:not(:disabled),.wordChip:active:not(:disabled){transform:translateY(0) scale(.992)}
+.answer:focus-visible,.audioBtn:focus-visible,.nextBtn:focus-visible,.ghostBtn:focus-visible,.btn:focus-visible,.wordChip:focus-visible,.helperDetails summary:focus-visible{outline:4px solid rgba(45,141,247,.22);outline-offset:2px}
+.wordChip{transition:.14s}
+.content{animation:wowScreenIn .20s ease-out}
+@keyframes wowSuccessPulse{0%{transform:scale(.985)}60%{transform:scale(1.012)}100%{transform:scale(1)}}
+@keyframes wowScreenIn{from{opacity:.72;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.content,.answer.correct{animation:none!important}.helperDetails summary,.helperDetails summary:after{transition:none!important}}

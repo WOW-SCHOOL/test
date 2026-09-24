@@ -29,3 +29,10 @@
 
 ## Visual update
 Inserted final generated preview and lesson images into the start screen and core content blocks (1, 2, 3, 4, 5, 7).
+
+## Upgrade v4 retrofit
+
+- Добавлен текущий PIN-экран WOW SCHOOL (`PIN_CODE.js` + `pin-gate.js`), PIN `1020`.
+- Добавлены favicon WS, student-facing helpers, transcript Listening и QA-shortcuts.
+- Добавлен локальный safe visual polish: focus-visible, hover / active, success pulse и мягкий entrance.
+- Исходный `app.js`, учебный контент, answers, scoring, изображения и TTS сознательно не переписывались.

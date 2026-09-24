@@ -34,3 +34,10 @@ Interactive review module based on the supplied English File lesson materials an
 
 ### Image generation note
 The lesson package includes finished local image assets. A dedicated external image-generation connection was unavailable during final assembly, so the module uses generated visual crops from the current creation session plus the existing high-quality WOW template scene assets; there are no placeholders that require manual replacement.
+
+## Upgrade v4 retrofit
+
+- Добавлен текущий PIN-экран WOW SCHOOL (`PIN_CODE.js` + `pin-gate.js`), PIN `1020`.
+- Добавлены favicon WS, student-facing helpers, transcript Listening и QA-shortcuts.
+- Добавлен локальный safe visual polish: focus-visible, hover / active, success pulse и мягкий entrance.
+- Исходный `app.js`, учебный контент, answers, scoring, изображения и TTS сознательно не переписывались.
