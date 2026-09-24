@@ -37,6 +37,20 @@ img{display:block;max-width:100%}
 .track{height:10px;border-radius:999px;background:#e6edf7;margin-top:9px;overflow:hidden}
 .track i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--cyan),var(--blue))}
 .blockBody{flex:1;min-height:0;display:grid;grid-template-columns:1.05fr .95fr;gap:28px;margin-top:12px}
+.visualColumn{height:100%;min-height:0;display:flex;flex-direction:column;gap:10px}
+.visualColumn>.visualCard{height:auto;flex:1 1 auto;min-height:0}
+.visualHelpers{flex:0 0 auto;display:grid;gap:8px}
+.helperDetails{border-radius:17px;background:rgba(255,255,255,.9);border:1px solid #e0e9f6;box-shadow:0 9px 20px rgba(43,70,122,.07);overflow:hidden}
+.helperDetails summary{list-style:none;min-height:46px;padding:0 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;color:#24467e;font-size:14px;font-weight:950;transition:.16s}
+.helperDetails summary::-webkit-details-marker{display:none}
+.helperDetails summary:after{content:"+";width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#eef5ff;color:#378fe9;font-size:18px;line-height:1;transition:transform .16s,background .16s}
+.helperDetails[open] summary:after{transform:rotate(45deg);background:#e6f7f6;color:#169b96}
+.helperDetails summary:hover{background:#f7fbff}
+.helperBody{max-height:128px;overflow:auto;padding:0 15px 14px;color:#5a6f95;font-size:14px;line-height:1.45;font-weight:750}
+.transcript{display:grid;gap:8px;padding-top:2px}
+.transcriptLine{display:grid;grid-template-columns:58px 1fr;gap:9px;align-items:start}
+.transcriptLine strong{color:#17366f;font-size:13px}
+.transcriptLine span{color:#5c6e91;font-weight:720}
 .visualCard,.questionCard{height:100%;border-radius:28px;background:rgba(255,255,255,.84);border:1px solid #e5edf8;box-shadow:0 13px 30px rgba(43,70,122,.09),inset 0 1px 0 #fff;overflow:hidden;position:relative}
 .visualCard{padding:18px;overflow:hidden}
 .questionCard{padding:26px 28px 22px;display:flex;flex-direction:column}
@@ -45,9 +59,11 @@ img{display:block;max-width:100%}
 .subprompt{font-size:16px;line-height:1.35;color:var(--muted);font-weight:720;margin-top:8px}
 .answers{display:grid;gap:10px;margin-top:18px}
 .answer{min-height:54px;border-radius:18px;border:1px solid #d9e5f5;background:linear-gradient(180deg,#fbfdff,#f2f7ff);color:#17336b;font-size:18px;font-weight:900;text-align:left;padding:0 18px;cursor:pointer;box-shadow:inset 0 1px 0 #fff;transition:.14s}
-.answer:hover{transform:translateY(-1px);border-color:#7ab5ff}
+.answer:hover{transform:translateY(-1px);border-color:#7ab5ff;box-shadow:0 8px 17px rgba(45,108,184,.09),inset 0 1px 0 #fff}
+.answer:active:not(:disabled){transform:translateY(0) scale(.995)}
+.answer:focus-visible,.audioBtn:focus-visible,.nextBtn:focus-visible,.ghostBtn:focus-visible,.btn:focus-visible,.wordChip:focus-visible,.helperDetails summary:focus-visible{outline:4px solid rgba(45,141,247,.22);outline-offset:2px}
 .answer.wrongFlash{border-color:#ee8090;background:#fff0f2;color:#bd4052;animation:shake .22s linear}
-.answer.correct{border-color:#50ce8a;background:#eafff1;color:#148749}
+.answer.correct{border-color:#50ce8a;background:#eafff1;color:#148749;animation:successPulse .30s ease-out}
 .answer:disabled{cursor:default}
 .statusWrap{margin-top:auto;padding-top:14px}
 .feedbackBox{min-height:48px;padding:10px 14px;border-radius:16px;font-size:14px;font-weight:850;display:flex;align-items:center}
@@ -62,6 +78,8 @@ img{display:block;max-width:100%}
 .counter{font-size:13px;color:var(--muted);font-weight:850}
 .footerActions{height:64px;flex:0 0 auto;margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .audioBtn,.nextBtn,.ghostBtn{height:54px;border-radius:18px;padding:0 22px;font-size:18px;font-weight:950;cursor:pointer;transition:.15s}
+.audioBtn:hover:not(:disabled),.nextBtn:hover:not(:disabled),.ghostBtn:hover:not(:disabled),.btn:hover:not(:disabled){transform:translateY(-1px);filter:brightness(1.015)}
+.audioBtn:active:not(:disabled),.nextBtn:active:not(:disabled),.ghostBtn:active:not(:disabled),.btn:active:not(:disabled){transform:translateY(0) scale(.992)}
 .audioBtn{background:linear-gradient(145deg,#22c7c0,#288df3);color:#fff;box-shadow:inset 0 2px 0 rgba(255,255,255,.25),0 10px 22px rgba(31,145,205,.19)}
 .audioBtn.busy{filter:saturate(.75);opacity:.75}
 .audioBtn.error{background:linear-gradient(145deg,#ef7586,#d95c72)}
@@ -71,6 +89,9 @@ img{display:block;max-width:100%}
 .audioMeta{font-size:12px;color:var(--muted);font-weight:750;margin-left:10px}
 .leftActions{display:flex;align-items:center;gap:10px}
 @keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@keyframes successPulse{0%{transform:scale(.985)}60%{transform:scale(1.012)}100%{transform:scale(1)}}
+@keyframes screenIn{from{opacity:.72;transform:translateY(5px)}to{opacity:1;transform:none}}
+.content{animation:screenIn .20s ease-out}
 .sceneFrame{height:100%;border-radius:24px;overflow:hidden;position:relative;background:linear-gradient(145deg,#eef8ff,#fbf3ff);box-shadow:inset 0 0 0 1px rgba(212,226,246,.75)}
 .sceneImg{width:100%;height:100%;object-fit:cover;border-radius:24px;overflow:hidden}
 .sceneImg.contain{object-fit:contain}
@@ -108,7 +129,9 @@ img{display:block;max-width:100%}
 .bin small{display:block;color:var(--muted);font-weight:750;margin-top:2px}
 .binwords{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
 .wordBank{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 14px;border-radius:20px;background:#fff;border:1px solid #e4edf8;box-shadow:0 10px 22px rgba(43,70,122,.07)}
-.wordChip{height:44px;padding:0 17px;border-radius:14px;background:#fff;border:1px solid #dbe6f5;color:#142f68;font-size:17px;font-weight:950;cursor:grab}
+.wordChip{height:44px;padding:0 17px;border-radius:14px;background:#fff;border:1px solid #dbe6f5;color:#142f68;font-size:17px;font-weight:950;cursor:grab;transition:.14s}
+.wordChip:hover:not(:disabled){transform:translateY(-1px);border-color:#78b5f5;box-shadow:0 7px 15px rgba(45,108,184,.08)}
+.wordChip:active:not(:disabled){transform:translateY(0) scale(.99)}
 .wordChip.selected{outline:3px solid rgba(41,143,243,.23);border-color:#54a3f7}
 .wordChip.good{background:#eafff1;border-color:#63d397;cursor:default}
 .bin.dropTarget{border-color:#4fa4fa;background:#eef7ff}
